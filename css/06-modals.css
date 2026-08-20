@@ -1,0 +1,713 @@
+/* ==========================================================================
+   06 — MODALES
+   Les racines sont affichees / masquees par le script (style en ligne,
+   .show(), .fadeIn()). Le CSS ne pose donc jamais display:none dessus, et le
+   centrage ne depend pas de la valeur de display : la boite de contenu est
+   centree par transform, que la racine soit en block ou en flex.
+   ========================================================================== */
+
+.member-modal,
+.custom-modal,
+.grade-modal,
+.history-modal,
+.currency-modal-overlay,
+.storage-modal-overlay,
+.confirm-popup,
+.register-overlay,
+.job-offer-overlay,
+.bonus-overlay,
+.jc-confirm-overlay,
+.comm-share-overlay,
+.comm-detail-overlay,
+.comm-confirm-overlay,
+.comm-confirm-delete-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+}
+
+/* Les racines qui font elles-memes office de voile. */
+.currency-modal-overlay,
+.storage-modal-overlay,
+.confirm-popup,
+.register-overlay,
+.job-offer-overlay { background-color: var(--scrim-deep); }
+
+.member-modal-content,
+.custom-modal-content,
+.grade-modal-content,
+.history-modal-content,
+.currency-modal-content,
+.storage-modal,
+.register-modal,
+.job-offer-popup,
+.confirm-popup-content,
+.bonus-popup,
+.comm-share-modal,
+.comm-confirm-modal,
+.comm-confirm-delete-modal,
+.jc-confirm-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  max-height: 88vh;
+  min-height: 0;
+  z-index: 2;
+}
+
+/* Largeurs par famille ---------------------------------------------------- */
+.member-modal-content       { width: min(560px, 92vw); }
+.member-modal-large         { width: min(760px, 94vw); }
+.custom-modal-content       { width: min(460px, 90vw); }
+.currency-modal-content     { width: min(460px, 90vw); }
+.grade-modal-content        { width: min(880px, 94vw); }
+.history-modal-content      { width: min(1180px, 95vw); height: min(820px, 90vh); }
+.storage-modal              { width: min(880px, 94vw); }
+.register-modal             { width: min(520px, 92vw); }
+.job-offer-popup            { width: min(520px, 92vw); }
+.confirm-popup-content      { width: min(460px, 90vw); }
+.bonus-popup                { width: min(460px, 90vw); }
+.jc-confirm-box             { width: min(480px, 90vw); }
+
+/* --------------------------------------------------------------------------
+   Papeterie commune : en-tete, corps, pied.
+   -------------------------------------------------------------------------- */
+.member-form-paper,
+.custom-modal-content,
+.grade-modal-content,
+.history-modal-content,
+.storage-modal,
+.register-modal {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.member-paper-header,
+.custom-modal-header,
+.grade-modal-header,
+.history-modal-header,
+.storage-modal-header,
+.register-modal-header,
+.job-offer-header,
+.confirm-popup-header,
+.currency-modal-header,
+.bonus-header,
+.comm-share-title,
+.comm-confirm-title {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
+  background-color: rgba(1, 1, 1, 0.55);
+  background-image: var(--tex-bar), var(--tex-grain-lo);
+  background-size: auto 12px, 43px 43px;
+  background-repeat: repeat-x, repeat;
+  background-position: center bottom, left top;
+}
+.member-paper-header h2,
+.member-paper-header h3,
+.custom-modal-header h3,
+.grade-modal-title,
+.history-modal-title,
+.storage-modal-header h3,
+.register-modal-header h3,
+.confirm-popup-header h3,
+.currency-modal-header h3,
+.job-offer-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.grade-modal-icon,
+.history-modal-icon,
+.modal-header-icon,
+.register-header-icon,
+.confirm-icon,
+.permissions-icon,
+.label-icon,
+.storage-info-icon,
+.field-icon,
+.stat-icon,
+.filter-icon,
+.chart-btn-icon,
+.currency-option-img,
+.register-icon-img { object-fit: contain; }
+.grade-modal-icon,
+.history-modal-icon,
+.modal-header-icon,
+.register-header-icon { width: 26px; height: 26px; opacity: 0.8; }
+
+.member-paper-content,
+.custom-modal-body,
+.grade-modal-body,
+.storage-modal-body,
+.register-modal-body,
+.job-offer-body,
+.currency-modal-body,
+.bonus-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.member-form-actions,
+.member-actions,
+.custom-modal-footer,
+.grade-modal-footer,
+.register-modal-footer,
+.confirm-popup-buttons,
+.job-offer-buttons,
+.bonus-buttons,
+.comm-confirm-footer,
+.comm-detail-actions,
+.comm-share-footer,
+.jc-confirm-actions,
+.comm-confirm-delete-actions,
+.code-input-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
+  background-color: rgba(1, 1, 1, 0.5);
+  background-image: var(--tex-rule-wide), var(--tex-grain-lo);
+  background-size: auto 4px, 43px 43px;
+  background-repeat: repeat-x, repeat;
+  background-position: left top, left top;
+}
+.member-form-actions,
+.job-offer-buttons,
+.confirm-popup-buttons { justify-content: center; }
+.member-form-actions button,
+.job-offer-buttons button,
+.confirm-popup-buttons button,
+.custom-modal-footer button { flex: 1 1 auto; }
+
+/* Boutons de fermeture pinces dans le coin de l'en-tete. */
+.member-modal-close-btn,
+.grade-modal-close,
+.history-modal-close,
+.close-modal-btn,
+.register-close-btn,
+.currency-modal-close { position: absolute; top: var(--sp-3); right: var(--sp-3); }
+
+/* --------------------------------------------------------------------------
+   Formulaires de modale
+   -------------------------------------------------------------------------- */
+.member-form-group,
+.register-field,
+.currency-input-group,
+.bonus-input-wrapper,
+.comm-share-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.member-form-group label,
+.register-field label,
+.grade-input-label,
+.bonus-input-label,
+.comm-share-field label {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.label-icon,
+.field-icon { width: 16px; height: 16px; opacity: 0.7; }
+
+.member-info-display {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0.55rem 0.8rem;
+  font-size: var(--fs-sm);
+  color: var(--text);
+  background-color: rgba(1, 1, 1, 0.55);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.member-avatar-preview {
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  background-color: rgba(1, 1, 1, 0.6);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.member-avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
+
+#modalLoadingOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(1, 1, 1, 0.78);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+
+/* --------------------------------------------------------------------------
+   Recrutement
+   -------------------------------------------------------------------------- */
+.recruit-nearby-section { display: flex; flex-direction: column; gap: var(--sp-3); min-height: 0; }
+.recruit-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+.recruit-section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.recruit-refresh-btn { padding: 0.4rem 0.7rem; }
+.nearby-players-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  max-height: 46vh;
+  overflow-y: auto;
+  padding-right: var(--sp-2);
+}
+.recruit-card,
+.player-card {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  min-width: 0;
+}
+.player-info { display: flex; flex-direction: column; min-width: 0; flex: 1 1 auto; }
+.recruit-empty-hint,
+.recruit-empty-text { font-size: var(--fs-xs); color: var(--text-faint); }
+
+/* --------------------------------------------------------------------------
+   Offre d'emploi
+   -------------------------------------------------------------------------- */
+.job-offer-overlay { pointer-events: none; }
+.job-offer-popup { pointer-events: auto; }
+.job-offer-icon {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--red);
+  font-size: var(--fs-lg);
+}
+.job-offer-info { display: flex; flex-direction: column; gap: var(--sp-2); }
+.job-offer-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding-bottom: var(--sp-2);
+  background-color: transparent;
+  background-image: var(--tex-rule-thin);
+  background-size: auto 4px;
+  background-repeat: repeat-x;
+  background-position: left bottom;
+}
+.job-offer-label {
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.job-offer-value { font-family: var(--font-title); font-size: var(--fs-sm); color: var(--text); }
+.job-offer-recruiter { display: flex; flex-direction: column; align-items: center; gap: var(--sp-1); text-align: center; }
+.job-offer-recruiter-text { font-size: var(--fs-xs); color: var(--text-faint); }
+.job-offer-recruiter-name { font-family: var(--font-display); font-size: var(--fs-md); color: var(--text); letter-spacing: var(--track); }
+.job-offer-timer {
+  flex: 0 0 auto;
+  padding: var(--sp-3);
+  text-align: center;
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.job-offer-timer-value { font-family: var(--font-title); font-size: var(--fs-lg); color: var(--red); }
+
+/* --------------------------------------------------------------------------
+   Choix de devise
+   -------------------------------------------------------------------------- */
+.currency-question { font-size: var(--fs-sm); color: var(--text-dim); text-align: center; }
+.currency-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-3); }
+.currency-option {
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-4);
+  height: 100%;
+}
+.currency-option-img { width: 42px; height: 42px; }
+
+/* --------------------------------------------------------------------------
+   Gestion des grades
+   -------------------------------------------------------------------------- */
+.grade-info-section {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--sp-5);
+  align-items: center;
+}
+.grade-badge-display { display: flex; align-items: center; gap: var(--sp-4); }
+.grade-label-display {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  letter-spacing: var(--track);
+  color: var(--text);
+}
+.grade-salary-section { display: flex; flex-direction: column; gap: var(--sp-2); min-width: 0; }
+.salary-input-wrapper { position: relative; display: flex; align-items: center; }
+.grade-salary-input { padding-right: 2.6rem; font-family: var(--font-title); }
+.salary-currency {
+  position: absolute;
+  right: 0.7rem;
+  font-size: var(--fs-sm);
+  color: var(--text-faint);
+  pointer-events: none;
+}
+.salary-max-info { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-xs); color: var(--text-faint); }
+
+.permissions-section { display: flex; flex-direction: column; gap: var(--sp-3); min-height: 0; }
+.permissions-title { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-md); }
+.permissions-icon { width: 20px; height: 20px; opacity: 0.75; }
+.permissions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: var(--sp-2);
+}
+.permission-item {
+  padding: 0.55rem 0.7rem;
+  background-color: rgba(13, 13, 13, 0.62);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+  transition: background-color 0.14s linear;
+}
+.permission-item:hover { background-color: rgba(27, 27, 27, 0.8); }
+.permission-text {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track);
+  color: var(--text-dim);
+  min-width: 0;
+}
+.permission-icon-left { color: var(--text-faint); width: 14px; text-align: center; flex: 0 0 14px; }
+.permission-checkbox:checked ~ .permission-text { color: var(--text); }
+.permission-badge {
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track);
+  color: var(--text-faint);
+}
+.permissions-tooltip {
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+}
+.grade-modal-footer { justify-content: center; }
+.grade-save-btn { min-width: 14rem; }
+
+/* --------------------------------------------------------------------------
+   Historique detaille
+   -------------------------------------------------------------------------- */
+.history-tabs {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-5);
+  background-color: rgba(1, 1, 1, 0.4);
+  background-image: var(--tex-rule-wide);
+  background-size: auto 4px;
+  background-repeat: repeat-x;
+  background-position: left bottom;
+}
+.history-stats {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
+}
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  min-width: 0;
+}
+.stat-icon { width: 30px; height: 30px; flex: 0 0 30px; }
+.stat-info { display: flex; flex-direction: column; min-width: 0; }
+.stat-label {
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.stat-value { font-family: var(--font-title); font-size: var(--fs-lg); color: var(--text); }
+
+.history-tab-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  flex-direction: column;
+  padding: 0 var(--sp-5) var(--sp-5);
+  gap: var(--sp-3);
+}
+#historyListTab { display: flex; }
+#historyChartTab { display: flex; }
+
+.history-modal-filters {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+.filter-icon { width: 16px; height: 16px; }
+
+.history-modal-table {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.history-table-header,
+.history-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr) minmax(0, 0.9fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-2);
+}
+.history-table-header {
+  flex: 0 0 auto;
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  background-color: rgba(1, 1, 1, 0.5);
+  background-image: var(--tex-rule-wide);
+  background-size: auto 4px;
+  background-repeat: repeat-x;
+  background-position: left bottom;
+}
+.history-table-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+.history-row {
+  background-color: transparent;
+  background-image: var(--tex-rule-thin);
+  background-size: auto 4px;
+  background-repeat: repeat-x;
+  background-position: left bottom;
+  transition: background-color 0.14s linear;
+}
+.history-row:hover { background-color: rgba(27, 27, 27, 0.7); }
+.history-col-type,
+.history-col-player,
+.history-col-value,
+.history-col-date { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.history-col-value { font-family: var(--font-title); color: var(--text); }
+.history-col-date { font-size: var(--fs-xs); color: var(--text-faint); }
+
+.chart-controls {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+.chart-type-selector,
+.chart-period-selector { display: flex; gap: var(--sp-2); }
+.chart-mode-toggle { display: flex; align-items: center; gap: var(--sp-2); }
+.chart-btn-icon { width: 16px; height: 16px; }
+.chart-container {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: var(--sp-3);
+  background-color: rgba(1, 1, 1, 0.45);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.chart-container canvas { max-height: 100%; }
+.chart-legend,
+.chart-legend-detailed {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-4);
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.legend-color {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 12px;
+  display: inline-block;
+  background-color: var(--text-faint);
+  -webkit-mask-image: var(--tex-box);
+  -webkit-mask-size: 12px 12px;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: var(--tex-box);
+  mask-size: 12px 12px;
+  mask-repeat: no-repeat;
+}
+.legend-balance      .legend-color { background-color: var(--text); }
+.legend-deposits     .legend-color { background-color: var(--text-dim); }
+.legend-withdrawals  .legend-color { background-color: var(--red); }
+.legend-salaries     .legend-color { background-color: var(--red-hover); }
+.legend-bonuses      .legend-color { background-color: var(--text-faint); }
+.legend-upgrades     .legend-color { background-color: var(--ink-soft); }
+
+/* --------------------------------------------------------------------------
+   Coffre / paliers de stockage
+   -------------------------------------------------------------------------- */
+.storage-current-info {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background-color: rgba(1, 1, 1, 0.55);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.storage-info-icon { width: 26px; height: 26px; }
+.storage-info-text { display: flex; flex-direction: column; }
+.storage-info-label { font-size: var(--fs-xs); letter-spacing: var(--track-w); text-transform: uppercase; color: var(--text-faint); }
+.storage-info-value { font-family: var(--font-title); font-size: var(--fs-lg); color: var(--text); }
+.storage-tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--sp-3);
+}
+.storage-tier-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-4);
+  text-align: center;
+}
+.tier-slots { font-family: var(--font-title); font-size: var(--fs-xl); color: var(--text); }
+.tier-label { font-size: var(--fs-xs); letter-spacing: var(--track-w); text-transform: uppercase; color: var(--text-faint); }
+.tier-price { font-family: var(--font-title); font-size: var(--fs-md); color: var(--red); }
+.tier-lock-icon {
+  width: 18px;
+  height: 18px;
+  background-color: var(--text-faint);
+  -webkit-mask-image: var(--tex-lock);
+  -webkit-mask-size: 18px 18px;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: var(--tex-lock);
+  mask-size: 18px 18px;
+  mask-repeat: no-repeat;
+}
+
+/* --------------------------------------------------------------------------
+   Caisse enregistreuse
+   -------------------------------------------------------------------------- */
+.register-hint { font-size: var(--fs-xs); color: var(--text-faint); }
+.register-pending { display: flex; flex-direction: column; align-items: center; gap: var(--sp-2); text-align: center; }
+.register-pending-label { font-size: var(--fs-xs); letter-spacing: var(--track-w); text-transform: uppercase; color: var(--text-faint); }
+.register-pending-status { display: inline-flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-xs); color: var(--red); text-transform: uppercase; letter-spacing: var(--track); }
+.register-pending-amount,
+.register-invoice-amount { font-family: var(--font-title); font-size: var(--fs-2xl); color: var(--text); }
+.register-pending-item,
+.register-invoice-item { font-size: var(--fs-sm); color: var(--text-dim); }
+.register-invoice-display { display: flex; flex-direction: column; align-items: center; gap: var(--sp-2); text-align: center; }
+.register-invoice-icon { display: flex; }
+.register-icon-img { width: 48px; height: 48px; }
+.register-invoice-separator {
+  width: 60%;
+  height: 4px;
+  background-color: transparent;
+  background-image: var(--tex-rule);
+  background-size: auto 4px;
+  background-repeat: repeat-x;
+  background-position: center;
+  opacity: 0.5;
+  margin: var(--sp-2) 0;
+}
+.register-invoice-from { font-size: var(--fs-sm); color: var(--text-dim); }
+.register-invoice-job { font-size: var(--fs-xs); letter-spacing: var(--track); text-transform: uppercase; color: var(--red); }
+.register-amount-input { font-family: var(--font-title); font-size: var(--fs-lg); text-align: center; }
+
+/* --------------------------------------------------------------------------
+   Prime (bonus)
+   -------------------------------------------------------------------------- */
+.bonus-title { font-family: var(--font-display); font-size: var(--fs-lg); letter-spacing: var(--track-w); text-transform: uppercase; }
+.bonus-icon { color: var(--red); font-size: var(--fs-lg); }
+.bonus-info,
+.bonus-row { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); font-size: var(--fs-sm); }
+.bonus-label { color: var(--text-faint); font-size: var(--fs-xs); letter-spacing: var(--track-w); text-transform: uppercase; }
+.bonus-value { font-family: var(--font-title); color: var(--text); }
+.bonus-input-container { display: flex; flex-direction: column; gap: var(--sp-2); }
+.bonus-currency { display: flex; gap: var(--sp-2); }
+
+/* --------------------------------------------------------------------------
+   Confirmations generiques
+   -------------------------------------------------------------------------- */
+.custom-modal-body p,
+.confirm-popup-message,
+.comm-confirm-text,
+.comm-confirm-delete-text {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-dim);
+  text-align: center;
+}
+.custom-modal-header .fa-exclamation-triangle,
+.custom-modal-header .fa-info-circle,
+.comm-confirm-icon { color: var(--red); }
+.confirm-icon { width: 26px; height: 26px; }
