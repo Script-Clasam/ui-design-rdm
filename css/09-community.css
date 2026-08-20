@@ -1,0 +1,287 @@
+/* ==========================================================================
+   09 — COMMUNAUTE
+   Place de marche des metiers partages : catalogue, fiche detaillee,
+   partage et moderation.
+   ========================================================================== */
+
+.comm-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+.comm-header-left { display: flex; flex-direction: column; gap: var(--sp-1); min-width: 0; }
+.comm-header-title { font-size: var(--fs-xl); }
+.comm-header-sub { font-size: var(--fs-sm); color: var(--text-faint); }
+.comm-header-actions { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
+
+.comm-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+.comm-tag-filters { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
+
+.comm-stats-row {
+  display: flex;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+.comm-stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0.4rem 0.8rem;
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  background-color: rgba(13, 13, 13, 0.7);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.comm-stat-value { font-family: var(--font-title); color: var(--text); }
+
+/* --------------------------------------------------------------------------
+   Catalogue
+   -------------------------------------------------------------------------- */
+.comm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: var(--sp-4);
+  align-content: start;
+}
+.comm-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  min-width: 0;
+}
+.comm-card-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.comm-card-jobname { font-family: var(--font-title); font-size: var(--fs-xs); color: var(--red); }
+.comm-card-description {
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--text-dim);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.comm-card-tags { display: flex; flex-wrap: wrap; gap: var(--sp-1); }
+.comm-card-meta { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
+.comm-card-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+}
+.comm-card-author {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-width: 0;
+}
+.comm-card-author-avatar { width: 26px; height: 26px; flex: 0 0 26px; font-size: var(--fs-xs); }
+.comm-card-author-icon { color: var(--text-faint); }
+.comm-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-top: auto;
+  padding-top: var(--sp-3);
+  background-color: transparent;
+  background-image: var(--tex-rule-thin);
+  background-size: auto 4px;
+  background-repeat: repeat-x;
+  background-position: left top;
+}
+.comm-card-view-btn { padding: 0.4rem 0.8rem; }
+.comm-feature-count { font-size: var(--fs-xs); color: var(--text-faint); }
+
+/* --------------------------------------------------------------------------
+   Fiche detaillee
+   -------------------------------------------------------------------------- */
+.comm-detail-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  width: min(920px, 94vw);
+  max-height: 90vh;
+  min-height: 0;
+  overflow: hidden;
+  z-index: 2;
+  background-color: rgba(1, 1, 1, 0.94);
+  background-image: linear-gradient(rgba(20, 20, 20, 0.88), rgba(1, 1, 1, 0.96)), var(--tex-menu-sm);
+  background-size: cover, 576px 192px;
+  background-position: center, center top;
+  background-repeat: no-repeat, repeat;
+}
+.comm-detail-title {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text);
+  background-color: rgba(1, 1, 1, 0.55);
+  background-image: var(--tex-bar), var(--tex-grain-lo);
+  background-size: auto 12px, 43px 43px;
+  background-repeat: repeat-x, repeat;
+  background-position: center bottom, left top;
+}
+.comm-detail-close { position: absolute; top: var(--sp-3); right: var(--sp-3); }
+.comm-detail-jobname { font-family: var(--font-title); font-size: var(--fs-sm); color: var(--red); }
+.comm-detail-content-summary {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.comm-detail-meta-row { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.comm-detail-meta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 0.3rem 0.7rem;
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  background-color: rgba(27, 27, 27, 0.8);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.comm-detail-installed-badge { color: var(--red); }
+.comm-detail-author-row { display: flex; align-items: center; gap: var(--sp-3); }
+.comm-detail-avatar { width: 42px; height: 42px; flex: 0 0 42px; }
+.comm-detail-avatar-fallback { width: 42px; height: 42px; flex: 0 0 42px; }
+.comm-detail-author-info,
+.comm-detail-author-text { display: flex; flex-direction: column; min-width: 0; }
+.comm-detail-author-name { font-family: var(--font-display); letter-spacing: var(--track); color: var(--text); }
+.comm-detail-author-discord { font-size: var(--fs-xs); color: var(--text-faint); }
+.comm-detail-desc-block { display: flex; flex-direction: column; gap: var(--sp-2); }
+.comm-detail-desc-label,
+.comm-content-block-title,
+.comm-items-title,
+.comm-detail-info-label {
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.comm-detail-desc-text { font-size: var(--fs-sm); line-height: 1.6; color: var(--text-dim); }
+.comm-detail-info-item { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+.comm-detail-info-value { font-family: var(--font-title); color: var(--text); }
+.comm-detail-setjob-hint { font-size: var(--fs-xs); color: var(--text-faint); }
+
+.comm-content-block { display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-4); }
+.comm-extra-grid,
+.comm-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: var(--sp-2);
+}
+.comm-extra-item { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+.comm-extra-label { font-size: var(--fs-xs); letter-spacing: var(--track); text-transform: uppercase; color: var(--text-faint); }
+.comm-extra-value { font-family: var(--font-title); font-size: var(--fs-sm); color: var(--text); }
+
+.comm-grades-list { display: flex; flex-direction: column; }
+.comm-grade-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-1);
+  background-color: transparent;
+  background-image: var(--tex-rule-thin);
+  background-size: auto 4px;
+  background-repeat: repeat-x;
+  background-position: left bottom;
+}
+.comm-grade-level { font-family: var(--font-title); color: var(--text-faint); width: 2rem; }
+.comm-grade-name { font-size: var(--fs-sm); color: var(--text-dim); min-width: 0; }
+.comm-grade-salary { font-family: var(--font-title); font-size: var(--fs-sm); color: var(--text); }
+
+.comm-items-section { display: flex; flex-direction: column; gap: var(--sp-2); }
+.comm-items-sub { font-size: var(--fs-xs); color: var(--text-faint); }
+.comm-items-code {
+  padding: var(--sp-3);
+  font-family: var(--font-title);
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  color: var(--text-dim);
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 16rem;
+  overflow-y: auto;
+  user-select: text;
+  cursor: text;
+  background-color: rgba(1, 1, 1, 0.65);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+
+/* --------------------------------------------------------------------------
+   Partage
+   -------------------------------------------------------------------------- */
+.comm-share-modal,
+.comm-confirm-modal,
+.comm-confirm-delete-modal { width: min(560px, 92vw); }
+.comm-share-title,
+.comm-confirm-title { flex-direction: column; align-items: flex-start; gap: var(--sp-1); }
+.comm-share-sub { font-size: var(--fs-xs); color: var(--text-faint); }
+.comm-share-modal .comm-share-field { padding: 0 var(--sp-5); }
+.comm-share-modal .comm-share-field:first-of-type { padding-top: var(--sp-5); }
+.comm-fw-tabs {
+  display: flex;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-5);
+  background-color: transparent;
+  background-image: var(--tex-rule-wide);
+  background-size: auto 4px;
+  background-repeat: repeat-x;
+  background-position: left bottom;
+}
+
+/* --------------------------------------------------------------------------
+   Moderation
+   -------------------------------------------------------------------------- */
+.comm-confirm-icon { font-size: var(--fs-xl); }
+.comm-confirm-delete-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text);
+  padding: var(--sp-4) var(--sp-5) 0;
+}
+.comm-confirm-delete-text { padding: var(--sp-4) var(--sp-5); }

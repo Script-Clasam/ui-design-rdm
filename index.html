@@ -374,35 +374,11 @@
         </div>
     </div>
 
-    <div id="recruitModal" class="member-modal" style="display: none;">
-        <div class="member-modal-overlay"></div>
-        <div class="member-modal-content">
-            <div class="member-form-paper">
-                <button class="member-modal-close-btn" id="closeRecruitModalBtn">
-                    <img src="img/cross.png" alt="Fermer" class="member-modal-close-icon" />
-                </button>
-                <div class="member-paper-header">
-                    <h3 data-i18n="recruitment">RECRUTER UN JOUEUR</h3>
-                </div>
-                <div class="member-paper-content">
-                    <div class="member-form-group">
-                        <label data-i18n="player_id">ID TEMPORAIRE DU JOUEUR</label>
-                        <input type="number" id="recruitPlayerId" class="member-input" placeholder="Entrez l'ID du joueur..." data-i18n-placeholder="player_id">
-                    </div>
-
-                    <div class="member-form-group">
-                        <label data-i18n="select_grade">SÉLECTIONNEZ UN GRADE</label>
-                        <select id="recruitGradeSelect" class="member-select">
-                        </select>
-                    </div>
-
-                    <div class="member-actions">
-                        <button id="confirmRecruitBtn" class="member-btn-primary" data-i18n="recruit">Contratar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Un second bloc #recruitModal dupliquait ici les identifiants
+         "recruitModal" et "closeRecruitModalBtn". Aucune de ses IDs internes
+         (recruitPlayerId, recruitGradeSelect, confirmRecruitBtn) n'est lue par
+         le script : c'etait du balisage mort qui cassait getElementById sur les
+         deux identifiants partages. Retire. -->
 
     <div id="notificationContainer" class="notification-container top-center"></div>
 
