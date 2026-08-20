@@ -130,10 +130,10 @@
   overflow: hidden;
   z-index: 2;
   background-color: rgba(1, 1, 1, 0.94);
-  background-image: linear-gradient(rgba(20, 20, 20, 0.88), rgba(1, 1, 1, 0.96)), var(--tex-menu-sm);
-  background-size: cover, 576px 192px;
-  background-position: center, center top;
-  background-repeat: no-repeat, repeat;
+  background-image: var(--tex-plate);
+  background-size: 197px 197px;
+  background-position: center top;
+  background-repeat: repeat;
 }
 .comm-detail-title {
   position: relative;
@@ -148,10 +148,10 @@
   text-transform: uppercase;
   color: var(--text);
   background-color: rgba(1, 1, 1, 0.55);
-  background-image: var(--tex-bar), var(--tex-grain-lo);
-  background-size: auto 12px, 43px 43px;
-  background-repeat: repeat-x, repeat;
-  background-position: center bottom, left top;
+  background-image: var(--tex-bar), var(--tex-strip);
+  background-size: auto 12px, auto 100%;
+  background-repeat: repeat-x, repeat-x;
+  background-position: center bottom, left center;
 }
 .comm-detail-close { position: absolute; top: var(--sp-3); right: var(--sp-3); }
 .comm-detail-jobname { font-family: var(--font-title); font-size: var(--fs-sm); color: var(--red); }

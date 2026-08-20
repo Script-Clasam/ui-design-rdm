@@ -31,10 +31,10 @@ button,
   text-transform: uppercase;
   color: var(--text-dim);
   white-space: nowrap;
-  background-color: rgba(20, 20, 20, 0.72);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
+  background-color: rgba(1, 1, 1, 0.55);
+  background-image: var(--tex-button);
+  background-size: auto 100%;
+  background-repeat: repeat-x;
   transition: color 0.14s linear, background-color 0.14s linear;
 }
 
@@ -73,12 +73,10 @@ button:hover,
 .comm-copy-btn:hover,
 .job-shop-buy-btn:hover {
   color: var(--text);
-  background-color: rgba(40, 40, 40, 0.82);
-  background-image: var(--tex-row), var(--tex-grain-lo);
-  background-size: auto 100%, 43px 43px;
-  background-repeat: repeat-x, repeat;
-  background-position: left center, left top;
-  background-blend-mode: soft-light, normal;
+  background-color: rgba(45, 45, 45, 0.85);
+  background-image: var(--tex-button);
+  background-size: auto 100%;
+  background-repeat: repeat-x;
 }
 
 button:hover::after,
@@ -170,9 +168,9 @@ button.disabled,
 .jc-wh-btn-save:hover {
   color: var(--text);
   background-color: var(--red-hover);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
+  background-image: var(--tex-button);
+  background-size: auto 100%;
+  background-repeat: repeat-x;
 }
 
 /* Boutons destructeurs : meme encre rouge, plaque sombre. --------------- */
@@ -188,9 +186,9 @@ button.disabled,
 .member-btn-warning {
   color: var(--red);
   background-color: rgba(13, 13, 13, 0.82);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
+  background-image: var(--tex-button);
+  background-size: auto 100%;
+  background-repeat: repeat-x;
 }
 .member-btn-danger:hover,
 .fire-btn:hover,
@@ -204,9 +202,9 @@ button.disabled,
 .member-btn-warning:hover {
   color: var(--text);
   background-color: var(--red);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
+  background-image: var(--tex-button);
+  background-size: auto 100%;
+  background-repeat: repeat-x;
 }
 
 /* Boutons discrets : annuler / retour. ---------------------------------- */

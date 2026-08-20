@@ -107,10 +107,10 @@
   gap: var(--sp-3);
   padding: var(--sp-4) var(--sp-5);
   background-color: rgba(1, 1, 1, 0.55);
-  background-image: var(--tex-bar), var(--tex-grain-lo);
-  background-size: auto 12px, 43px 43px;
-  background-repeat: repeat-x, repeat;
-  background-position: center bottom, left top;
+  background-image: var(--tex-bar), var(--tex-strip);
+  background-size: auto 12px, auto 100%;
+  background-repeat: repeat-x, repeat-x;
+  background-position: center bottom, left center;
 }
 .member-paper-header h2,
 .member-paper-header h3,
@@ -191,10 +191,10 @@
   gap: var(--sp-3);
   padding: var(--sp-4) var(--sp-5);
   background-color: rgba(1, 1, 1, 0.5);
-  background-image: var(--tex-rule-wide), var(--tex-grain-lo);
-  background-size: auto 4px, 43px 43px;
-  background-repeat: repeat-x, repeat;
-  background-position: left top, left top;
+  background-image: var(--tex-rule-wide), var(--tex-strip);
+  background-size: auto 4px, auto 100%;
+  background-repeat: repeat-x, repeat-x;
+  background-position: left top, left center;
 }
 .member-form-actions,
 .job-offer-buttons,

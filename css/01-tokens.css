@@ -87,14 +87,29 @@
   --tex-fr-l:  url('../img/ui/crafting_highlight_l.png');
   --tex-fr-r:  url('../img/ui/crafting_highlight_r.png');
 
-  /* Fonds de menu */
+  /* ---- Fonds de menu ----------------------------------------------------
+     Deux familles, a ne pas confondre :
+
+     SOMBRES — deja a la bonne valeur, posees telles quelles en fond.
+     CLAIRES — art blanc sur transparent, uniquement via un masque teinte
+               (les poser brutes donne le gris laiteux qu'on veut eviter).   */
+
+  /* sombres */
+  --tex-plate:    url('../img/box_s_bg_1.png');           /* 197x197 — grands panneaux */
+  --tex-plate-2:  url('../img/box_s_bg_1_b.png');         /* 197x197 — variante        */
+  --tex-strip:    url('../img/box_a_bg_1.png');           /* 432x100 — bandes larges   */
+  --tex-strip-b:  url('../img/box_a_bg_1_2.png');         /* 432x100 — variante        */
+  --tex-button:   url('../img/menu_button_1.png');        /* 224x44  — plaque bouton   */
+  --tex-grain-lo: url('../img/box_bg_1.png');             /* 43x43   — grain de fiche  */
+  --tex-wash:     url('../img/overlay.png');              /* 1686x448 — lavis d'en-tete */
+  --tex-backdrop: url('../img/background.png');           /* 1600x950 — decor d'apercu */
+
+  /* claires — a masquer */
   --tex-menu-lg:  url('../img/ui/hud_menu_4a.png');       /* 576x384 */
   --tex-menu-sm:  url('../img/ui/hud_menu_5a.png');       /* 576x192 */
   --tex-menu-dim: url('../img/hud_menu_grey_dark.webp');
-  --tex-grain:    url('../img/box_bg_2.png');             /* 43x43, tuile */
-  --tex-grain-lo: url('../img/box_bg_1.png');             /* 43x43, tres discret */
-  --tex-wash:     url('../img/overlay.png');              /* 1686x448 */
-  --tex-backdrop: url('../img/background.png');           /* 1600x950 */
+  --tex-grain:    url('../img/box_bg_2.png');             /* 43x43   */
+  --tex-button-on: url('../img/menu_button_2.png');       /* 224x44  */
 
   /* Plaques et rangees */
   --tex-row:      url('../img/ui/selection_box_bg_1c.png'); /* 432x100 */
