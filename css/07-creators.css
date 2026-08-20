@@ -615,6 +615,11 @@
   background-position: right 0.6rem center, left bottom, left top;
 }
 .jc-csel-opts,
+.comm-custom-select-options { display: none; }
+.jc-csel-opts.open,
+.comm-custom-select-options.open { display: block; }
+
+.jc-csel-opts,
 .comm-custom-select-options {
   position: absolute;
   top: 100%;
@@ -654,6 +659,11 @@
 }
 .jc-blip-preview-img,
 .gc-blip-preview-img { width: 28px; height: 28px; object-fit: contain; }
+.jc-blip-picker-dropdown,
+.gc-blip-picker-dropdown { display: none; }
+.jc-blip-picker-dropdown.open,
+.gc-blip-picker-dropdown.open { display: block; }
+
 .jc-blip-picker-dropdown,
 .gc-blip-picker-dropdown {
   position: absolute;

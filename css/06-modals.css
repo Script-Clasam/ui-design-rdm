@@ -26,6 +26,14 @@
   z-index: var(--z-modal);
 }
 
+/* Etats pilotes par une classe (et non par un style en ligne) : le defaut
+   masque doit vivre ici, sinon la modale s'affiche des le demarrage. */
+.register-overlay { display: none; }
+.register-overlay.active { display: block; }
+
+.member-avatar-preview { display: none; }
+.member-avatar-preview.show { display: block; }
+
 /* Les racines qui font elles-memes office de voile. */
 .currency-modal-overlay,
 .storage-modal-overlay,
