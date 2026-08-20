@@ -1,0 +1,126 @@
+/* ==========================================================================
+   10 — NORMALISATION DU BALISAGE GENERE
+   Derniere couche : elle habille ce que le script fabrique a l'execution
+   (tableaux, etiquettes, liens, etats) pour qu'aucun fragment injecte
+   n'atterrisse sans style. Chargee en dernier, elle ne remplace jamais une
+   regle de composant : elle ne pose que des defauts.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Tableaux (historiques du createur, tables de grades et d'objets)
+   -------------------------------------------------------------------------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 0;
+}
+thead th {
+  padding: var(--sp-3) var(--sp-2);
+  text-align: left;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  white-space: nowrap;
+  background-color: rgba(1, 1, 1, 0.55);
+  background-image: var(--tex-rule-wide);
+  background-size: auto 4px;
+  background-repeat: repeat-x;
+  background-position: left bottom;
+}
+tbody td {
+  padding: var(--sp-3) var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--text-dim);
+  vertical-align: middle;
+  background-color: transparent;
+  background-image: var(--tex-rule-thin);
+  background-size: auto 4px;
+  background-repeat: repeat-x;
+  background-position: left bottom;
+}
+tbody tr:hover td { color: var(--text); }
+
+/* --------------------------------------------------------------------------
+   Etiquettes, liens et zones de texte
+   -------------------------------------------------------------------------- */
+label {
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+a {
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.14s linear;
+}
+a:hover { color: var(--red); }
+
+code,
+.comm-items-code,
+.jc-stash-code {
+  font-family: var(--font-title);
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+  user-select: text;
+}
+
+/* Tout champ de saisie doit rester selectionnable malgre le user-select
+   global qui empeche de surligner l'interface par accident. */
+input,
+textarea,
+[contenteditable='true'] { user-select: text; }
+
+/* --------------------------------------------------------------------------
+   Etats generiques poses par le script
+   -------------------------------------------------------------------------- */
+.disabled,
+[disabled] { opacity: 0.45; pointer-events: none; }
+
+.jc-yes,
+.gc-yes { color: var(--text); }
+
+.jc-no,
+.gc-no { color: var(--text-faint); }
+
+.jc-gold,
+.gold,
+.cash { font-family: var(--font-title); color: var(--text); }
+
+.jc-action-btn-gold,
+.jc-action-btn-blue { color: var(--text-dim); }
+
+/* --------------------------------------------------------------------------
+   Familles injectees sans regle dediee : on garantit au minimum une boite
+   qui respire, un texte lisible et un debordement maitrise.
+   -------------------------------------------------------------------------- */
+[class^='jc-'],
+[class^='gc-'],
+[class^='ga-'],
+[class^='comm-'],
+[class^='gcboss-'] { min-width: 0; }
+
+.jc-craft-st-logo,
+.jc-craft-st-logo-w,
+.jc-craft-st-logo-h,
+.jc-craft-st-logo-r { min-width: 0; }
+
+.jc-tp-to,
+.gc-pick-coords,
+.jc-pick-coords { font-size: var(--fs-xs); }
+
+/* Les visuels d'objets et d'inventaire sont affiches tels quels :
+   jamais teintes, jamais filtres. */
+.job-shop-item-img,
+.jc-blip-preview-img,
+.gc-blip-preview-img,
+.avatar-img,
+.balance-icon-img,
+.stat-icon,
+.filter-icon,
+.chart-btn-icon,
+.currency-option-img { filter: none; }
