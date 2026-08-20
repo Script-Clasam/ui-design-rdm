@@ -38,10 +38,10 @@
   min-height: 0;
   padding: var(--sp-4) 0;
   background-color: rgba(1, 1, 1, 0.6);
-  background-image: var(--tex-vrule), var(--tex-grain-lo);
-  background-size: 4px auto, 43px 43px;
-  background-repeat: repeat-y, repeat;
-  background-position: right top, left top;
+  background-image: var(--tex-vrule);
+  background-size: 4px 100%;
+  background-repeat: no-repeat;
+  background-position: right top;
 }
 .jc-main-nav-top { flex: 0 0 auto; padding: 0 var(--sp-4) var(--sp-4); }
 .jc-logo-row {
@@ -588,11 +588,11 @@
   font-size: var(--fs-sm);
   color: var(--text);
   cursor: pointer;
-  background-color: rgba(1, 1, 1, 0.6);
-  background-image: var(--tex-arrow-r), var(--tex-rule), var(--tex-grain-lo);
-  background-size: 12px 12px, auto 4px, 43px 43px;
-  background-repeat: no-repeat, repeat-x, repeat;
-  background-position: right 0.6rem center, left bottom, left top;
+  background-color: var(--fill-sunken);
+  background-image: var(--tex-arrow-r), var(--tex-rule);
+  background-size: 12px 12px, 100% 4px;
+  background-repeat: no-repeat, no-repeat;
+  background-position: right 0.6rem center, left bottom;
 }
 .jc-csel-opts,
 .comm-custom-select-options { display: none; }

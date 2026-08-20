@@ -439,11 +439,11 @@ select,
   font-size: var(--fs-sm);
   letter-spacing: 0.03em;
   color: var(--text);
-  background-color: rgba(1, 1, 1, 0.6);
-  background-image: var(--tex-rule), var(--tex-grain-lo);
-  background-size: auto 4px, 43px 43px;
-  background-repeat: repeat-x, repeat;
-  background-position: left bottom, left top;
+  background-color: var(--fill-sunken);
+  background-image: var(--tex-rule);
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
   transition: background-color 0.14s linear;
 }
 
@@ -457,10 +457,8 @@ select:focus,
 .jc-input:focus,
 .currency-input:focus,
 .code-input-field:focus {
-  background-color: rgba(20, 20, 20, 0.85);
-  background-image: none, var(--tex-grain-lo);
-  background-size: auto, 43px 43px;
-  background-repeat: no-repeat, repeat;
+  background-color: var(--fill-raised);
+  background-image: none;
   box-shadow: inset 0 -3px 0 0 var(--red);
 }
 
@@ -471,10 +469,10 @@ select,
 .member-select,
 .gcboss-grade-select {
   padding-right: 2rem;
-  background-image: var(--tex-arrow-r), var(--tex-rule), var(--tex-grain-lo);
-  background-size: 14px 14px, auto 4px, 43px 43px;
-  background-repeat: no-repeat, repeat-x, repeat;
-  background-position: right 0.6rem center, left bottom, left top;
+  background-image: var(--tex-arrow-r), var(--tex-rule);
+  background-size: 14px 14px, 100% 4px;
+  background-repeat: no-repeat, no-repeat;
+  background-position: right 0.6rem center, left bottom;
 }
 select option {
   background-color: var(--panel);
@@ -654,7 +652,7 @@ input[type='checkbox'] {
 .code-input-field {
 }
 
-/* Socle d'icone du jeu sous les pictogrammes de statistique. */
+/* Pictogrammes de statistique : pas de socle, la fiche porte deja son cadre. */
 .dashboard-stat-icon,
 .jc-dash-stat-icon,
 .gcboss-stat-icon,
@@ -666,22 +664,4 @@ input[type='checkbox'] {
   width: 34px;
   height: 34px;
   flex: 0 0 34px;
-}
-.dashboard-stat-icon::before,
-.jc-dash-stat-icon::before,
-.gcboss-stat-icon::before,
-.gcboss-noto-card-icon::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-color: var(--ink-soft);
-  -webkit-mask-image: var(--tex-label-sq);
-  -webkit-mask-size: 34px 34px;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-image: var(--tex-label-sq);
-  mask-size: 34px 34px;
-  mask-repeat: no-repeat;
-  mask-position: center;
 }

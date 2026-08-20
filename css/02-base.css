@@ -107,21 +107,13 @@ input:-webkit-autofill:focus {
    -------------------------------------------------------------------------- */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track {
-  background-color: rgba(1, 1, 1, 0.5);
+  background-color: var(--fill-sunken);
   background-image: var(--tex-vrule);
-  background-size: 4px auto;
+  background-size: 4px 100%;
+  background-repeat: no-repeat;
   background-position: center top;
-  background-repeat: repeat-y;
 }
-::-webkit-scrollbar-thumb {
-  background-color: var(--ink);
-  -webkit-mask-image: var(--tex-grain);
-  -webkit-mask-size: 43px 43px;
-  -webkit-mask-repeat: repeat;
-  mask-image: var(--tex-grain);
-  mask-size: 43px 43px;
-  mask-repeat: repeat;
-}
+::-webkit-scrollbar-thumb { background-color: var(--ink); }
 ::-webkit-scrollbar-thumb:hover { background-color: var(--red); }
 ::-webkit-scrollbar-corner { background: transparent; }
 

@@ -342,16 +342,58 @@
 /* --------------------------------------------------------------------------
    Pastilles et etiquettes construites sur la plaque d'etiquette du jeu.
    -------------------------------------------------------------------------- */
-.rsm-label-plate {
+/* Enseigne : plaque a plat, coins graves, fleuron de chaque cote du texte.
+   Aucune planche de fond — il n'en existe pas de repetable au catalogue. */
+.rsm-label-plate,
+.job-name-badge,
+.gcboss-name-badge,
+.job-shop-badge,
+.code-input-badge {
+  position: relative;
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  min-width: 15rem;
+  max-width: 88%;
+  padding: 0.5rem 2rem;
+  margin-bottom: -2px;
+  z-index: 3;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--text);
+  background-color: var(--fill-raised);
+}
+.rsm-label-plate::before,
+.job-name-badge::before,
+.gcboss-name-badge::before,
+.job-shop-badge::before,
+.code-input-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   background-color: var(--ink);
-  -webkit-mask-image: var(--tex-label);
-  -webkit-mask-size: 100% 100%;
+  -webkit-mask-image: var(--tex-fr-tl), var(--tex-fr-tr), var(--tex-fr-bl), var(--tex-fr-br);
+  -webkit-mask-position: left top, right top, left bottom, right bottom;
+  -webkit-mask-size: 16px 16px;
   -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-image: var(--tex-label);
-  mask-size: 100% 100%;
+  mask-image: var(--tex-fr-tl), var(--tex-fr-tr), var(--tex-fr-bl), var(--tex-fr-br);
+  mask-position: left top, right top, left bottom, right bottom;
+  mask-size: 16px 16px;
   mask-repeat: no-repeat;
-  mask-position: center;
+}
+.job-name-badge > span,
+.gcboss-name-badge > span,
+.job-shop-badge > span,
+.code-input-badge > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* --------------------------------------------------------------------------

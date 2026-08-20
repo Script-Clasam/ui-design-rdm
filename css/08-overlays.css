@@ -26,36 +26,6 @@
   min-height: 0;
 }
 
-.gcboss-name-badge {
-  align-self: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--sp-2);
-  aspect-ratio: 374 / 84;
-  height: 62px;
-  margin-bottom: calc(var(--sp-2) * -1);
-  position: relative;
-  z-index: 2;
-  font-family: var(--font-display);
-  font-size: var(--fs-lg);
-  letter-spacing: var(--track-w);
-  text-transform: uppercase;
-  color: var(--text);
-}
-.gcboss-name-badge::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-color: rgba(1, 1, 1, 0.92);
-  -webkit-mask-image: var(--tex-label);
-  -webkit-mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-image: var(--tex-label);
-  mask-size: 100% 100%;
-  mask-repeat: no-repeat;
-}
 .gcboss-name-badge i { color: var(--red); }
 
 .gcboss-header {
@@ -272,35 +242,6 @@
   height: min(760px, 88vh);
   min-height: 0;
 }
-.job-shop-badge {
-  align-self: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 374 / 84;
-  height: 58px;
-  margin-bottom: calc(var(--sp-2) * -1);
-  position: relative;
-  z-index: 2;
-  font-family: var(--font-display);
-  font-size: var(--fs-md);
-  letter-spacing: var(--track-w);
-  text-transform: uppercase;
-  color: var(--text);
-}
-.job-shop-badge::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-color: rgba(1, 1, 1, 0.92);
-  -webkit-mask-image: var(--tex-label);
-  -webkit-mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-image: var(--tex-label);
-  mask-size: 100% 100%;
-  mask-repeat: no-repeat;
-}
 .job-shop-header {
   flex: 0 0 auto;
   display: flex;
@@ -394,35 +335,6 @@
   background-color: var(--scrim-deep);
 }
 .code-input-wrapper { display: flex; flex-direction: column; width: min(440px, 92vw); }
-.code-input-badge {
-  align-self: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 374 / 84;
-  height: 54px;
-  margin-bottom: calc(var(--sp-2) * -1);
-  position: relative;
-  z-index: 2;
-  font-family: var(--font-display);
-  font-size: var(--fs-sm);
-  letter-spacing: var(--track-w);
-  text-transform: uppercase;
-  color: var(--text);
-}
-.code-input-badge::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-color: rgba(1, 1, 1, 0.92);
-  -webkit-mask-image: var(--tex-label);
-  -webkit-mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-image: var(--tex-label);
-  mask-size: 100% 100%;
-  mask-repeat: no-repeat;
-}
 .code-input-header-bar {
   padding: var(--sp-3) var(--sp-5);
   text-align: center;
