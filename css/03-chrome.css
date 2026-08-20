@@ -1,0 +1,378 @@
+/* ==========================================================================
+   03 — CHROME
+   Primitives visuelles construites uniquement a partir des textures du jeu :
+   cadres masques, plaques, filets, ornements.
+
+   Convention interne : sur toute boite habillee ici, ::after est reserve au
+   cadre et ::before a la plaque ou a l'ornement. Aucun autre fichier ne
+   reutilise ces pseudo-elements sur les memes selecteurs.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Cadre complet (4 coins 24x24 + bords repetes a leur taille native).
+   Porte par une couche superposee : la piece n'est jamais deformee.
+   -------------------------------------------------------------------------- */
+.rsm-frame,
+.boss-panel,
+.member-modal-content,
+.custom-modal-content,
+.grade-modal-content,
+.history-modal-content,
+.currency-modal-content,
+.storage-modal,
+.register-modal,
+.job-offer-popup,
+.confirm-popup-content,
+.bonus-popup,
+.jc-wrapper,
+.jc-confirm-box,
+.gcboss-panel,
+.job-shop-container,
+.code-input-box,
+.comm-share-modal,
+.comm-confirm-modal,
+.comm-confirm-delete-modal,
+.comm-detail-modal { position: relative; }
+
+.rsm-frame::after,
+.boss-panel::after,
+.member-modal-content::after,
+.custom-modal-content::after,
+.grade-modal-content::after,
+.history-modal-content::after,
+.currency-modal-content::after,
+.storage-modal::after,
+.register-modal::after,
+.job-offer-popup::after,
+.confirm-popup-content::after,
+.bonus-popup::after,
+.jc-wrapper::after,
+.jc-confirm-box::after,
+.gcboss-panel::after,
+.job-shop-container::after,
+.code-input-box::after,
+.comm-share-modal::after,
+.comm-confirm-modal::after,
+.comm-confirm-delete-modal::after,
+.comm-detail-modal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-frame);
+  pointer-events: none;
+  background-color: var(--ink);
+  -webkit-mask-image: var(--tex-fr-tl), var(--tex-fr-tr), var(--tex-fr-bl), var(--tex-fr-br),
+                      var(--tex-fr-t),  var(--tex-fr-b),  var(--tex-fr-l),  var(--tex-fr-r);
+  -webkit-mask-position: left top, right top, left bottom, right bottom,
+                         left top, left bottom, left top, right top;
+  -webkit-mask-size: 24px 24px, 24px 24px, 24px 24px, 24px 24px,
+                     auto 24px, auto 24px, 24px auto, 24px auto;
+  -webkit-mask-repeat: no-repeat, no-repeat, no-repeat, no-repeat,
+                       repeat-x, repeat-x, repeat-y, repeat-y;
+  mask-image: var(--tex-fr-tl), var(--tex-fr-tr), var(--tex-fr-bl), var(--tex-fr-br),
+              var(--tex-fr-t),  var(--tex-fr-b),  var(--tex-fr-l),  var(--tex-fr-r);
+  mask-position: left top, right top, left bottom, right bottom,
+                 left top, left bottom, left top, right top;
+  mask-size: 24px 24px, 24px 24px, 24px 24px, 24px 24px,
+             auto 24px, auto 24px, 24px auto, 24px auto;
+  mask-repeat: no-repeat, no-repeat, no-repeat, no-repeat,
+               repeat-x, repeat-x, repeat-y, repeat-y;
+}
+
+/* --------------------------------------------------------------------------
+   Cadre allege : les 4 coins seuls, pour les fiches et les cartes.
+   -------------------------------------------------------------------------- */
+.rsm-corners,
+.dashboard-stat-card,
+.dashboard-panel,
+.member-card-modern,
+.member-row-list,
+.grade-card,
+.recruit-card,
+.player-card,
+.stat-card,
+.bank-balance-box,
+.storage-tier-card,
+.history-card,
+.job-shop-item,
+.jc-preview-card,
+.jc-dynamic-card,
+.jc-stat-card,
+.jc-dash-stat,
+.jc-info-box,
+.jc-webhook-card,
+.jc-hist-card,
+.jc-harvest-point,
+.jc-craft-subsection,
+.comm-card,
+.comm-content-block,
+.gc-entry,
+.gc-hv-point,
+.ga-act-row,
+.gcboss-member-card,
+.gcboss-noto-card,
+.gcboss-stat,
+.gcboss-balance-box { position: relative; }
+
+.rsm-corners::after,
+.dashboard-stat-card::after,
+.dashboard-panel::after,
+.member-card-modern::after,
+.member-row-list::after,
+.grade-card::after,
+.recruit-card::after,
+.player-card::after,
+.stat-card::after,
+.bank-balance-box::after,
+.storage-tier-card::after,
+.history-card::after,
+.job-shop-item::after,
+.jc-preview-card::after,
+.jc-dynamic-card::after,
+.jc-stat-card::after,
+.jc-dash-stat::after,
+.jc-info-box::after,
+.jc-webhook-card::after,
+.jc-hist-card::after,
+.jc-harvest-point::after,
+.jc-craft-subsection::after,
+.comm-card::after,
+.comm-content-block::after,
+.gc-entry::after,
+.gc-hv-point::after,
+.ga-act-row::after,
+.gcboss-member-card::after,
+.gcboss-noto-card::after,
+.gcboss-stat::after,
+.gcboss-balance-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-frame);
+  pointer-events: none;
+  background-color: var(--ink-soft);
+  -webkit-mask-image: var(--tex-fr-tl), var(--tex-fr-tr), var(--tex-fr-bl), var(--tex-fr-br);
+  -webkit-mask-position: left top, right top, left bottom, right bottom;
+  -webkit-mask-size: 18px 18px;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: var(--tex-fr-tl), var(--tex-fr-tr), var(--tex-fr-bl), var(--tex-fr-br);
+  mask-position: left top, right top, left bottom, right bottom;
+  mask-size: 18px 18px;
+  mask-repeat: no-repeat;
+  transition: background-color 0.16s linear;
+}
+
+.dashboard-stat-card:hover::after,
+.member-card-modern:hover::after,
+.member-row-list:hover::after,
+.grade-card:hover::after,
+.recruit-card:hover::after,
+.storage-tier-card:hover::after,
+.job-shop-item:hover::after,
+.jc-preview-card:hover::after,
+.comm-card:hover::after,
+.gcboss-member-card:hover::after { background-color: var(--ink-red); }
+
+/* --------------------------------------------------------------------------
+   Plaques : le fond visible d'une surface est toujours une texture du jeu,
+   posee sur un aplat sombre. Les tuiles gardent leur taille native.
+   -------------------------------------------------------------------------- */
+.rsm-plate,
+.boss-panel,
+.gcboss-panel,
+.jc-main-content,
+.job-shop-container {
+  background-color: rgba(1, 1, 1, 0.90);
+  background-image: linear-gradient(rgba(13, 13, 13, 0.86), rgba(1, 1, 1, 0.94)), var(--tex-menu-lg);
+  background-size: cover, 576px 384px;
+  background-position: center, center top;
+  background-repeat: no-repeat, repeat;
+}
+
+.rsm-plate-2,
+.member-modal-content,
+.custom-modal-content,
+.grade-modal-content,
+.history-modal-content,
+.currency-modal-content,
+.storage-modal,
+.register-modal,
+.job-offer-popup,
+.confirm-popup-content,
+.bonus-popup,
+.code-input-box,
+.comm-share-modal,
+.comm-confirm-modal,
+.comm-confirm-delete-modal {
+  background-color: rgba(1, 1, 1, 0.94);
+  background-image: linear-gradient(rgba(20, 20, 20, 0.88), rgba(1, 1, 1, 0.96)), var(--tex-menu-sm);
+  background-size: cover, 576px 192px;
+  background-position: center, center top;
+  background-repeat: no-repeat, repeat;
+}
+
+/* Plaque de fiche : grain fin tuile a sa taille native (43x43). */
+.rsm-card,
+.dashboard-stat-card,
+.dashboard-panel,
+.member-card-modern,
+.member-row-list,
+.grade-card,
+.recruit-card,
+.player-card,
+.stat-card,
+.bank-balance-box,
+.storage-tier-card,
+.history-card,
+.job-shop-item,
+.jc-preview-card,
+.jc-dynamic-card,
+.jc-stat-card,
+.jc-dash-stat,
+.jc-info-box,
+.jc-webhook-card,
+.jc-hist-card,
+.jc-harvest-point,
+.jc-craft-subsection,
+.comm-card,
+.comm-content-block,
+.gc-entry,
+.gc-hv-point,
+.ga-act-row,
+.gcboss-member-card,
+.gcboss-noto-card,
+.gcboss-stat,
+.gcboss-balance-box {
+  background-color: rgba(13, 13, 13, 0.72);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+  transition: background-color 0.16s linear;
+}
+
+.dashboard-stat-card:hover,
+.member-card-modern:hover,
+.member-row-list:hover,
+.grade-card:hover,
+.recruit-card:hover,
+.storage-tier-card:hover,
+.job-shop-item:hover,
+.jc-preview-card:hover,
+.comm-card:hover,
+.gcboss-member-card:hover { background-color: rgba(27, 27, 27, 0.86); }
+
+/* --------------------------------------------------------------------------
+   Filets horizontaux et verticaux (art 1D : repetition sans deformation).
+   -------------------------------------------------------------------------- */
+.rsm-rule {
+  height: 4px;
+  background-color: transparent;
+  background-image: var(--tex-rule-wide);
+  background-size: auto 4px;
+  background-repeat: repeat-x;
+  background-position: left center;
+  opacity: 0.5;
+}
+
+.rsm-vrule {
+  width: 4px;
+  align-self: stretch;
+  background-color: transparent;
+  background-image: var(--tex-vrule);
+  background-size: 4px auto;
+  background-repeat: repeat-y;
+  background-position: center top;
+  opacity: 0.4;
+}
+
+/* --------------------------------------------------------------------------
+   Titres de section : ornement de jeu a gauche, filet en dessous.
+   -------------------------------------------------------------------------- */
+.content-title-centered,
+.gcboss-title,
+.jc-dashboard-title,
+.jc-generic-page-header,
+.comm-header-title,
+.dashboard-panel-title,
+.permissions-title,
+.jc-cs-section-title,
+.gcboss-bank-tx-title {
+  position: relative;
+  font-family: var(--font-display);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.content-title-centered {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-4);
+  font-size: var(--fs-xl);
+  padding: 0 var(--sp-2);
+}
+.content-title-centered::before,
+.content-title-centered::after {
+  content: '';
+  width: 12px;
+  height: 48px;
+  flex: 0 0 12px;
+  background-color: var(--ink);
+  -webkit-mask-image: var(--tex-ornament);
+  -webkit-mask-size: 12px 48px;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-image: var(--tex-ornament);
+  mask-size: 12px 48px;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+.content-title-centered::after { transform: scaleX(-1); }
+
+/* --------------------------------------------------------------------------
+   Bandeau d'en-tete : la bande de menu repetee a sa hauteur native.
+   -------------------------------------------------------------------------- */
+.rsm-bar {
+  height: 12px;
+  background-color: transparent;
+  background-image: var(--tex-bar);
+  background-size: auto 12px;
+  background-repeat: repeat-x;
+  background-position: left center;
+  opacity: 0.55;
+}
+
+/* --------------------------------------------------------------------------
+   Pastilles et etiquettes construites sur la plaque d'etiquette du jeu.
+   -------------------------------------------------------------------------- */
+.rsm-label-plate {
+  background-color: var(--ink);
+  -webkit-mask-image: var(--tex-label);
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-image: var(--tex-label);
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+/* --------------------------------------------------------------------------
+   Voile d'assombrissement : une interface ouverte attenue le monde,
+   elle ne le remplace jamais.
+   -------------------------------------------------------------------------- */
+.rsm-scrim,
+.member-modal-overlay,
+.custom-modal-overlay,
+.grade-modal-overlay,
+.history-modal-overlay,
+.jc-confirm-overlay,
+.comm-confirm-overlay,
+.comm-confirm-delete-overlay,
+.comm-share-overlay,
+.comm-detail-overlay,
+.bonus-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--scrim);
+}
