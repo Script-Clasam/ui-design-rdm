@@ -444,11 +444,11 @@
                         <div class="jc-stat-card-label">${_T('jc_field_grades')}</div>
                     </div>
                     <div class="jc-stat-card">
-                        <div class="jc-stat-card-value">${coordsOk ? '<i class="fas fa-check" style="color:#4ade80;font-size:1rem;"></i>' : '<i class="fas fa-times" style="color:#f87171;font-size:1rem;"></i>'}</div>
+                        <div class="jc-stat-card-value">${coordsOk ? '<i class="fas fa-check" style="color:#f5f3ee;font-size:1rem;"></i>' : '<i class="fas fa-times" style="color:#cb0101;font-size:1rem;"></i>'}</div>
                         <div class="jc-stat-card-label">${_T('jc_field_location')}</div>
                     </div>
                     <div class="jc-stat-card">
-                        <div class="jc-stat-card-value">${j.enabled ? '<i class="fas fa-check" style="color:#4ade80;font-size:1rem;"></i>' : '<i class="fas fa-times" style="color:#f87171;font-size:1rem;"></i>'}</div>
+                        <div class="jc-stat-card-value">${j.enabled ? '<i class="fas fa-check" style="color:#f5f3ee;font-size:1rem;"></i>' : '<i class="fas fa-times" style="color:#cb0101;font-size:1rem;"></i>'}</div>
                         <div class="jc-stat-card-label">${_T('jc_field_active')}</div>
                     </div>
                 </div>
@@ -2930,16 +2930,16 @@
                     <div class="jc-dash-stat">
                         <div class="jc-dash-stat-top">
                             <span class="jc-dash-stat-label">${_T('jc_dash_on_duty')}</span>
-                            <i class="fas fa-star jc-dash-stat-icon" style="color:rgba(74,222,128,0.4);"></i>
+                            <i class="fas fa-star jc-dash-stat-icon" style="color:rgba(245, 243, 238,0.4);"></i>
                         </div>
-                        <div class="jc-dash-stat-value" id="jcDashOnDuty" style="color:#4ade80;">${onDuty}</div>
+                        <div class="jc-dash-stat-value" id="jcDashOnDuty" style="color:#f5f3ee;">${onDuty}</div>
                         <div class="jc-dash-stat-sub" id="jcDashOnDutySub">${totalEmployees} ${_T('jc_dash_total_employees')}</div>
                     </div>
 
                     <div class="jc-dash-stat">
                         <div class="jc-dash-stat-top">
                             <span class="jc-dash-stat-label">${_T('jc_dash_wealthiest')}</span>
-                            <i class="fas fa-trophy jc-dash-stat-icon" style="color:rgba(251,191,36,0.4);"></i>
+                            <i class="fas fa-trophy jc-dash-stat-icon" style="color:rgba(154, 148, 138,0.4);"></i>
                         </div>
                         <div class="jc-dash-stat-value jc-wealthiest-name" id="jcDashWealthiest">${esc(wealthiestName)}</div>
                         <div class="jc-dash-stat-sub" id="jcDashWealthiestSub">${wealthiestBalance ? _T('jc_dash_account_balance') + ' <span class="jc-gold">' + wealthiestBalance + '</span>' : ''}</div>
@@ -3008,7 +3008,7 @@
                     },
                     tooltip: {
                         backgroundColor: 'rgba(0,0,0,0.85)',
-                        titleColor: '#fbbf24',
+                        titleColor: '#9a948a',
                         bodyColor: '#fff',
                         borderColor: 'rgba(255,255,255,0.1)',
                         borderWidth: 1,
@@ -3068,17 +3068,17 @@
 
         // Event types that trigger a webhook
         const eventTypes = [
-            { key: 'hire',        icon: 'fa-user-plus',       color: '#4ade80' },
-            { key: 'fire',        icon: 'fa-user-minus',      color: '#f87171' },
-            { key: 'promote',     icon: 'fa-arrow-up',        color: '#60a5fa' },
-            { key: 'demote',      icon: 'fa-arrow-down',      color: '#fb923c' },
-            { key: 'deposit',     icon: 'fa-piggy-bank',      color: '#60a5fa' },
-            { key: 'withdraw',    icon: 'fa-hand-holding-usd',color: '#fb923c' },
-            { key: 'bonus',       icon: 'fa-gift',            color: '#fbbf24' },
-            { key: 'salary',      icon: 'fa-money-bill-wave', color: '#4ade80' },
-            { key: 'harvest',     icon: 'fa-seedling',        color: '#34d399' },
-            { key: 'sell',        icon: 'fa-store',           color: '#fbbf24' },
-            { key: 'shop',        icon: 'fa-shopping-cart',   color: '#60a5fa' },
+            { key: 'hire',        icon: 'fa-user-plus',       color: '#f5f3ee' },
+            { key: 'fire',        icon: 'fa-user-minus',      color: '#cb0101' },
+            { key: 'promote',     icon: 'fa-arrow-up',        color: '#9a948a' },
+            { key: 'demote',      icon: 'fa-arrow-down',      color: '#9a948a' },
+            { key: 'deposit',     icon: 'fa-piggy-bank',      color: '#9a948a' },
+            { key: 'withdraw',    icon: 'fa-hand-holding-usd',color: '#9a948a' },
+            { key: 'bonus',       icon: 'fa-gift',            color: '#9a948a' },
+            { key: 'salary',      icon: 'fa-money-bill-wave', color: '#f5f3ee' },
+            { key: 'harvest',     icon: 'fa-seedling',        color: '#f5f3ee' },
+            { key: 'sell',        icon: 'fa-store',           color: '#9a948a' },
+            { key: 'shop',        icon: 'fa-shopping-cart',   color: '#9a948a' },
         ];
 
         const dbJobs = (allJobs || []).filter(j => j.source === 'database');
@@ -3206,24 +3206,24 @@
 
         // Action type definitions with icons and colors
         const actionTypes = [
-            { key: 'recruit',         icon: 'fa-user-plus',        color: '#4ade80' },
-            { key: 'fire',            icon: 'fa-user-minus',       color: '#f87171' },
-            { key: 'promote',         icon: 'fa-arrow-up',         color: '#60a5fa' },
-            { key: 'demote',          icon: 'fa-arrow-down',       color: '#fb923c' },
-            { key: 'grade_edit',      icon: 'fa-user-edit',        color: '#a78bfa' },
-            { key: 'resign',          icon: 'fa-door-open',        color: '#f59e0b' },
-            { key: 'deposit',         icon: 'fa-piggy-bank',       color: '#34d399' },
-            { key: 'withdraw',        icon: 'fa-hand-holding-usd', color: '#fb923c' },
-            { key: 'gold_deposit',    icon: 'fa-coins',            color: '#fbbf24' },
-            { key: 'gold_withdraw',   icon: 'fa-coins',            color: '#f87171' },
-            { key: 'bonus',           icon: 'fa-gift',             color: '#fbbf24' },
-            { key: 'salary',          icon: 'fa-money-bill-wave',  color: '#4ade80' },
-            { key: 'register_sale',   icon: 'fa-cash-register',    color: '#60a5fa' },
-            { key: 'upgrade_storage', icon: 'fa-arrow-up',         color: '#a78bfa' },
-            { key: 'job_create',      icon: 'fa-plus-circle',      color: '#4ade80' },
-            { key: 'job_update',      icon: 'fa-edit',             color: '#60a5fa' },
-            { key: 'job_delete',      icon: 'fa-trash',            color: '#f87171' },
-            { key: 'job_toggle',      icon: 'fa-toggle-on',        color: '#fbbf24' },
+            { key: 'recruit',         icon: 'fa-user-plus',        color: '#f5f3ee' },
+            { key: 'fire',            icon: 'fa-user-minus',       color: '#cb0101' },
+            { key: 'promote',         icon: 'fa-arrow-up',         color: '#9a948a' },
+            { key: 'demote',          icon: 'fa-arrow-down',       color: '#9a948a' },
+            { key: 'grade_edit',      icon: 'fa-user-edit',        color: '#cb0101' },
+            { key: 'resign',          icon: 'fa-door-open',        color: '#9a948a' },
+            { key: 'deposit',         icon: 'fa-piggy-bank',       color: '#f5f3ee' },
+            { key: 'withdraw',        icon: 'fa-hand-holding-usd', color: '#9a948a' },
+            { key: 'gold_deposit',    icon: 'fa-coins',            color: '#9a948a' },
+            { key: 'gold_withdraw',   icon: 'fa-coins',            color: '#cb0101' },
+            { key: 'bonus',           icon: 'fa-gift',             color: '#9a948a' },
+            { key: 'salary',          icon: 'fa-money-bill-wave',  color: '#f5f3ee' },
+            { key: 'register_sale',   icon: 'fa-cash-register',    color: '#9a948a' },
+            { key: 'upgrade_storage', icon: 'fa-arrow-up',         color: '#cb0101' },
+            { key: 'job_create',      icon: 'fa-plus-circle',      color: '#f5f3ee' },
+            { key: 'job_update',      icon: 'fa-edit',             color: '#9a948a' },
+            { key: 'job_delete',      icon: 'fa-trash',            color: '#cb0101' },
+            { key: 'job_toggle',      icon: 'fa-toggle-on',        color: '#9a948a' },
         ];
 
         function getActionMeta(actionType) {
@@ -3463,7 +3463,7 @@
                         <label class="jc-label">${_T('jc_cs_framework')}</label>
                         <div class="jc-sublabel">${_T('jc_cs_framework_hint')}</div>
                         <input type="text" class="jc-input" id="jcCsFrameworkInfo" value="${esc(s.Framework || 'RSG')}" disabled style="opacity:0.7;cursor:not-allowed;">
-                        <div class="jc-sublabel" style="color:#9b8a6a;margin-top:4px;"><i class="fas fa-info-circle"></i> ${_T('jc_cs_auto_detected') || 'Auto-detected from cactus_ultimate'}</div>
+                        <div class="jc-sublabel" style="color:#6b665e;margin-top:4px;"><i class="fas fa-info-circle"></i> ${_T('jc_cs_auto_detected') || 'Auto-detected from cactus_ultimate'}</div>
                     </div>
                     <div class="jc-form-row">
                         <label class="jc-label">${_T('jc_cs_notification')}</label>

@@ -185,7 +185,7 @@
         h += '<div class="comm-card" data-job-id="' + escHtml(job.id) + '">';
         h += '  <div class="comm-card-title">' + escHtml(job.label);
         if (isInstalled) {
-            h += ' <span style="font-size:0.55rem;color:#4ade80;background:rgba(74,222,128,0.1);padding:0.1rem 0.4rem;border-radius:3px;margin-left:0.4rem;vertical-align:middle;">' + _T('comm_installed') + '</span>';
+            h += ' <span style="font-size:0.55rem;color:#f5f3ee;background:rgba(245, 243, 238,0.1);padding:0.1rem 0.4rem;border-radius:3px;margin-left:0.4rem;vertical-align:middle;">' + _T('comm_installed') + '</span>';
         }
         h += '</div>';
         h += '  <div class="comm-card-jobname"><i class="fas fa-terminal"></i> /setjob ' + escHtml(job.name) + '</div>';
@@ -316,8 +316,8 @@
         var extraInfo = [];
         if (job.maxSalary) extraInfo.push({ label: _T('comm_max_salary'), value: '$' + job.maxSalary });
         if (job.jobType) extraInfo.push({ label: _T('comm_job_type'), value: escHtml(job.jobType) });
-        if (job.defaultDuty !== undefined) extraInfo.push({ label: _T('comm_default_duty'), value: job.defaultDuty ? '<i class="fas fa-check" style="color:#4ade80;"></i>' : '<i class="fas fa-times" style="color:#ef4444;"></i>' });
-        if (job.offDutyPay !== undefined) extraInfo.push({ label: _T('comm_off_duty_pay'), value: job.offDutyPay ? '<i class="fas fa-check" style="color:#4ade80;"></i>' : '<i class="fas fa-times" style="color:#ef4444;"></i>' });
+        if (job.defaultDuty !== undefined) extraInfo.push({ label: _T('comm_default_duty'), value: job.defaultDuty ? '<i class="fas fa-check" style="color:#f5f3ee;"></i>' : '<i class="fas fa-times" style="color:#cb0101;"></i>' });
+        if (job.offDutyPay !== undefined) extraInfo.push({ label: _T('comm_off_duty_pay'), value: job.offDutyPay ? '<i class="fas fa-check" style="color:#f5f3ee;"></i>' : '<i class="fas fa-times" style="color:#cb0101;"></i>' });
         if (job.coords) extraInfo.push({ label: _T('comm_coords'), value: 'X: ' + (job.coords.x || 0).toFixed(1) + ' Y: ' + (job.coords.y || 0).toFixed(1) + ' Z: ' + (job.coords.z || 0).toFixed(1) });
 
         if (extraInfo.length > 0) {

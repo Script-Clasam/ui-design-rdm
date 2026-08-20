@@ -58,7 +58,7 @@
                 'box-shadow:0 8px 24px rgba(0,0,0,.5);transition:opacity .2s ease;';
             document.body.appendChild(el);
         }
-        el.style.background = type === 'error' ? '#b04848' : (type === 'success' ? '#3f8f5b' : '#c4a574');
+        el.style.background = type === 'error' ? '#a50101' : (type === 'success' ? '#9a948a' : '#9a948a');
         el.textContent = msg;
         el.style.opacity = '1';
         clearTimeout(toastTimer);
@@ -164,7 +164,7 @@
             const statusCls = m.online ? 'online' : 'offline';
             const initial = esc((m.name || '?').charAt(0).toUpperCase());
             const lastSeen = m.online
-                ? '<span style="color:#4ade80;font-weight:600">' + esc(t('gcboss_online', 'En ligne')) + '</span>'
+                ? '<span style="color:#f5f3ee;font-weight:600">' + esc(t('gcboss_online', 'En ligne')) + '</span>'
                 : '<i class="fas fa-clock"></i> ' + esc(t('gcboss_offline', 'Hors ligne'));
 
             let actions = '';

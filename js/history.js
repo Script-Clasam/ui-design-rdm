@@ -79,21 +79,21 @@ $(document).ready(function() {
     }
     function getActionColor(actionType) {
         const colors = {
-            'hire': 'linear-gradient(135deg, #3b82f6, #2563eb)',
-            'fire': 'linear-gradient(135deg, #ef4444, #dc2626)',
-            'resign': 'linear-gradient(135deg, #f59e0b, #d97706)',
-            'promote': 'linear-gradient(135deg, #10b981, #059669)',
-            'demote': 'linear-gradient(135deg, #f59e0b, #d97706)',
-            'avatar': 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
-            'deposit': 'linear-gradient(135deg, #22c55e, #16a34a)',
-            'deposit_gold': 'linear-gradient(135deg, #fbbf24, #f59e0b)',
-            'withdraw': 'linear-gradient(135deg, #ef4444, #dc2626)',
-            'withdraw_gold': 'linear-gradient(135deg, #f59e0b, #d97706)',
-            'upgrade_storage': 'linear-gradient(135deg, #fbbf24, #f59e0b)',
-            'grade_update': 'linear-gradient(135deg, #a855f7, #9333ea)',
-            'bonus': 'linear-gradient(135deg, #fbbf24, #f59e0b)'
+            'hire': 'linear-gradient(135deg, #6b665e, #4a4741)',
+            'fire': 'linear-gradient(135deg, #cb0101, #a50101)',
+            'resign': 'linear-gradient(135deg, #9a948a, #6b665e)',
+            'promote': 'linear-gradient(135deg, #f5f3ee, #d8d4cc)',
+            'demote': 'linear-gradient(135deg, #9a948a, #6b665e)',
+            'avatar': 'linear-gradient(135deg, #a50101, #7a0101)',
+            'deposit': 'linear-gradient(135deg, #f5f3ee, #d8d4cc)',
+            'deposit_gold': 'linear-gradient(135deg, #9a948a, #9a948a)',
+            'withdraw': 'linear-gradient(135deg, #cb0101, #a50101)',
+            'withdraw_gold': 'linear-gradient(135deg, #9a948a, #6b665e)',
+            'upgrade_storage': 'linear-gradient(135deg, #9a948a, #9a948a)',
+            'grade_update': 'linear-gradient(135deg, #a50101, #7a0101)',
+            'bonus': 'linear-gradient(135deg, #9a948a, #9a948a)'
         };
-        return colors[actionType] || 'linear-gradient(135deg, #6b7280, #4b5563)';
+        return colors[actionType] || 'linear-gradient(135deg, #6b7280, #4a4741)';
     }
     function getActionLabel(actionType) {
         const labels = {

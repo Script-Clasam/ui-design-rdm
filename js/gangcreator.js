@@ -300,8 +300,8 @@
         const coordsOk = g.coords && g.coords.x !== undefined && g.coords.x !== null;
         const gradeCount = (g.grades || []).length;
         const bossGrade = (g.grades || []).find(gr => gr.isboss);
-        const okIcon = '<i class="fas fa-check" style="color:#4ade80;font-size:1rem;"></i>';
-        const noIcon = '<i class="fas fa-times" style="color:#f87171;font-size:1rem;"></i>';
+        const okIcon = '<i class="fas fa-check" style="color:#f5f3ee;font-size:1rem;"></i>';
+        const noIcon = '<i class="fas fa-times" style="color:#cb0101;font-size:1rem;"></i>';
 
         el.html(
             '<div class="jc-preview-card">'
@@ -1138,17 +1138,17 @@
         const el = $('#gcPageHistory');
 
         const actionTypes = [
-            { key: 'gang_update',   icon: 'fa-edit',             color: '#60a5fa' },
-            { key: 'gang_delete',   icon: 'fa-trash',            color: '#f87171' },
-            { key: 'gang_toggle',   icon: 'fa-toggle-on',        color: '#fbbf24' },
-            { key: 'gang_recruit',  icon: 'fa-user-plus',        color: '#4ade80' },
-            { key: 'gang_fire',     icon: 'fa-user-minus',       color: '#f87171' },
-            { key: 'gang_promote',  icon: 'fa-arrow-up',         color: '#60a5fa' },
-            { key: 'gang_deposit',  icon: 'fa-piggy-bank',       color: '#34d399' },
-            { key: 'gang_withdraw', icon: 'fa-hand-holding-usd', color: '#fb923c' },
-            { key: 'gang_harvest',  icon: 'fa-cannabis',         color: '#4ade80' },
-            { key: 'gang_process',  icon: 'fa-flask',            color: '#c084fc' },
-            { key: 'gang_sell',     icon: 'fa-hand-holding-dollar', color: '#34d399' },
+            { key: 'gang_update',   icon: 'fa-edit',             color: '#9a948a' },
+            { key: 'gang_delete',   icon: 'fa-trash',            color: '#cb0101' },
+            { key: 'gang_toggle',   icon: 'fa-toggle-on',        color: '#9a948a' },
+            { key: 'gang_recruit',  icon: 'fa-user-plus',        color: '#f5f3ee' },
+            { key: 'gang_fire',     icon: 'fa-user-minus',       color: '#cb0101' },
+            { key: 'gang_promote',  icon: 'fa-arrow-up',         color: '#9a948a' },
+            { key: 'gang_deposit',  icon: 'fa-piggy-bank',       color: '#f5f3ee' },
+            { key: 'gang_withdraw', icon: 'fa-hand-holding-usd', color: '#9a948a' },
+            { key: 'gang_harvest',  icon: 'fa-cannabis',         color: '#f5f3ee' },
+            { key: 'gang_process',  icon: 'fa-flask',            color: '#cb0101' },
+            { key: 'gang_sell',     icon: 'fa-hand-holding-dollar', color: '#f5f3ee' },
         ];
         function getMeta(t) {
             const f = actionTypes.find(a => a.key === t);
@@ -1544,7 +1544,7 @@
             + '</div>';
         return '<div class="gc-entry ga-hvp-row" data-pi="' + pi + '" style="padding:10px;">'
             + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">'
-            + '<span style="font-weight:600;opacity:.8"><i class="fas fa-map-pin" style="color:rgba(193,154,107,1);margin-right:6px"></i>' + T('ga_tab_locations') + ' #' + (pi + 1) + '</span>'
+            + '<span style="font-weight:600;opacity:.8"><i class="fas fa-map-pin" style="color:rgba(154, 148, 138,1);margin-right:6px"></i>' + T('ga_tab_locations') + ' #' + (pi + 1) + '</span>'
             + '<button class="ga-row-remove ga-hvp-remove" data-pi="' + pi + '"><i class="fas fa-times"></i></button>'
             + '</div>'
             + coords
@@ -1557,7 +1557,7 @@
 
     function gaNpcItemRow(it, i) {
         it = it || {};
-        return '<div class="ga-ni-row" data-ii="' + i + '" style="display:flex;flex-direction:row;align-items:flex-end;gap:6px;padding:8px;background:rgba(38,32,24,.94);border:1px solid rgba(193,154,107,.22);border-radius:8px;margin-bottom:6px">'
+        return '<div class="ga-ni-row" data-ii="' + i + '" style="display:flex;flex-direction:row;align-items:flex-end;gap:6px;padding:8px;background:rgba(38,32,24,.94);border:1px solid rgba(154, 148, 138,.22);border-radius:8px;margin-bottom:6px">'
             + '<div style="flex:1;min-width:0">'
             + '<div style="font-size:.8em;opacity:.6;margin-bottom:3px">' + T('ga_reward_item') + '</div>'
             + '<input class="jc-input ga-ni-item" placeholder="cocaine" value="' + esc(it.item || '') + '" style="width:100%"></div>'
@@ -1578,15 +1578,15 @@
         selectedGangs = selectedGangs || [];
         const isPublic = selectedGangs.includes('*');
         let html = '<div class="ga-gangs-grid">';
-        html += '<label class="gc-act-gang-opt" style="border-color:rgba(193,154,107,.4);background:rgba(193,154,107,.1)">'
+        html += '<label class="gc-act-gang-opt" style="border-color:rgba(154, 148, 138,.4);background:rgba(154, 148, 138,.1)">'
             + '<input type="checkbox" class="ga-gang-cb" value="*" ' + (isPublic ? 'checked' : '') + '>'
-            + '<i class="fas fa-globe" style="color:#c4a574"></i>'
-            + '<span style="color:#c4a574;font-weight:600">' + T('ga_gangs_public') + '</span></label>';
+            + '<i class="fas fa-globe" style="color:#9a948a"></i>'
+            + '<span style="color:#9a948a;font-weight:600">' + T('ga_gangs_public') + '</span></label>';
         allGangsList.forEach(g => {
             const checked = !isPublic && selectedGangs.includes(g.name);
             html += '<label class="gc-act-gang-opt' + (checked ? ' active' : '') + '">'
                 + '<input type="checkbox" class="ga-gang-cb" value="' + g.name + '" ' + (checked ? 'checked' : '') + '>'
-                + '<i class="fas fa-users" style="color:rgba(193,154,107,.6);font-size:.75em"></i>'
+                + '<i class="fas fa-users" style="color:rgba(154, 148, 138,.6);font-size:.75em"></i>'
                 + '<span>' + esc(g.label || g.name) + '</span></label>';
         });
         html += '</div>';
@@ -1976,9 +1976,9 @@
             // Breadcrumb
             + '<div class="ga-breadcrumb">'
             + '<button class="jc-action-btn ga-back-to-list" style="padding:5px 12px;margin-right:10px"><i class="fas fa-arrow-left"></i></button>'
-            + '<i class="fas ' + typeIcon + '" style="color:rgba(193,154,107,1);margin-right:8px"></i>'
+            + '<i class="fas ' + typeIcon + '" style="color:rgba(154, 148, 138,1);margin-right:8px"></i>'
             + '<span style="font-weight:600">' + esc(editingActivity.label || editingActivity.name || T(isNew ? 'ga_add_activity' : 'ga_edit_activity')) + '</span>'
-            + (isNew ? '<span style="margin-left:10px;font-size:.8em;padding:2px 8px;background:rgba(193,154,107,.2);border:1px solid rgba(193,154,107,.4);border-radius:10px">' + T('ga_badge_new') + '</span>' : '')
+            + (isNew ? '<span style="margin-left:10px;font-size:.8em;padding:2px 8px;background:rgba(154, 148, 138,.2);border:1px solid rgba(154, 148, 138,.4);border-radius:10px">' + T('ga_badge_new') + '</span>' : '')
             + '</div>'
             // Onglets
             + '<div class="ga-tab-bar">' + tabsHtml + '</div>'
@@ -2101,9 +2101,9 @@
         const acts = Object.values(allActivities || {});
 
         const TYPE_META = {
-            harvest:  { color: '#4ade80', bg: 'rgba(74,222,128,.12)', border: 'rgba(74,222,128,.25)',  icon: 'fa-cannabis' },
-            process:  { color: '#fb923c', bg: 'rgba(251,146,60,.12)', border: 'rgba(251,146,60,.25)',  icon: 'fa-flask' },
-            sell_npc: { color: '#c084fc', bg: 'rgba(192,132,252,.12)', border: 'rgba(192,132,252,.25)', icon: 'fa-sack-dollar' },
+            harvest:  { color: '#f5f3ee', bg: 'rgba(245, 243, 238,.12)', border: 'rgba(245, 243, 238,.25)',  icon: 'fa-cannabis' },
+            process:  { color: '#9a948a', bg: 'rgba(154, 148, 138,.12)', border: 'rgba(154, 148, 138,.25)',  icon: 'fa-flask' },
+            sell_npc: { color: '#cb0101', bg: 'rgba(165, 1, 1,.12)', border: 'rgba(165, 1, 1,.25)', icon: 'fa-sack-dollar' },
         };
 
         let html = '<div class="ga-list-page">'
@@ -2120,7 +2120,7 @@
             html += '<div class="ga-act-list">';
             acts.forEach(act => {
                 const typeObj = GA_TYPES.find(t => t.id === act.type) || { label: act.type, icon: 'fa-circle' };
-                const meta    = TYPE_META[act.type] || { color: '#c4a574', bg: 'rgba(196,165,116,.1)', border: 'rgba(196,165,116,.2)', icon: 'fa-circle' };
+                const meta    = TYPE_META[act.type] || { color: '#9a948a', bg: 'rgba(154, 148, 138,.1)', border: 'rgba(154, 148, 138,.2)', icon: 'fa-circle' };
                 const gangsArr = Array.isArray(act.gangs) ? act.gangs : [];
                 const isPublic = gangsArr.includes('*');
                 const gangsText = isPublic

@@ -99,12 +99,12 @@
         var itemDesc = $('#registerItemDesc').val().trim();
 
         if (!amount || amount <= 0) {
-            $('#registerAmount').css('border-color', '#ef4444');
+            $('#registerAmount').css('border-color', '#cb0101');
             setTimeout(function() { $('#registerAmount').css('border-color', ''); }, 1500);
             return;
         }
         if (!itemDesc) {
-            $('#registerItemDesc').css('border-color', '#ef4444');
+            $('#registerItemDesc').css('border-color', '#cb0101');
             setTimeout(function() { $('#registerItemDesc').css('border-color', ''); }, 1500);
             return;
         }

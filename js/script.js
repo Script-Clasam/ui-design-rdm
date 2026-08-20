@@ -641,7 +641,7 @@ $(document).ready(function() {
                     <div class="member-details">
                         <div class="member-name-modern">${employee.name}</div>
                         <div class="member-position">${employee.gradeName}</div>
-                        <div class="member-last-seen">${isOnline ? `<span style="color:#4ade80; font-weight:600">${_T('online')}</span>` : '<i class="fas fa-clock"></i> ' + lastSeenText}</div>
+                        <div class="member-last-seen">${isOnline ? `<span style="color:#f5f3ee; font-weight:600">${_T('online')}</span>` : '<i class="fas fa-clock"></i> ' + lastSeenText}</div>
                     </div>
                     <div class="member-actions-modern">
                         ${canSeeManage ? `<button class="action-btn manage-btn" data-id="${employee.charidentifier}"><i class="fas fa-cog"></i> ${_T('manage_button')}</button>` : ''}
@@ -699,7 +699,7 @@ $(document).ready(function() {
                     </div>
                     <div class="member-lastseen-inline">
                         ${isOnline 
-                            ? `<i class="fas fa-circle" style="color: #22c55e; font-size: 0.6rem;"></i><span style="color: #22c55e; font-weight: 600;">${_T('online')}</span>`
+                            ? `<i class="fas fa-circle" style="color: #f5f3ee; font-size: 0.6rem;"></i><span style="color: #f5f3ee; font-weight: 600;">${_T('online')}</span>`
                             : `<i class="fas fa-clock"></i><span>${lastSeenText}</span>`
                         }
                     </div>
@@ -1129,18 +1129,18 @@ $(document).ready(function() {
         const ctx = document.getElementById('historyChart');
         if (!ctx) return;
         const colors = chartType === 'gold' ? {
-            deposits: { bg: 'rgba(251, 191, 36, 0.3)', border: '#fbbf24' },
-            withdrawals: { bg: 'rgba(239, 68, 68, 0.3)', border: '#ef4444' },
-            balance: { bg: 'rgba(59, 130, 246, 0.1)', border: '#3b82f6' },
-            salaries: { bg: 'rgba(249, 115, 22, 0.2)', border: '#f97316' },
-            bonuses: { bg: 'rgba(168, 85, 247, 0.2)', border: '#a855f7' },
+            deposits: { bg: 'rgba(154, 148, 138, 0.3)', border: '#9a948a' },
+            withdrawals: { bg: 'rgba(203, 1, 1, 0.3)', border: '#cb0101' },
+            balance: { bg: 'rgba(107, 102, 94, 0.1)', border: '#6b665e' },
+            salaries: { bg: 'rgba(154, 148, 138, 0.2)', border: '#9a948a' },
+            bonuses: { bg: 'rgba(165, 1, 1, 0.2)', border: '#a50101' },
             upgrades: { bg: 'rgba(156, 163, 175, 0.2)', border: '#9ca3af' }
         } : {
-            deposits: { bg: 'rgba(74, 222, 128, 0.3)', border: '#4ade80' },
-            withdrawals: { bg: 'rgba(239, 68, 68, 0.3)', border: '#ef4444' },
-            balance: { bg: 'rgba(59, 130, 246, 0.1)', border: '#3b82f6' },
-            salaries: { bg: 'rgba(249, 115, 22, 0.2)', border: '#f97316' },
-            bonuses: { bg: 'rgba(168, 85, 247, 0.2)', border: '#a855f7' },
+            deposits: { bg: 'rgba(245, 243, 238, 0.3)', border: '#f5f3ee' },
+            withdrawals: { bg: 'rgba(203, 1, 1, 0.3)', border: '#cb0101' },
+            balance: { bg: 'rgba(107, 102, 94, 0.1)', border: '#6b665e' },
+            salaries: { bg: 'rgba(154, 148, 138, 0.2)', border: '#9a948a' },
+            bonuses: { bg: 'rgba(165, 1, 1, 0.2)', border: '#a50101' },
             upgrades: { bg: 'rgba(156, 163, 175, 0.2)', border: '#9ca3af' }
         };
         if (historyChart) {
@@ -1276,7 +1276,7 @@ $(document).ready(function() {
                         backgroundColor: 'rgba(26, 26, 26, 0.95)',
                         titleColor: '#fff',
                         bodyColor: 'rgba(255, 255, 255, 0.8)',
-                        borderColor: 'rgba(139, 115, 85, 0.5)',
+                        borderColor: 'rgba(107, 102, 94, 0.5)',
                         borderWidth: 1,
                         cornerRadius: 8,
                         padding: 12,
@@ -1604,7 +1604,7 @@ $(document).ready(function() {
         if (employee.online) {
             lastSeenText = _T('online');
             lastSeenIcon = 'fa-circle';
-            $('#employeeLastSeenDisplay').html(`<i class="fas ${lastSeenIcon}" style="color: #22c55e;"></i><span style="color: #22c55e;">${lastSeenText}</span>`);
+            $('#employeeLastSeenDisplay').html(`<i class="fas ${lastSeenIcon}" style="color: #f5f3ee;"></i><span style="color: #f5f3ee;">${lastSeenText}</span>`);
         } else {
             if (employee.lastSeenTimestamp && employee.lastSeenTimestamp > 0) {
                 const formatted = window.formatDateWithTimezone(employee.lastSeenTimestamp);

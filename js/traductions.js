@@ -143,7 +143,7 @@ function applyInterfaceTranslations() {
     $('[data-filter="withdraw_gold"]').html('<img src="img/gold.png" alt="Withdraw Gold" class="filter-icon"> ' + _T('history_withdraw_gold'));
     $('[data-filter="salary"]').html('<img src="img/salary.png" alt="Salary" class="filter-icon"> ' + _T('filter_salaries'));
     $('[data-filter="upgrade_storage"]').html('<img src="img/coffre.png" alt="Storage" class="filter-icon"> ' + _T('filter_storage_upgrades'));
-    $('[data-filter="bonus"]').html('<i class="fas fa-coins filter-icon" style="color: #fbbf24;"></i> ' + _T('filter_bonuses'));
+    $('[data-filter="bonus"]').html('<i class="fas fa-coins filter-icon" style="color: #9a948a;"></i> ' + _T('filter_bonuses'));
     $('.history-col-type').text(_T('col_type'));
     $('.history-col-player').text(_T('col_employee'));
     $('.history-col-value').text(_T('col_amount'));

@@ -42,7 +42,7 @@ function renderGradeChart(distribution) {
 
     const barColors = distribution.map((_, i) => {
         const alpha = 0.5 + (i / Math.max(distribution.length - 1, 1)) * 0.5;
-        return `rgba(251, 191, 36, ${alpha.toFixed(2)})`;
+        return `rgba(154, 148, 138, ${alpha.toFixed(2)})`;
     });
 
     if (dashboardChart) {
@@ -57,7 +57,7 @@ function renderGradeChart(distribution) {
                 label: _T('dash_employee_count') || 'Employés',
                 data: values,
                 backgroundColor: barColors,
-                borderColor: 'rgba(251, 191, 36, 0.8)',
+                borderColor: 'rgba(154, 148, 138, 0.8)',
                 borderWidth: 1,
                 borderRadius: 4,
                 barPercentage: 0.6,
@@ -80,9 +80,9 @@ function renderGradeChart(distribution) {
                 },
                 tooltip: {
                     backgroundColor: 'rgba(0,0,0,0.85)',
-                    titleColor: '#fbbf24',
+                    titleColor: '#9a948a',
                     bodyColor: '#fff',
-                    borderColor: 'rgba(251,191,36,0.3)',
+                    borderColor: 'rgba(154, 148, 138,0.3)',
                     borderWidth: 1,
                     titleFont: { family: 'Hapna', weight: '700' },
                     bodyFont: { family: 'Hapna' },
