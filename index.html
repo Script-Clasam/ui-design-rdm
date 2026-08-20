@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boss Menu - Gestion d'Entreprise</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/members.css">
+    <link rel="stylesheet" href="css/accounts.css">
+    <link rel="stylesheet" href="css/grades.css">
+    <link rel="stylesheet" href="css/history.css">
+    <link rel="stylesheet" href="css/notifications.css">
+    <link rel="stylesheet" href="css/recruit.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/registers.css">
+    <link rel="stylesheet" href="css/jobcreator.css">
+    <link rel="stylesheet" href="css/gangcreator.css">
+    <link rel="stylesheet" href="css/gangboss.css">
+    <link rel="stylesheet" href="css/community.css">
+    <link rel="stylesheet" href="css/theme-western.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="container" style="display: none;">
+        <div class="boss-wrapper">
+            <div class="job-name-badge">
+                <span id="companyName">Entreprise</span>
+            </div>
+            <div class="boss-header">
+                <div class="header-grid">
+                    <div class="header-left">
+                        <div class="player-badge">
+                            <span id="playerInfo" data-i18n="loading">Chargement...</span>
+                        </div>
+                    </div>
+
+                    <div class="header-center">
+                        <div class="nav-buttons-container">
+                            <button class="nav-btn active" data-tab="dashboard">
+                                <span class="nav-label" data-i18n="nav_dashboard">DASHBOARD</span>
+                            </button>
+                            <button class="nav-btn" data-tab="employees">
+                                <span class="nav-label" data-i18n="nav_employees">ÉMPLOYÉS</span>
+                            </button>
+                            <button class="nav-btn" data-tab="accounts">
+                                <span class="nav-label" data-i18n="nav_accounts">COMPTES</span>
+                            </button>
+                            <button class="nav-btn" data-tab="grades">
+                                <span class="nav-label" data-i18n="nav_grades">GRADES</span>
+                            </button>
+                            <button class="nav-btn" data-tab="history">
+                                <span class="nav-label" data-i18n="nav_history">HISTORIQUE</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="header-right">
+                        <button class="duty-toggle-btn" id="dutyToggleBtn">
+                            <i class="fas fa-briefcase"></i>
+                            <span id="dutyBtnText" data-i18n="go_on_duty">PRENDRE SON SERVICE</span>
+                        </button>
+                        <button class="close-btn" id="closeBtn">
+                            <img src="img/cross.png" alt="Fermer" class="close-icon" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-spacer"></div>
+
+            <div class="boss-panel">
+                <div class="lock-overlay" id="lockOverlay" style="display: none;">
+                    <div class="lock-content">
+                        <img src="img/lock.png" class="lock-icon" alt="Verrouillé">
+                        <p data-i18n="locked_service">Vous devez prendre votre service pour accéder à ce menu</p>
+                    </div>
+                </div>
+                <div class="tab-content active" id="dashboard-tab">
+                    <div class="content-header-news">
+                        <h2 class="content-title-centered" data-i18n="dash_title">Tableau de Bord</h2>
+                    </div>
+
+                    <div class="dashboard-stats-row">
+                        <div class="dashboard-stat-card stat-employees">
+                            <div class="dashboard-stat-header">
+                                <span class="dashboard-stat-label" data-i18n="dash_total_employees">Employés</span>
+                                <div class="dashboard-stat-icon"><i class="fas fa-users"></i></div>
+                            </div>
+                            <div class="dashboard-stat-value" id="dashStatTotalEmployees">0</div>
+                            <div class="dashboard-stat-sub" id="dashStatTotalSub"><span class="highlight">0</span> en ligne</div>
+                        </div>
+
+                        <div class="dashboard-stat-card stat-onduty">
+                            <div class="dashboard-stat-header">
+                                <span class="dashboard-stat-label" data-i18n="dash_on_duty">En Service</span>
+                                <div class="dashboard-stat-icon"><i class="fas fa-star"></i></div>
+                            </div>
+                            <div class="dashboard-stat-value" id="dashStatOnDuty">0</div>
+                            <div class="dashboard-stat-sub" id="dashStatOnDutySub">/ 0 employés</div>
+                        </div>
+
+                        <div class="dashboard-stat-card stat-balance">
+                            <div class="dashboard-stat-header">
+                                <span class="dashboard-stat-label" data-i18n="dash_balance">Solde</span>
+                                <div class="dashboard-stat-icon"><i class="fas fa-coins"></i></div>
+                            </div>
+                            <div class="dashboard-stat-value" id="dashStatBalance">$0,00</div>
+                            <div class="dashboard-stat-sub" id="dashStatBalanceSub">Or: <span class="highlight">0,00</span></div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-body">
+                        <div class="dashboard-panel">
+                            <div class="dashboard-panel-title" data-i18n="dash_grade_distribution">Répartition par Grade</div>
+                            <div class="dashboard-panel-subtitle" data-i18n="dash_grade_subtitle">Nombre d'employés par grade dans votre entreprise</div>
+                            <div class="dashboard-chart-wrapper">
+                                <canvas id="dashboardGradeChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-panel">
+                            <div class="dashboard-panel-title" data-i18n="dash_recent_activity">Activité Récente</div>
+                            <div class="dashboard-panel-subtitle" data-i18n="dash_activity_subtitle">Dernières actions dans l'entreprise</div>
+                            <div class="dashboard-activity-list" id="dashboardActivityList">
+                                <div class="dashboard-activity-empty">
+                                    <img src="img/bookcover.png" alt="">
+                                    <p data-i18n="dash_no_activity">Aucune activité récente</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="employees-tab">
+                    <div class="content-header-news">
+                        <h2 class="content-title-centered" data-i18n="employees_title">Gestion des Employés</h2>
+                        <div class="header-actions-row">
+                            <div class="employees-search-wrapper">
+                                <i class="fas fa-search search-icon"></i>
+                                <input type="text" class="employees-search-input" id="searchEmployees" placeholder="Rechercher un employé..." data-i18n-placeholder="search_employee">
+                                <button class="search-clear-btn" id="employeesSearchClear">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="employees-controls">
+                                <div class="view-toggle-group">
+                                    <button class="view-toggle-btn active" id="viewGridBtn" title="Vue en grille">
+                                        <i class="fas fa-th"></i>
+                                    </button>
+                                    <button class="view-toggle-btn" id="viewListBtn" title="Vue en liste">
+                                        <i class="fas fa-list"></i>
+                                    </button>
+                                </div>
+                                <button class="recruit-btn" id="recruitBtn">
+                                    <i class="fas fa-user-plus"></i> <span data-i18n="recruit_button">RECRUTER</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-scroll">
+                        <div class="members-grid-new" id="employeesList">
+                            <div class="loading-state">
+                                <img src="img/loading.png" alt="Chargement" class="loading-icon" />
+                                <p data-i18n="loading_employees">Chargement des employés...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="accounts-tab">
+                    <h2 class="content-title-centered" data-i18n="company_accounts">Comptes de l'Entreprise</h2>
+
+                    <div class="content-scroll">
+                        <div class="bank-container">
+                            <div class="bank-main-wrapper">
+                                <div class="bank-balances-column">
+                                    <div class="balance-title">Cash</div>
+                                    <div class="bank-balance-box">
+                                        <div class="balance-icon">
+                                            <img src="img/money_coinstack.png" alt="Money" class="balance-icon-img">
+                                        </div>
+                                        <div class="balance-amount money-amount" id="company-money">0,00</div>
+                                    </div>
+
+                                    <div class="balance-title">Gold</div>
+                                    <div class="bank-balance-box gold-box">
+                                        <div class="balance-icon">
+                                            <img src="img/gold.png" alt="Gold" class="balance-icon-img">
+                                        </div>
+                                        <div class="balance-amount gold-amount" id="company-gold">0.00</div>
+                                    </div>
+                                </div>
+
+                                <div class="bank-actions-column">
+                                    <button class="bank-btn-large deposit-btn" id="depositBtn">
+                                        <i class="fas fa-arrow-down"></i>
+                                        DÉPOSER
+                                    </button>
+                                    <button class="bank-btn-large withdraw-btn" id="withdrawBtn">
+                                        <i class="fas fa-arrow-up"></i>
+                                        RETIRER
+                                    </button>
+                                    <button class="bank-btn storage-btn" id="storageBtn">
+                                        <img src="img/coffre.png" alt="Coffre" class="btn-icon-img">
+                                        <span data-i18n="storage_title">COFFRE</span>
+                                    </button>
+                                    
+                                    <button class="bank-btn history-btn" id="detailedHistoryBtn">
+                                        <img src="img/boutique.png" alt="Historique" class="btn-icon-img">
+                                        <span data-i18n="history_title">HISTORIQUE DÉTAILLÉ</span>
+                                    </button>
+                                    <button class="bank-btn storage-btn" id="upgradeStorageBtn" style="display: none;">
+                                        <img src="img/chest.png" alt="Améliorer" class="btn-icon-img">
+                                        <span data-i18n="storage_upgrade">AMÉLIORER LE COFFRE</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bank-history-section">
+                                <div class="history-header-simple">
+                                    <div class="history-header-left">
+                                        <img src="img/book.png" alt="Historique" class="history-icon-small">
+                                        <h3>DERNIÈRES TRANSACTIONS</h3>
+                                    </div>
+                                </div>
+                                <div class="history-table-simple">
+                                    <div class="history-table-body-simple" id="bankHistoryListSimple">
+                                        <div class="history-empty">
+                                            <img src="img/bookcover.png" alt="Vide" class="empty-icon-small">
+                                            <p>Aucune transaction récente</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="grades-tab">
+                    <div class="content-header-news">
+                        <h2 class="content-title-centered">Gestion des Grades & Permissions</h2>
+                        <div class="grades-subtitle">
+                            <img src="img/info.png" alt="Info" class="subtitle-icon">
+                            <p>Configurez les permissions et salaires de chaque grade de votre entreprise</p>
+                        </div>
+                    </div>
+                    <div class="content-scroll">
+                        <div class="grades-grid" id="gradesList">
+                            <div class="loading-state">
+                                <img src="img/loading.png" alt="Chargement" class="loading-icon" />
+                                <p>Chargement des grades...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="history-tab">
+                    <div class="content-header-news">
+                        <h2 class="content-title-centered">Historique des Actions</h2>
+                        <div class="grades-subtitle">
+                            <img src="img/book.png" alt="Info" class="subtitle-icon">
+                            <p>Consultez toutes les actions effectuées par les membres de l'entreprise</p>
+                        </div>
+                    </div>
+
+                    <div class="content-scroll">
+                        <div class="history-search-container">
+                            <i class="fas fa-search history-search-icon"></i>
+                            <input type="text" id="searchHistory" placeholder="Rechercher dans l'historique..." />
+                            <button id="historyClearSearch" style="display: none;">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+
+                        <div id="historyContainer">
+                            <div class="history-empty-state">
+                                <img src="img/bookcover.png" alt="Historique vide">
+                                <p>Chargement de l'historique...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="recruitModal" class="member-modal" style="display: none;">
+        <div class="member-modal-overlay"></div>
+        <div class="member-modal-content member-modal-large">
+            <div class="member-form-paper">
+                <div class="member-paper-header recruit-paper-header">
+                    <h3>RECRUTEMENT</h3>
+                    <button class="member-modal-close-btn" id="closeRecruitModalBtn">
+                        <img src="img/cross.png" alt="Fermer" class="member-modal-close-icon" />
+                    </button>
+                </div>
+                <div class="member-paper-content">
+                    <div class="recruit-nearby-section">
+                        <div class="recruit-section-header">
+                            <div class="recruit-section-title">
+                                <i class="fas fa-users"></i>
+                                <span data-i18n="nearby_players">Joueurs à proximité</span>
+                            </div>
+                            <button id="refreshNearbyBtn" class="recruit-refresh-btn">
+                                <i class="fas fa-sync-alt"></i>
+                                <span data-i18n="refresh">Actualiser</span>
+                            </button>
+                        </div>
+
+                        <div id="nearbyPlayersList" class="nearby-players-list">
+                            <div class="recruit-loading">
+                                <div class="recruit-loading-spinner"></div>
+                                <div class="recruit-loading-text" data-i18n="loading">Chargement des joueurs à proximité...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="employeeManageModal" class="member-modal" style="display: none;">
+        <div class="member-modal-overlay"></div>
+        <div class="member-modal-content">
+            <div class="member-form-paper">
+                <button class="member-modal-close-btn" id="closeEmployeeModalBtn">
+                    <img src="img/cross.png" alt="Fermer" class="member-modal-close-icon" />
+                </button>
+                
+                <div id="modalLoadingOverlay" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; align-items: center; justify-content: center; border-radius: 12px;">
+                    <img src="img/loading.png" class="loading-icon" alt="Chargement" style="width: 60px; height: 60px; animation: spin 1s linear infinite;">
+                </div>
+                
+                <div class="member-paper-header">
+                    <h3>MODIFIER LE GRADE</h3>
+                </div>
+                <div class="member-paper-content">
+                    <div class="member-form-group">
+                        <label>NOM COMPLET</label>
+                        <div class="member-info-display" id="employeeNameDisplay"></div>
+                    </div>
+
+                    <div class="member-form-group">
+                        <label>DERNIÈRE CONNEXION</label>
+                        <div class="member-info-display" id="employeeLastSeenDisplay">
+                            <i class="fas fa-clock"></i>
+                            <span>Jamais connecté</span>
+                        </div>
+                    </div>
+
+                    <div class="member-form-group">
+                        <label>PHOTO DE PROFIL (URL Discord)</label>
+                        <input type="text" id="memberAvatarInput" class="member-input" placeholder="https://cdn.discordapp.com/...">
+                        <div id="memberAvatarPreview" class="member-avatar-preview"></div>
+                    </div>
+
+                    <div class="member-form-group">
+                        <label>GRADE DE L'EMPLOYÉ</label>
+                        <select id="employeeGradeSelect" class="member-select">
+                        </select>
+                    </div>
+
+                    <div class="member-form-actions">
+                        <button id="saveEmployeeBtn" class="member-btn-primary">Sauvegarder</button>
+                        <button id="fireEmployeeBtn" class="member-btn-danger">Licencier</button>
+                        <button id="resignEmployeeBtn" class="member-btn-warning" style="display: none;">Démissionner</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="recruitModal" class="member-modal" style="display: none;">
+        <div class="member-modal-overlay"></div>
+        <div class="member-modal-content">
+            <div class="member-form-paper">
+                <button class="member-modal-close-btn" id="closeRecruitModalBtn">
+                    <img src="img/cross.png" alt="Fermer" class="member-modal-close-icon" />
+                </button>
+                <div class="member-paper-header">
+                    <h3 data-i18n="recruitment">RECRUTER UN JOUEUR</h3>
+                </div>
+                <div class="member-paper-content">
+                    <div class="member-form-group">
+                        <label data-i18n="player_id">ID TEMPORAIRE DU JOUEUR</label>
+                        <input type="number" id="recruitPlayerId" class="member-input" placeholder="Entrez l'ID du joueur..." data-i18n-placeholder="player_id">
+                    </div>
+
+                    <div class="member-form-group">
+                        <label data-i18n="select_grade">SÉLECTIONNEZ UN GRADE</label>
+                        <select id="recruitGradeSelect" class="member-select">
+                        </select>
+                    </div>
+
+                    <div class="member-actions">
+                        <button id="confirmRecruitBtn" class="member-btn-primary" data-i18n="recruit">Contratar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notificationContainer" class="notification-container top-center"></div>
+
+    <div id="customConfirmModal" class="custom-modal" style="display: none;">
+        <div class="custom-modal-overlay"></div>
+        <div class="custom-modal-content">
+            <div class="custom-modal-header">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3 id="customConfirmTitle" data-i18n="confirm">Confirmation</h3>
+            </div>
+            <div class="custom-modal-body">
+                <p id="customConfirmMessage">Message</p>
+            </div>
+            <div class="custom-modal-footer">
+                <button class="custom-btn custom-btn-cancel" id="customConfirmCancel" data-i18n="cancel">Annuler</button>
+                <button class="custom-btn custom-btn-confirm" id="customConfirmOk" data-i18n="confirm">Confirmer</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="customAlertModal" class="custom-modal" style="display: none;">
+        <div class="custom-modal-overlay"></div>
+        <div class="custom-modal-content">
+            <div class="custom-modal-header">
+                <i class="fas fa-info-circle"></i>
+                <h3 id="customAlertTitle" data-i18n="information">Information</h3>
+            </div>
+            <div class="custom-modal-body">
+                <p id="customAlertMessage">Message</p>
+            </div>
+            <div class="custom-modal-footer">
+                <button class="custom-btn custom-btn-confirm" id="customAlertOk">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="jobOfferOverlay" class="job-offer-overlay" style="display: none;">
+        <div class="job-offer-popup">
+            <div class="job-offer-header">
+                <div class="job-offer-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="job-offer-title" id="jobOfferTitle" data-i18n="job_offer">OFFRE D'EMPLOI</div>
+            </div>
+            <div class="job-offer-body">
+                <div class="job-offer-info">
+                    <div class="job-offer-row">
+                        <span class="job-offer-label" data-i18n="company">Entreprise</span>
+                        <span class="job-offer-value" id="jobOfferCompany">-</span>
+                    </div>
+                    <div class="job-offer-row">
+                        <span class="job-offer-label" data-i18n="grade">Poste</span>
+                        <span class="job-offer-value" id="jobOfferGrade">-</span>
+                    </div>
+                    <div class="job-offer-row">
+                        <span class="job-offer-label" data-i18n="employee_salary">Salaire</span>
+                        <span class="job-offer-value" id="jobOfferSalary">-</span>
+                    </div>
+                </div>
+                <div class="job-offer-recruiter">
+                    <div class="job-offer-recruiter-text" data-i18n="recruited_by">Recruté par</div>
+                    <div class="job-offer-recruiter-name" id="jobOfferRecruiter">-</div>
+                </div>
+            </div>
+            <div class="job-offer-buttons">
+                <button class="job-offer-btn job-offer-accept" id="jobOfferAccept">
+                    <i class="fas fa-check"></i> <span id="jobOfferAcceptText" data-i18n="accept">ACCEPTER</span>
+                </button>
+                <button class="job-offer-btn job-offer-refuse" id="jobOfferRefuse">
+                    <i class="fas fa-times"></i> <span id="jobOfferRefuseText" data-i18n="refuse">REFUSER</span>
+                </button>
+            </div>
+            <div class="job-offer-timer">
+                <span data-i18n="job_offer_timer_prefix">Expiration dans</span> <span class="job-offer-timer-value" id="jobOfferTimer">30</span> <span data-i18n="job_offer_timer_suffix">secondes</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="currencyModal" class="currency-modal-overlay" style="display: none;">
+        <div class="currency-modal-content">
+            <div class="currency-modal-header">
+                <h3 id="currencyModalTitle" data-i18n="deposit">DEPOSIT</h3>
+                <button class="currency-modal-close" id="closeCurrencyModal">&times;</button>
+            </div>
+            <div class="currency-modal-body">
+                <p class="currency-question" data-i18n="currency_question">Which currency do you want to use?</p>
+                <div class="currency-input-group">
+                    <input type="number" id="currencyAmount" data-i18n-placeholder="amount_placeholder" placeholder="Amount" min="0" step="0.01" class="currency-input">
+                </div>
+                <div class="currency-options">
+                    <button class="currency-option money-option" id="selectMoney">
+                        <img src="img/money_coinstack.png" alt="Money" class="currency-option-img">
+                        <span data-i18n="currency_money">MONEY ($)</span>
+                    </button>
+                    <button class="currency-option gold-option" id="selectGold">
+                        <img src="img/gold.png" alt="Gold" class="currency-option-img">
+                        <span data-i18n="currency_gold">GOLD</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="gradeManagementModal" class="grade-modal" style="display: none;">
+        <div class="grade-modal-overlay"></div>
+        <div class="grade-modal-content">
+            <div class="grade-modal-header">
+                <div class="grade-modal-title">
+                    <img src="img/grade.png" alt="Grade" class="grade-modal-icon">
+                    <h2>CONFIGURATION DU GRADE</h2>
+                </div>
+                <button class="grade-modal-close" id="closeGradeModal">
+                    <img src="img/cross.png" alt="Fermer" class="close-icon">
+                </button>
+            </div>
+            
+            <div class="grade-modal-body">
+                <div class="grade-info-section">
+                    <div class="grade-badge-display">
+                        <div class="grade-number" id="gradeNumber">0</div>
+                        <div class="grade-label-display" id="gradeLabelDisplay">Grade</div>
+                    </div>
+                    <div class="grade-salary-section">
+                        <label class="grade-input-label">
+                            <img src="img/dollar.png" alt="Salaire" class="label-icon">
+                            <span data-i18n="salary_per_period">SALARY PER PERIOD</span>
+                        </label>
+                        <div class="salary-input-wrapper">
+                            <input type="number" class="grade-salary-input" id="gradeSalaryInput" min="0" step="0.01" placeholder="0.00">
+                            <span class="salary-currency">$</span>
+                        </div>
+                        <div class="salary-max-info">
+                            <i class="fas fa-info-circle"></i>
+                            <span><span data-i18n="salary_max_info">Maximum salary</span> : <span id="maxSalaryDisplay">5000$</span> • <span data-i18n="payment_every">Payment every</span> <span id="paymentIntervalDisplay">15</span> <span data-i18n="minutes">minutes</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="permissions-section">
+                    <h3 class="permissions-title">
+                        <img src="img/info.png" alt="Permissions" class="permissions-icon">
+                        <span data-i18n="grade_permissions">GRADE PERMISSIONS</span>
+                    </h3>
+                    <div class="permissions-grid">
+                        <div class="permission-item">
+                            <label class="permission-label">
+                                <input type="checkbox" class="permission-checkbox" data-permission="canRecruit">
+                                <span class="permission-custom-checkbox"></span>
+                                <div class="permission-text">
+                                    <i class="fas fa-user-plus permission-icon-left"></i>
+                                    <span>Recruter des employés</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="permission-item">
+                            <label class="permission-label">
+                                <input type="checkbox" class="permission-checkbox" data-permission="canFire">
+                                <span class="permission-custom-checkbox"></span>
+                                <div class="permission-text">
+                                    <i class="fas fa-user-times permission-icon-left"></i>
+                                    <span>Licencier des employés</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="permission-item">
+                            <label class="permission-label">
+                                <input type="checkbox" class="permission-checkbox" data-permission="canManageMoney">
+                                <span class="permission-custom-checkbox"></span>
+                                <div class="permission-text">
+                                    <i class="fas fa-coins permission-icon-left"></i>
+                                    <span>Gérer l'argent (dépôt/retrait)</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="permission-item">
+                            <label class="permission-label">
+                                <input type="checkbox" class="permission-checkbox" data-permission="canViewAccounts">
+                                <span class="permission-custom-checkbox"></span>
+                                <div class="permission-text">
+                                    <i class="fas fa-eye permission-icon-left"></i>
+                                    <span>Voir l'onglet Comptes</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="permission-item">
+                            <label class="permission-label">
+                                <input type="checkbox" class="permission-checkbox" data-permission="canManageGold">
+                                <span class="permission-custom-checkbox"></span>
+                                <div class="permission-text">
+                                    <i class="fas fa-coins permission-icon-left"></i>
+                                    <span>Gérer l'or (dépôt/retrait)</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="permission-item">
+                            <label class="permission-label">
+                                <input type="checkbox" class="permission-checkbox" data-permission="canViewMembers">
+                                <span class="permission-custom-checkbox"></span>
+                                <div class="permission-text">
+                                    <i class="fas fa-users permission-icon-left"></i>
+                                    <span>Voir l'onglet Employés</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="permission-item">
+                            <label class="permission-label">
+                                <input type="checkbox" class="permission-checkbox" data-permission="canViewHistory">
+                                <span class="permission-custom-checkbox"></span>
+                                <div class="permission-text">
+                                    <i class="fas fa-history permission-icon-left"></i>
+                                    <span data-i18n="perm_view_history">Voir l'historique détaillé</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="permission-item">
+                            <label class="permission-label">
+                                <input type="checkbox" class="permission-checkbox" data-permission="canViewFullHistory">
+                                <span class="permission-custom-checkbox"></span>
+                                <div class="permission-text">
+                                    <i class="fas fa-book permission-icon-left"></i>
+                                    <span data-i18n="perm_view_full_history">Voir l'onglet Historique</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="permission-item">
+                            <label class="permission-label">
+                                <input type="checkbox" class="permission-checkbox" data-permission="canEditGrades">
+                                <span class="permission-custom-checkbox"></span>
+                                <div class="permission-text">
+                                    <i class="fas fa-edit permission-icon-left"></i>
+                                    <span>Modifier les grades</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="permission-item">
+                            <label class="permission-label">
+                                <input type="checkbox" class="permission-checkbox" data-permission="canUpgradeStorage">
+                                <span class="permission-custom-checkbox"></span>
+                                <div class="permission-text">
+                                    <i class="fas fa-arrow-up permission-icon-left"></i>
+                                    <span>Acheter des slots de coffre</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="permission-item">
+                            <label class="permission-label">
+                                <input type="checkbox" class="permission-checkbox" data-permission="canEditAvatars">
+                                <span class="permission-custom-checkbox"></span>
+                                <div class="permission-text">
+                                    <i class="fas fa-image permission-icon-left"></i>
+                                    <span>Modifier les avatars</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="permission-item">
+                            <label class="permission-label">
+                                <input type="checkbox" class="permission-checkbox" data-permission="canAccessInventory">
+                                <span class="permission-custom-checkbox"></span>
+                                <div class="permission-text">
+                                    <i class="fas fa-box permission-icon-left"></i>
+                                    <span>Accéder au coffre</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="permission-item">
+                            <label class="permission-label">
+                                <input type="checkbox" class="permission-checkbox" data-permission="canManageEmployeeGrade">
+                                <span class="permission-custom-checkbox"></span>
+                                <div class="permission-text">
+                                    <i class="fas fa-user-edit permission-icon-left"></i>
+                                    <span>Changer le grade des employés</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="permission-item">
+                            <label class="permission-label">
+                                <input type="checkbox" class="permission-checkbox" data-permission="canGiveBonus">
+                                <span class="permission-custom-checkbox"></span>
+                                <div class="permission-text">
+                                    <i class="fas fa-coins permission-icon-left"></i>
+                                    <span data-i18n="perm_give_bonus">Donner des primes aux employés</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="permission-item">
+                            <label class="permission-label">
+                                <input type="checkbox" class="permission-checkbox" data-permission="canSeeBonusButton">
+                                <span class="permission-custom-checkbox"></span>
+                                <div class="permission-text">
+                                    <i class="fas fa-eye permission-icon-left"></i>
+                                    <span data-i18n="perm_see_bonus_button">Voir le bouton Prime</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grade-modal-footer">
+                <button class="grade-save-btn" id="saveGradeBtn">
+                    <img src="img/save.png" alt="Sauvegarder" class="btn-icon">
+                    SAUVEGARDER LES MODIFICATIONS
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="detailedHistoryModal" class="history-modal" style="display: none;">
+        <div class="history-modal-overlay"></div>
+        <div class="history-modal-content">
+            <div class="history-modal-header">
+                <div class="history-modal-title">
+                    <img src="img/book.png" alt="Historique" class="history-modal-icon">
+                    <h2 data-i18n="transaction_register">REGISTRE DES TRANSACTIONS</h2>
+                </div>
+                <button class="history-modal-close" id="closeHistoryModal">
+                    <img src="img/cross.png" alt="Fermer" class="close-icon">
+                </button>
+            </div>
+            
+            
+            <div class="history-tabs">
+                <button class="history-tab active" data-tab="list">
+                    <i class="fas fa-list"></i>
+                    <span data-i18n="tab_list">LISTE</span>
+                </button>
+                <button class="history-tab" data-tab="chart">
+                    <i class="fas fa-chart-line"></i>
+                    <span data-i18n="tab_chart">GRAPHIQUE</span>
+                </button>
+            </div>
+
+            
+            <div class="history-stats">
+                <div class="stat-card stat-cash">
+                    <img src="img/dollar.png" alt="Cash" class="stat-icon">
+                    <div class="stat-info">
+                        <span class="stat-label" data-i18n="current_cash">SOLDE CASH</span>
+                        <span class="stat-value stat-value-cash" id="statCurrentCash">0,00$</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-gold">
+                    <img src="img/gold.png" alt="Gold" class="stat-icon">
+                    <div class="stat-info">
+                        <span class="stat-label" data-i18n="current_gold">SOLDE OR</span>
+                        <span class="stat-value stat-value-gold" id="statCurrentGold">0,00</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-transactions">
+                    <img src="img/book.png" alt="Transactions" class="stat-icon">
+                    <div class="stat-info">
+                        <span class="stat-label" data-i18n="total_transactions">TRANSACTIONS</span>
+                        <span class="stat-value" id="statTotalTransactions">0</span>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="history-tab-content" id="historyListTab">
+                <div class="history-modal-filters">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-list"></i> <span data-i18n="filter_all">TOUT</span>
+                    </button>
+                    <button class="filter-btn" data-filter="deposit">
+                        <img src="img/plus.png" alt="Dépôt" class="filter-icon"> <span data-i18n="filter_deposits">DÉPÔTS $</span>
+                    </button>
+                    <button class="filter-btn" data-filter="withdraw">
+                        <img src="img/dollar.png" alt="Retrait" class="filter-icon"> <span data-i18n="filter_withdrawals">RETRAITS $</span>
+                    </button>
+                    <button class="filter-btn" data-filter="deposit_gold">
+                        <img src="img/gold.png" alt="Dépôt Or" class="filter-icon"> <span data-i18n="filter_deposits_gold">DÉPÔTS OR</span>
+                    </button>
+                    <button class="filter-btn" data-filter="withdraw_gold">
+                        <img src="img/gold.png" alt="Retrait Or" class="filter-icon"> <span data-i18n="filter_withdrawals_gold">RETRAITS OR</span>
+                    </button>
+                    <button class="filter-btn" data-filter="salary">
+                        <img src="img/salary.png" alt="Salaire" class="filter-icon"> <span data-i18n="filter_salaries">SALAIRES</span>
+                    </button>
+                    <button class="filter-btn" data-filter="upgrade_storage">
+                        <img src="img/coffre.png" alt="Coffre" class="filter-icon"> <span data-i18n="filter_storage_upgrades">COFFRE</span>
+                    </button>
+                    <button class="filter-btn" data-filter="bonus">
+                        <i class="fas fa-coins filter-icon" style="color: #fbbf24;"></i> <span data-i18n="filter_bonuses">PRIMES</span>
+                    </button>
+                </div>
+
+                <div class="history-modal-table">
+                    <div class="history-table-header">
+                        <div class="history-col-type" data-i18n="col_type">TYPE</div>
+                        <div class="history-col-player" data-i18n="col_employee">EMPLOYÉ</div>
+                        <div class="history-col-value" data-i18n="col_amount">MONTANT</div>
+                        <div class="history-col-date" data-i18n="col_date">DATE & HEURE</div>
+                    </div>
+                    <div class="history-table-body" id="bankHistoryListModal">
+                        <div class="history-empty">
+                            <img src="img/bookcover.png" alt="Vide" class="empty-icon">
+                            <p data-i18n="no_transactions">Aucune transaction enregistrée</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="history-tab-content" id="historyChartTab" style="display: none;">
+                <div class="chart-controls">
+                    <div class="chart-type-selector">
+                        <button class="chart-type-btn active" data-type="cash">
+                            <img src="img/dollar.png" alt="Cash" class="chart-btn-icon">
+                            <span data-i18n="chart_cash">CASH</span>
+                        </button>
+                        <button class="chart-type-btn" data-type="gold">
+                            <img src="img/gold.png" alt="Gold" class="chart-btn-icon">
+                            <span data-i18n="chart_gold">OR</span>
+                        </button>
+                    </div>
+                    <div class="chart-mode-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="detailedModeToggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span class="toggle-label" data-i18n="chart_detailed_mode">Detailed mode</span>
+                    </div>
+                    <div class="chart-period-selector">
+                        <button class="chart-period-btn" data-period="1">1j</button>
+                        <button class="chart-period-btn active" data-period="7">7j</button>
+                        <button class="chart-period-btn" data-period="30">30j</button>
+                        <button class="chart-period-btn" data-period="90">90j</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="historyChart"></canvas>
+                </div>
+                <div class="chart-legend" id="chartLegend">
+                    <div class="legend-item legend-balance">
+                        <span class="legend-color"></span>
+                        <span data-i18n="legend_balance">Solde</span>
+                    </div>
+                    <div class="legend-item legend-deposits">
+                        <span class="legend-color"></span>
+                        <span data-i18n="legend_deposits">Dépôts</span>
+                    </div>
+                    <div class="legend-item legend-withdrawals">
+                        <span class="legend-color"></span>
+                        <span data-i18n="legend_withdrawals">Retraits</span>
+                    </div>
+                    <div class="legend-item legend-salaries" style="display: none;">
+                        <span class="legend-color"></span>
+                        <span data-i18n="legend_salaries">Salaires</span>
+                    </div>
+                    <div class="legend-item legend-bonuses" style="display: none;">
+                        <span class="legend-color"></span>
+                        <span data-i18n="legend_bonuses">Primes</span>
+                    </div>
+                    <div class="legend-item legend-upgrades" style="display: none;">
+                        <span class="legend-color"></span>
+                        <span data-i18n="legend_upgrades">Achats</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="storage-modal-overlay" id="storageModalOverlay" style="display: none;">
+        <div class="storage-modal" id="storageModal">
+            <div class="storage-modal-header">
+                <img src="img/coffre.png" alt="Coffre" class="modal-header-icon">
+                <h2>AMÉLIORER LE COFFRE</h2>
+                <button class="close-modal-btn" id="closeStorageModal">
+                    <img src="img/cross.png" alt="Fermer" class="close-icon">
+                </button>
+            </div>
+
+            <div class="storage-modal-body">
+                <div class="storage-current-info">
+                    <img src="img/coffre.png" alt="Coffre" class="storage-info-icon">
+                    <div class="storage-info-text">
+                        <span class="storage-info-label">Capacité actuelle du coffre</span>
+                        <span class="storage-info-value" id="currentStorageSlotsModal">5 slots</span>
+                    </div>
+                </div>
+
+                <div class="storage-tiers-grid" id="storageTiersGrid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="confirm-popup" id="confirmPopup" style="display: none;">
+        <div class="confirm-popup-content">
+            <div class="confirm-popup-header">
+                <img src="img/coffre.png" alt="Coffre" class="confirm-icon">
+                <h3 id="confirmPopupTitle">Confirm purchase</h3>
+            </div>
+            <p class="confirm-popup-message" id="confirmPopupMessage">Confirmation message</p>
+            <div class="confirm-popup-buttons">
+                <button class="confirm-btn confirm-yes" id="confirmYes">OK</button>
+                <button class="confirm-btn confirm-no" id="confirmNo">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/traductions.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/grades.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/history.js"></script>
+    <script src="js/addons.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/registers.js"></script>
+    <script src="js/jobcreator.js"></script>
+    <script src="js/community.js"></script>
+    <script src="js/gangcreator.js"></script>
+    <script src="js/gangboss.js"></script>
+
+    
+    
+    
+
+    
+    <div id="registerCreateOverlay" class="register-overlay">
+        <div class="register-modal">
+            <div class="register-modal-header">
+                <img src="img/cashmachine.png" class="register-header-icon" alt="">
+                <h3 id="registerCreateTitle">Cash Register</h3>
+                <button class="register-close-btn" id="registerCreateClose"><img src="img/cross.png" class="close-icon" alt="X"></button>
+            </div>
+            <div class="register-modal-body">
+                <div id="registerCreateForm">
+                    <div class="register-field">
+                        <label><img src="img/dollar.png" class="field-icon"> <span data-i18n="reg_amount_label">Montant ($)</span></label>
+                        <input type="number" id="registerAmount" class="register-amount-input" min="1" step="0.01" placeholder="0.00">
+                    </div>
+                    <div class="register-field">
+                        <label><img src="img/provision_pen.png" class="field-icon"> <span data-i18n="reg_item_service">Article / Service</span></label>
+                        <input type="text" id="registerItemDesc" data-i18n-placeholder="reg_item_placeholder" placeholder="Ex: Selle de cheval, Coupe de cheveux, Repas..." maxlength="100">
+                        <div class="register-hint" data-i18n="reg_item_hint">Brève description de ce que vous vendez.</div>
+                    </div>
+                </div>
+                <div id="registerPendingView" style="display:none;">
+                    <div class="register-pending">
+                        <div class="register-pending-label" data-i18n="reg_active_invoice">Facture Active</div>
+                        <div class="register-pending-status">
+                            <span class="pulse-dot"></span>
+                            <span data-i18n="reg_waiting_payment">En attente du paiement...</span>
+                        </div>
+                        <div class="register-pending-amount" id="registerPendingAmount">$0</div>
+                        <div class="register-pending-item" id="registerPendingItem">—</div>
+                    </div>
+                </div>
+            </div>
+            <div class="register-modal-footer" id="registerCreateFooter">
+                <button class="register-btn register-btn-primary" id="registerSubmitBtn"><img src="img/dollar.png" class="btn-icon-img"> <span data-i18n="reg_send_invoice">Envoyer la facture</span></button>
+                <button class="register-btn register-btn-cancel" id="registerCreateCancelBtn" data-i18n="cancel">Annuler</button>
+            </div>
+            <div class="register-modal-footer" id="registerPendingFooter" style="display:none;">
+                <button class="register-btn register-btn-danger" id="registerCancelInvoiceBtn"><img src="img/cross.png" class="btn-icon-img"> <span data-i18n="reg_cancel_invoice">Annuler la facture</span></button>
+                <button class="register-btn register-btn-cancel" id="registerPendingCloseBtn" data-i18n="close">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="registerPayOverlay" class="register-overlay">
+        <div class="register-modal">
+            <div class="register-modal-header">
+                <img src="img/cashmachine.png" class="register-header-icon" alt="">
+                <h3 data-i18n="reg_invoice">Facture</h3>
+                <button class="register-close-btn" id="registerPayClose"><img src="img/cross.png" class="close-icon" alt="X"></button>
+            </div>
+            <div class="register-modal-body">
+                <div class="register-invoice-display">
+                    <div class="register-invoice-icon"><img src="img/cashmachine.png" class="register-icon-img"></div>
+                    <div class="register-invoice-amount" id="registerPayAmount">$0</div>
+                    <div class="register-invoice-item" id="registerPayItem">—</div>
+                    <div class="register-invoice-separator"></div>
+                    <div class="register-invoice-from" id="registerPayFrom">—</div>
+                    <div class="register-invoice-job" id="registerPayJob">—</div>
+                </div>
+            </div>
+            <div class="register-modal-footer">
+                <button class="register-btn register-btn-primary" id="registerPayBtn"><img src="img/dollar.png" class="btn-icon-img"> <span data-i18n="reg_pay">Payer</span></button>
+                <button class="register-btn register-btn-cancel" id="registerPayCancelBtn" data-i18n="reg_decline">Refuser</button>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    
+    <div id="jobCreatorContainer" style="display:none;">
+        <div class="jc-wrapper">
+
+            
+            <div class="jc-main-nav" id="jcMainNav">
+                <div class="jc-main-nav-top">
+                    <div class="jc-logo-row">
+                        <i class="fas fa-hammer"></i>
+                        <span>Job Creator</span>
+                    </div>
+                </div>
+                <div class="jc-main-nav-items" id="jcMainNavItems">
+                    
+                </div>
+                <div class="jc-main-nav-bottom">
+                    <div class="jc-sidebar-profile" id="jcSidebarProfile" style="display:none;">
+                        <img class="jc-sidebar-profile-avatar" id="jcSidebarAvatar" src="" alt="">
+                        <span class="jc-sidebar-profile-name" id="jcSidebarName"></span>
+                    </div>
+                    <button class="jc-close-list-btn jc-switch-creator-btn" id="jcSwitchGangBtn">
+                        <i class="fas fa-skull"></i> <span>Gang Creator</span>
+                    </button>
+                    <button class="jc-close-list-btn" id="jcCloseBtn">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+            </div>
+
+            
+            <div class="jc-main-content" id="jcMainContent">
+
+                
+                <div class="jc-page" id="jcPageDashboard">
+                    
+                </div>
+
+                
+                <div class="jc-page jc-page-jobs" id="jcPageJobs" style="display:none;">
+                    <div class="jc-jobs-sidebar">
+                        <div class="jc-jobs-sidebar-top">
+                            <div class="jc-search-wrapper">
+                                <i class="fas fa-search"></i>
+                                <input type="text" class="jc-search-input" placeholder="Search jobs...">
+                            </div>
+                            <button class="jc-new-job-btn" id="jcNewJobBtn">
+                                <i class="fas fa-plus"></i> Create New Job
+                            </button>
+                        </div>
+                        <div class="jc-job-list">
+                            
+                        </div>
+                    </div>
+                    <div class="jc-jobs-preview" id="jcListPreview">
+                        <div class="jc-preview-empty">
+                            <i class="fas fa-briefcase"></i>
+                            <p>Select a job to preview</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="jc-page jc-page-editor" id="jcPageEditor" style="display:none;">
+                    <div class="jc-editor-nav">
+                        <div class="jc-nav-items" id="jcNavItems">
+                            
+                        </div>
+                        <div class="jc-nav-footer">
+                            <div class="jc-editing-indicator" id="jcEditingIndicator">
+                                <i class="fas fa-pen"></i>
+                                <div>
+                                    <span class="jc-editing-label">Editing</span>
+                                    <span class="jc-editing-name" id="jcEditingName">...</span>
+                                </div>
+                            </div>
+                            <button class="jc-go-back-btn" id="jcGoBackBtn">
+                                <i class="fas fa-arrow-left"></i> Go Back
+                            </button>
+                        </div>
+                    </div>
+                    <div class="jc-editor-content" id="jcEditorContent">
+                        
+                    </div>
+                </div>
+
+                
+                <div class="jc-page jc-page-generic" id="jcPageCraftSettings" style="display:none;"></div>
+
+                <div class="jc-page jc-page-generic" id="jcPageWebhooks" style="display:none;"></div>
+
+                
+                <div class="jc-page jc-page-generic" id="jcPageHistory" style="display:none;"></div>
+
+                
+                <div class="jc-page jc-page-generic" id="jcPageUpdates" style="display:none;"></div>
+
+                
+                <div class="jc-page jc-page-generic" id="jcPageCommunity" style="display:none;"></div>
+
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="jc-minimize-banner" style="display:none;">
+        <i class="fas fa-hammer"></i>
+        <span>Job Creator minimized — Walk to the position then press <strong>G</strong> to restore</span>
+    </div>
+
+    
+    
+    
+    <div id="gangCreatorContainer" style="display:none;">
+        <div class="jc-wrapper">
+
+            
+            <div class="jc-main-nav" id="gcMainNav">
+                <div class="jc-main-nav-top">
+                    <div class="jc-logo-row">
+                        <i class="fas fa-skull"></i>
+                        <span>Gang Creator</span>
+                    </div>
+                </div>
+                <div class="jc-main-nav-items" id="gcMainNavItems">
+                    
+                </div>
+                <div class="jc-main-nav-bottom">
+                    <button class="jc-close-list-btn jc-switch-creator-btn" id="gcSwitchJobBtn">
+                        <i class="fas fa-hammer"></i> <span>Job Creator</span>
+                    </button>
+                    <button class="jc-close-list-btn" id="gcCloseBtn">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+            </div>
+
+            
+            <div class="jc-main-content" id="gcMainContent">
+
+                
+                <div class="jc-page jc-page-jobs" id="gcPageGangs" style="display:none;">
+                    <div class="jc-jobs-sidebar">
+                        <div class="jc-jobs-sidebar-top">
+                            <div class="jc-search-wrapper">
+                                <i class="fas fa-search"></i>
+                                <input type="text" class="jc-search-input gc-search-input" placeholder="Search gangs...">
+                            </div>
+                            <button class="jc-new-job-btn" id="gcNewGangBtn">
+                                <i class="fas fa-plus"></i> Create New Gang
+                            </button>
+                        </div>
+                        <div class="jc-job-list gc-gang-list">
+                            
+                        </div>
+                    </div>
+                    <div class="jc-jobs-preview" id="gcListPreview">
+                        <div class="jc-preview-empty">
+                            <i class="fas fa-skull"></i>
+                            <p>Select a gang to preview</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="jc-page jc-page-editor" id="gcPageEditor" style="display:none;">
+                    <div class="jc-editor-nav">
+                        <div class="jc-nav-items" id="gcNavItems">
+                            
+                        </div>
+                        <div class="jc-nav-footer">
+                            <div class="jc-editing-indicator" id="gcEditingIndicator">
+                                <i class="fas fa-pen"></i>
+                                <div>
+                                    <span class="jc-editing-label">Editing</span>
+                                    <span class="jc-editing-name" id="gcEditingName">...</span>
+                                </div>
+                            </div>
+                            <button class="jc-go-back-btn" id="gcGoBackBtn">
+                                <i class="fas fa-arrow-left"></i> Go Back
+                            </button>
+                        </div>
+                    </div>
+                    <div class="jc-editor-content" id="gcEditorContent">
+                        
+                    </div>
+                </div>
+
+                
+                <div class="jc-page jc-page-generic" id="gcPageHistory" style="display:none;"></div>
+                <div class="jc-page jc-page-generic" id="gcPageActivities" style="display:none;"></div>
+
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="gc-minimize-banner" style="display:none;">
+        <i class="fas fa-skull"></i>
+        <span>Gang Creator minimized — Walk to the position then press <strong>G</strong> to restore</span>
+    </div>
+
+    
+    <div id="jcPlacementGuide" class="jc-placement-guide" style="display:none;">
+        <div class="jc-placement-guide-inner">
+            <div class="jc-placement-guide-badge">
+                <i class="fas fa-arrows-alt"></i>
+                <span class="jc-placement-guide-title">Prop Placement Mode</span>
+            </div>
+            <div class="jc-placement-guide-strip">
+                <div class="jc-placement-guide-text">
+                    <div class="jc-placement-guide-keys">
+                        <span class="jc-key-hint"><kbd>←</kbd><kbd>→</kbd> Rotate</span>
+                        <span class="jc-key-hint"><kbd>↑</kbd><kbd>↓</kbd> Height</span>
+                        <span class="jc-key-hint"><kbd>R</kbd> Snap Ground</span>
+                        <span class="jc-key-hint"><kbd>G</kbd> Confirm</span>
+                        <span class="jc-key-hint"><kbd>Esc</kbd> Cancel</span>
+                    </div>
+                </div>
+                <div class="jc-placement-guide-heading">
+                    <span class="jc-heading-label">Heading</span>
+                    <span class="jc-heading-value" id="jcPlacementHeading">0.0°</span>
+                </div>
+                <div class="jc-placement-guide-heading">
+                    <span class="jc-heading-label">Position</span>
+                    <span class="jc-heading-value" id="jcPlacementHeight">0.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    
+    <div id="jobShopPanel" class="job-shop-overlay" style="display:none;">
+        <div class="job-shop-wrapper">
+            <div class="job-shop-badge" id="jobShopBadge">
+                <span id="jobShopLabel">Shop</span>
+            </div>
+            <div class="job-shop-header">
+                <div class="job-shop-title">
+                    <img src="img/boutique.png" alt="">
+                    <span id="jobShopTitleText">Shop</span>
+                </div>
+                <button class="job-shop-close" id="jobShopCloseBtn">
+                    <img src="img/cross.png" alt="Fermer">
+                </button>
+            </div>
+            <div class="job-shop-spacer"></div>
+            <div class="job-shop-container">
+                <div class="job-shop-payer-info" id="jobShopPayerInfo" style="display:none;">
+                    <img src="img/dollar.png" alt="">
+                    <span id="jobShopPayerText"></span>
+                </div>
+                <div class="job-shop-items" id="jobShopItemsList">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    
+    <div id="codeInputOverlay" class="code-input-overlay" style="display:none;">
+        <div class="code-input-wrapper">
+            <div class="code-input-badge">
+                <img src="img/lock.png" alt="">
+                <span id="codeInputLabel">Enter Code</span>
+            </div>
+            <div class="code-input-header-bar">
+                <span class="code-title" data-i18n="stash_access_code">Code d'accès</span>
+            </div>
+            <div class="code-input-spacer"></div>
+            <div class="code-input-box">
+                <input type="password" id="codeInputField" class="code-input-field" placeholder="••••••" maxlength="20" autocomplete="off">
+                <div class="code-input-actions">
+                    <button class="code-input-btn code-input-confirm" id="codeInputConfirm"><i class="fas fa-check"></i> <span data-i18n="confirm">Confirmer</span></button>
+                    <button class="code-input-btn code-input-cancel" id="codeInputCancel"><i class="fas fa-times"></i> <span data-i18n="cancel">Annuler</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================ -->
+    <!-- GANG BOSS-MENU (dédié, gang-scopé)              -->
+    <!-- ================================================ -->
+    <div id="gangBossMenu" class="gcboss-overlay" style="display:none;">
+        <div class="gcboss-wrapper">
+
+            <div class="gcboss-name-badge">
+                <i class="fas fa-skull"></i>
+                <span id="gcbossGangName">Gang</span>
+            </div>
+
+            <div class="gcboss-header">
+                <div class="gcboss-header-grid">
+                    <div class="gcboss-header-left">
+                        <div class="gcboss-player-badge" id="gcbossGradeLabel"></div>
+                    </div>
+                    <div class="gcboss-header-center">
+                        <div class="gcboss-nav">
+                            <button class="gcboss-tab active" data-gcbtab="members">
+                                <span data-gct="gcboss_tab_members">MEMBRES</span>
+                            </button>
+                            <button class="gcboss-tab" data-gcbtab="bank">
+                                <span data-gct="gcboss_tab_bank">BANQUE</span>
+                            </button>
+                            <button class="gcboss-tab" data-gcbtab="notoriety">
+                                <span data-gct="gcboss_tab_notoriety">NOTORIÉTÉ</span>
+                            </button>
+                            <button class="gcboss-tab" data-gcbtab="history">
+                                <span data-gct="gcboss_tab_history">HISTORIQUE</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="gcboss-header-right">
+                        <button class="gcboss-close" id="gcbossCloseBtn">
+                            <img src="img/cross.png" alt="Fermer" class="gcboss-close-icon">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gcboss-spacer"></div>
+
+            <div class="gcboss-panel">
+                <!-- Membres -->
+                <div class="gcboss-pane active" id="gcbossMembersPanel">
+                    <div class="gcboss-content-header">
+                        <h2 class="gcboss-title" data-gct="gcboss_members_title">MEMBRES DU GANG</h2>
+                        <div class="gcboss-stats">
+                            <div class="gcboss-stat">
+                                <div class="gcboss-stat-icon"><i class="fas fa-users"></i></div>
+                                <div class="gcboss-stat-body">
+                                    <div class="gcboss-stat-value" id="gcbossStatMembers">0</div>
+                                    <div class="gcboss-stat-label" data-gct="gcboss_stat_members">MEMBRES</div>
+                                </div>
+                            </div>
+                            <div class="gcboss-stat">
+                                <div class="gcboss-stat-icon"><i class="fas fa-signal"></i></div>
+                                <div class="gcboss-stat-body">
+                                    <div class="gcboss-stat-value" id="gcbossStatOnline">0</div>
+                                    <div class="gcboss-stat-label" data-gct="gcboss_stat_online">EN LIGNE</div>
+                                </div>
+                            </div>
+                            <div class="gcboss-stat gcboss-stat-dirty">
+                                <div class="gcboss-stat-icon"><i class="fas fa-sack-dollar"></i></div>
+                                <div class="gcboss-stat-body">
+                                    <div class="gcboss-stat-value" id="gcbossStatDirty">$0</div>
+                                    <div class="gcboss-stat-label" data-gct="gcboss_stat_dirty">ARGENT SALE</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gcboss-actions-row">
+                            <button class="gcboss-recruit-btn" id="gcbossRecruitBtn">
+                                <i class="fas fa-user-plus"></i> <span data-gct="gcboss_recruit">RECRUTER</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="gcboss-scroll">
+                        <div class="gcboss-members-grid" id="gcbossMembersList"></div>
+                    </div>
+                </div>
+
+                <!-- Banque -->
+                <div class="gcboss-pane" id="gcbossBankPanel">
+                    <h2 class="gcboss-title" data-gct="gcboss_tab_bank">BANQUE</h2>
+                    <div class="gcboss-scroll">
+                        <div class="gcboss-bank">
+                            <div class="gcboss-bank-left">
+                                <div class="gcboss-balance-title" data-gct="gcboss_dirty_balance">ARGENT SALE</div>
+                                <div class="gcboss-balance-box">
+                                    <div class="gcboss-balance-icon"><img src="img/money_coinstack.png" alt=""></div>
+                                    <div class="gcboss-balance-amount" id="gcbossBankAmount">$0</div>
+                                </div>
+                            </div>
+                            <div class="gcboss-bank-right">
+                                <input type="number" id="gcbossBankInput" class="gcboss-bank-input" placeholder="Montant" min="1">
+                                <div class="gcboss-bank-chips">
+                                    <button class="gcboss-bank-chip" data-amt="100">$100</button>
+                                    <button class="gcboss-bank-chip" data-amt="500">$500</button>
+                                    <button class="gcboss-bank-chip" data-amt="1000">$1K</button>
+                                    <button class="gcboss-bank-chip" data-amt="5000">$5K</button>
+                                    <button class="gcboss-bank-chip" data-amt="max" data-gct="gcboss_bank_max">MAX</button>
+                                </div>
+                                <button class="gcboss-bank-btn gcboss-deposit" id="gcbossDepositBtn">
+                                    <i class="fas fa-arrow-down"></i> <span data-gct="gcboss_deposit">DÉPOSER</span>
+                                </button>
+                                <button class="gcboss-bank-btn gcboss-withdraw" id="gcbossWithdrawBtn">
+                                    <i class="fas fa-arrow-up"></i> <span data-gct="gcboss_withdraw">RETIRER</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Dernières transactions bancaires -->
+                        <div class="gcboss-bank-tx-section">
+                            <h3 class="gcboss-bank-tx-title" data-gct="gcboss_bank_tx_title">DERNIÈRES TRANSACTIONS</h3>
+                            <div class="gcboss-bank-tx-list" id="gcbossBankTxList"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notoriété -->
+                <div class="gcboss-pane" id="gcbossNotorietyPanel">
+                    <h2 class="gcboss-title" data-gct="gcboss_tab_notoriety">NOTORIÉTÉ</h2>
+                    <div class="gcboss-scroll">
+                        <div class="gcboss-noto">
+                            <div class="gcboss-noto-hero">
+                                <div class="gcboss-noto-emblem"><i class="fas fa-skull"></i></div>
+                                <div class="gcboss-noto-rank" id="gcbossNotoRank">—</div>
+                                <div class="gcboss-noto-score">
+                                    <span id="gcbossNotoScore">0</span>
+                                    <span class="gcboss-noto-score-unit" data-gct="gcboss_noto_points">pts de notoriété</span>
+                                </div>
+                                <div class="gcboss-noto-progress">
+                                    <div class="gcboss-noto-progress-bar" id="gcbossNotoBar"></div>
+                                </div>
+                                <div class="gcboss-noto-next" id="gcbossNotoNext"></div>
+                            </div>
+
+                            <div class="gcboss-noto-breakdown">
+                                <div class="gcboss-noto-card">
+                                    <div class="gcboss-noto-card-icon"><i class="fas fa-users"></i></div>
+                                    <div class="gcboss-noto-card-value" id="gcbossNotoMembers">0</div>
+                                    <div class="gcboss-noto-card-label" data-gct="gcboss_noto_crew">EFFECTIF</div>
+                                </div>
+                                <div class="gcboss-noto-card">
+                                    <div class="gcboss-noto-card-icon"><i class="fas fa-sack-dollar"></i></div>
+                                    <div class="gcboss-noto-card-value" id="gcbossNotoTreasure">$0</div>
+                                    <div class="gcboss-noto-card-label" data-gct="gcboss_noto_treasure">TRÉSOR SALE</div>
+                                </div>
+                                <div class="gcboss-noto-card">
+                                    <div class="gcboss-noto-card-icon"><i class="fas fa-fire"></i></div>
+                                    <div class="gcboss-noto-card-value" id="gcbossNotoActivity">0</div>
+                                    <div class="gcboss-noto-card-label" data-gct="gcboss_noto_activity">ACTIVITÉS</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historique -->
+                <div class="gcboss-pane" id="gcbossHistoryPanel">
+                    <h2 class="gcboss-title" data-gct="gcboss_tab_history">HISTORIQUE</h2>
+                    <div class="gcboss-scroll">
+                        <div class="gcboss-history-list" id="gcbossHistoryList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
