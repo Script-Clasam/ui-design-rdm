@@ -38,10 +38,7 @@ html:not(.rsm-ingame) body::before {
   position: fixed;
   inset: 0;
   z-index: -2;
-  background-image: linear-gradient(rgba(1, 1, 1, 0.55), rgba(1, 1, 1, 0.78)), var(--tex-backdrop);
-  background-size: cover, cover;
-  background-position: center, center;
-  background-repeat: no-repeat, no-repeat;
+  background-image: radial-gradient(120% 90% at 50% 0%, #141414 0%, #050505 55%, #010101 100%);
 }
 
 /* --------------------------------------------------------------------------
