@@ -4,22 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boss Menu - Gestion d'Entreprise</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/members.css">
-    <link rel="stylesheet" href="css/accounts.css">
-    <link rel="stylesheet" href="css/grades.css">
-    <link rel="stylesheet" href="css/history.css">
-    <link rel="stylesheet" href="css/notifications.css">
-    <link rel="stylesheet" href="css/recruit.css">
-    <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/registers.css">
-    <link rel="stylesheet" href="css/jobcreator.css">
-    <link rel="stylesheet" href="css/gangcreator.css">
-    <link rel="stylesheet" href="css/gangboss.css">
-    <link rel="stylesheet" href="css/community.css">
-    <link rel="stylesheet" href="css/theme-western.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Tout est servi depuis la ressource : aucun CDN, sinon l'interface se
+         degrade des que le serveur n'a pas de sortie internet. -->
+    <link rel="stylesheet" href="css/vendor-fontawesome.css">
+    <link rel="stylesheet" href="css/01-tokens.css">
+    <link rel="stylesheet" href="css/02-base.css">
+    <link rel="stylesheet" href="css/03-chrome.css">
+    <link rel="stylesheet" href="css/04-controls.css">
+    <link rel="stylesheet" href="css/05-bossmenu.css">
+    <link rel="stylesheet" href="css/06-modals.css">
+    <link rel="stylesheet" href="css/07-creators.css">
+    <link rel="stylesheet" href="css/08-overlays.css">
+    <link rel="stylesheet" href="css/09-community.css">
+    <link rel="stylesheet" href="css/10-normalize-js.css">
+    <script>
+        /* En jeu la page reste transparente pour laisser voir le monde ;
+           hors jeu (navigateur, apercu) une scene sert de fond de travail. */
+        try {
+            if (window.invokeNative || window.GetParentResourceName) {
+                document.documentElement.classList.add('rsm-ingame');
+            }
+        } catch (e) { /* navigateur simple : on garde le fond d'apercu */ }
+    </script>
 </head>
 <body>
     <div id="container" style="display: none;">
@@ -283,7 +289,6 @@
                     </div>
                 </div>
 
-                </div>
             </div>
         </div>
     </div>
@@ -331,8 +336,8 @@
                     <img src="img/cross.png" alt="Fermer" class="member-modal-close-icon" />
                 </button>
                 
-                <div id="modalLoadingOverlay" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; align-items: center; justify-content: center; border-radius: 12px;">
-                    <img src="img/loading.png" class="loading-icon" alt="Chargement" style="width: 60px; height: 60px; animation: spin 1s linear infinite;">
+                <div id="modalLoadingOverlay" style="display: none;">
+                    <img src="img/loading.png" class="loading-icon" alt="Chargement">
                 </div>
                 
                 <div class="member-paper-header">
@@ -761,7 +766,7 @@
                         <img src="img/coffre.png" alt="Coffre" class="filter-icon"> <span data-i18n="filter_storage_upgrades">COFFRE</span>
                     </button>
                     <button class="filter-btn" data-filter="bonus">
-                        <i class="fas fa-coins filter-icon" style="color: #fbbf24;"></i> <span data-i18n="filter_bonuses">PRIMES</span>
+                        <i class="fas fa-coins filter-icon"></i> <span data-i18n="filter_bonuses">PRIMES</span>
                     </button>
                 </div>
 
@@ -881,7 +886,8 @@
     </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/vendor-jquery.js"></script>
+    <script src="js/vendor-chart.js"></script>
     <script src="js/traductions.js"></script>
     <script src="js/script.js"></script>
     <script src="js/grades.js"></script>
@@ -894,6 +900,8 @@
     <script src="js/community.js"></script>
     <script src="js/gangcreator.js"></script>
     <script src="js/gangboss.js"></script>
+    <!-- Donnees de demonstration : inactif des que la page tourne dans RedM. -->
+    <script src="js/preview-demo.js"></script>
 
     
     
@@ -1421,3 +1429,5 @@
         </div>
     </div>
 
+</body>
+</html>

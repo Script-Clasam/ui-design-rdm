@@ -26,10 +26,10 @@
   min-height: 0;
   overflow: hidden;
   background-color: rgba(1, 1, 1, 0.92);
-  background-image: linear-gradient(rgba(13, 13, 13, 0.88), rgba(1, 1, 1, 0.95)), var(--tex-menu-lg);
-  background-size: cover, 576px 384px;
-  background-position: center, center top;
-  background-repeat: no-repeat, repeat;
+  background-image: var(--tex-plate);
+  background-size: 197px 197px;
+  background-position: center top;
+  background-repeat: repeat;
 }
 
 /* --------------------------------------------------------------------------
@@ -101,11 +101,10 @@
 .gc-nav-item.active {
   color: var(--text);
   background-color: var(--red-soft);
-  background-image: var(--tex-row);
+  background-image: var(--tex-strip);
   background-size: auto 100%;
   background-repeat: repeat-x;
   background-position: left center;
-  background-blend-mode: soft-light;
 }
 .jc-main-nav-item.active::before,
 .gc-main-nav-item.active::before,
@@ -133,6 +132,7 @@
   background-position: left top;
 }
 .jc-sidebar-profile {
+  display: flex;
   align-items: center;
   gap: var(--sp-3);
   padding: var(--sp-2);
@@ -164,13 +164,13 @@
 }
 
 .jc-page {
+  display: flex;
   flex: 1 1 auto;
   min-height: 0;
   min-width: 0;
   flex-direction: column;
   overflow: hidden;
 }
-#jcPageDashboard { display: flex; }
 
 .jc-page-jobs,
 .jc-page-editor { flex-direction: row; }
@@ -222,8 +222,18 @@
   background-repeat: repeat;
   transition: background-color 0.14s linear;
 }
-.jc-job-item:hover { background-color: rgba(31, 31, 31, 0.8); }
-.jc-job-item.active { background-color: var(--red-soft); }
+.jc-job-item:hover {
+  background-color: rgba(31, 31, 31, 0.8);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.jc-job-item.active {
+  background-color: var(--red-soft);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
 .jc-job-item-name {
   font-family: var(--font-display);
   font-size: var(--fs-sm);
@@ -577,10 +587,10 @@
   margin: var(--sp-4) calc(var(--sp-6) * -1) calc(var(--sp-7) * -1);
   padding: var(--sp-4) var(--sp-6);
   background-color: rgba(1, 1, 1, 0.92);
-  background-image: var(--tex-rule-wide), var(--tex-grain-lo);
-  background-size: auto 4px, 43px 43px;
-  background-repeat: repeat-x, repeat;
-  background-position: left top, left top;
+  background-image: var(--tex-rule-wide), var(--tex-strip);
+  background-size: auto 4px, auto 100%;
+  background-repeat: repeat-x, repeat-x;
+  background-position: left top, left center;
 }
 
 /* --------------------------------------------------------------------------
@@ -869,8 +879,9 @@
   position: fixed;
   left: 50%;
   bottom: var(--sp-5);
-  transform: translateX(-50%);
+  translate: -50% 0;
   z-index: var(--z-toast);
+  display: flex;
   align-items: center;
   gap: var(--sp-3);
   padding: var(--sp-3) var(--sp-5);
@@ -891,8 +902,9 @@
   position: fixed;
   left: 50%;
   bottom: var(--sp-6);
-  transform: translateX(-50%);
+  translate: -50% 0;
   z-index: var(--z-toast);
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--sp-2);

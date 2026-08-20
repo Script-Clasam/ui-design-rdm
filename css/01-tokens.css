@@ -78,14 +78,14 @@
      correctement les boites qui les portent.                              */
 
   /* Cadre 9-tranches (coins 24x24, bords 532x24 et 24x72) */
-  --tex-fr-tl: url('../img/ui/crafting_highlight_tl.png');
-  --tex-fr-tr: url('../img/ui/crafting_highlight_tr.png');
-  --tex-fr-bl: url('../img/ui/crafting_highlight_bl.png');
-  --tex-fr-br: url('../img/ui/crafting_highlight_br.png');
-  --tex-fr-t:  url('../img/ui/crafting_highlight_t.png');
-  --tex-fr-b:  url('../img/ui/crafting_highlight_b.png');
-  --tex-fr-l:  url('../img/ui/crafting_highlight_l.png');
-  --tex-fr-r:  url('../img/ui/crafting_highlight_r.png');
+  --tex-fr-tl: url('../img/ui_frame_tl.png');
+  --tex-fr-tr: url('../img/ui_frame_tr.png');
+  --tex-fr-bl: url('../img/ui_frame_bl.png');
+  --tex-fr-br: url('../img/ui_frame_br.png');
+  --tex-fr-t:  url('../img/ui_frame_t.png');
+  --tex-fr-b:  url('../img/ui_frame_b.png');
+  --tex-fr-l:  url('../img/ui_frame_l.png');
+  --tex-fr-r:  url('../img/ui_frame_r.png');
 
   /* ---- Fonds de menu ----------------------------------------------------
      Deux familles, a ne pas confondre :
@@ -105,43 +105,26 @@
   --tex-backdrop: url('../img/background.png');           /* 1600x950 — decor d'apercu */
 
   /* claires — a masquer */
-  --tex-menu-lg:  url('../img/ui/hud_menu_4a.png');       /* 576x384 */
-  --tex-menu-sm:  url('../img/ui/hud_menu_5a.png');       /* 576x192 */
-  --tex-menu-dim: url('../img/hud_menu_grey_dark.webp');
   --tex-grain:    url('../img/box_bg_2.png');             /* 43x43   */
-  --tex-button-on: url('../img/menu_button_2.png');       /* 224x44  */
 
-  /* Plaques et rangees */
-  --tex-row:      url('../img/ui/selection_box_bg_1c.png'); /* 432x100 */
-  --tex-row-wide: url('../img/ui/selection_box_bg_1a.png'); /* 972x100 */
-  --tex-card:     url('../img/box_s_bg_1.png');            /* 197x197 */
-  --tex-card-alt: url('../img/box_s_bg_1_b.png');          /* 197x197 */
-  --tex-strip:    url('../img/box_a_bg_1.png');            /* 432x100 */
-  --tex-strip-2:  url('../img/box_a_bg_1_2.png');          /* 432x100 */
+  /* Plaques d'etiquette et de champ (sombres, posees telles quelles) */
   --tex-label:    url('../img/label_background.png');      /* 374x84  */
   --tex-label-sq: url('../img/label_icon_bg.png');         /* 53x53   */
-  --tex-header:   url('../img/ui/menu_header_1a.png');     /* 432x108 */
-  --tex-btn:      url('../img/menu_button_2.png');         /* 224x44  */
-  --tex-btn-lo:   url('../img/menu_button_1.png');         /* 224x44  */
   --tex-search:   url('../img/search_bg.png');             /* 223x38  */
   --tex-amount:   url('../img/amount_bg.png');             /* 102x27  */
-  --tex-tile-sm:  url('../img/box_bg_1.png');              /* 43x43   */
 
   /* Filets */
-  --tex-rule:      url('../img/ui/divider_line.png');            /* 432x4  */
-  --tex-rule-wide: url('../img/ui/list_item_h_line_wide.png');   /* 1024x4 */
-  --tex-rule-thin: url('../img/ui/list_item_h_line_narrow.png'); /* 432x4  */
-  --tex-vrule:     url('../img/ui/vertical_divider_line.png');   /* 4x512  */
-  --tex-bar:       url('../img/ui/menu_bar.png');                /* 432x12 */
-  --tex-ornament:  url('../img/ui/title_divider.png');           /* 16x64  */
+  --tex-rule:      url('../img/ui_rule.png');            /* 432x4  */
+  --tex-rule-wide: url('../img/ui_rule_wide.png');   /* 1024x4 */
+  --tex-rule-thin: url('../img/ui_rule_thin.png'); /* 432x4  */
+  --tex-vrule:     url('../img/ui_rule_v.png');   /* 4x512  */
+  --tex-bar:       url('../img/ui_bar.png');                /* 432x12 */
+  --tex-ornament:  url('../img/ui_ornament.png');           /* 16x64  */
 
   /* Pictogrammes de jeu */
-  --tex-tick:    url('../img/ui/menu_icon_tick.png');       /* 64x64 */
-  --tex-box:     url('../img/ui/selection_box_square.png'); /* 52x52 */
-  --tex-lock:    url('../img/ui/menu_icon_lock.png');       /* 32x32 */
-  --tex-alert:   url('../img/ui/menu_icon_alert.png');      /* 64x64 */
-  --tex-warn:    url('../img/ui/menu_icon_info_warning.png');/* 20x20 */
-  --tex-arrow-l: url('../img/ui/selection_arrow_left.png');  /* 64x64 */
+  --tex-tick:    url('../img/ui_tick.png');       /* 64x64 */
+  --tex-box:     url('../img/ui_box.png'); /* 52x52 */
+  --tex-lock:    url('../img/ui_lock.png');       /* 32x32 */
   --tex-arrow-r: url('../img/selection_arrow_right.png');    /* 64x64 */
 
   /* ---- Empilement ------------------------------------------------------- */
