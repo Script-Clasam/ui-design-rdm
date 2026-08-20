@@ -87,43 +87,40 @@
   --tex-fr-l:  url('../img/ui_frame_l.png');
   --tex-fr-r:  url('../img/ui_frame_r.png');
 
-  /* ---- Fonds de menu ----------------------------------------------------
-     Deux familles, a ne pas confondre :
+  /* ---- Textures ---------------------------------------------------------
+     AUCUNE TEXTURE N'EST REPETEE SUR UNE SURFACE.
 
-     SOMBRES — deja a la bonne valeur, posees telles quelles en fond.
-     CLAIRES — art blanc sur transparent, uniquement via un masque teinte
-               (les poser brutes donne le gris laiteux qu'on veut eviter).   */
+     Toutes les planches du catalogue RDR2 sont des plateaux encadres : leur
+     bord est plus sombre que leur centre (ecart mesure de 16 a 60 %). Repetee,
+     n'importe laquelle dessine sa grille de raccords a l'ecran — c'est le
+     carrelage qu'on a vu. Le fond d'un panneau est donc un aplat sombre
+     translucide, et toute la matiere vient des pieces ci-dessous : cadre,
+     filets, barre, ornement, pictogrammes.
 
-  /* sombres */
-  --tex-plate:    url('../img/box_a_bg_1.png');           /* 432x100 — planche uniforme, etiree */
-  --tex-plate-2:  url('../img/box_a_bg_1_2.png');         /* 432x100 — variante                 */
-  --tex-button:   url('../img/menu_button_1.png');        /* 224x44  — plaque bouton   */
-  --tex-grain-lo: url('../img/box_bg_1.png');             /* 43x43   — SEULE texture repetable  */
-  --tex-wash:     url('../img/overlay.png');              /* 1686x448 — lavis d'en-tete */
-  --tex-backdrop: url('../img/background.png');           /* 1600x950 — decor d'apercu */
+     Les filets sont ETIRES sur leur boite (et non repetes) : leurs pointes
+     s'estompent, le fondu tombe alors sur les vraies extremites du trait.   */
 
-  /* claires — a masquer */
-  --tex-grain:    url('../img/box_bg_2.png');             /* 43x43   */
+  /* Cadre : coins a taille native, bords repetes (mesures uniformes) */
+  --tex-rule:      url('../img/ui_rule.png');       /* 432x4  — filet, etire   */
+  --tex-rule-wide: url('../img/ui_rule_wide.png');  /* 1024x4 — filet long     */
+  --tex-rule-thin: url('../img/ui_rule_thin.png');  /* 432x4  — filet de liste */
+  --tex-vrule:     url('../img/ui_rule_v.png');     /* 4x512  — filet vertical */
+  --tex-bar:       url('../img/ui_bar.png');        /* 432x12 — barre de menu  */
+  --tex-ornament:  url('../img/ui_ornament.png');   /* 16x64  — fleuron        */
 
-  /* Plaques d'etiquette et de champ (sombres, posees telles quelles) */
-  --tex-label:    url('../img/label_background.png');      /* 374x84  */
-  --tex-label-sq: url('../img/label_icon_bg.png');         /* 53x53   */
-  --tex-search:   url('../img/search_bg.png');             /* 223x38  */
-  --tex-amount:   url('../img/amount_bg.png');             /* 102x27  */
+  /* Pictogrammes */
+  --tex-tick:    url('../img/ui_tick.png');   /* 64x64 */
+  --tex-box:     url('../img/ui_box.png');    /* 52x52 */
+  --tex-lock:    url('../img/ui_lock.png');   /* 32x32 */
+  --tex-arrow-r: url('../img/ui_arrow.png');  /* 64x64 */
 
-  /* Filets */
-  --tex-rule:      url('../img/ui_rule.png');            /* 432x4  */
-  --tex-rule-wide: url('../img/ui_rule_wide.png');   /* 1024x4 */
-  --tex-rule-thin: url('../img/ui_rule_thin.png'); /* 432x4  */
-  --tex-vrule:     url('../img/ui_rule_v.png');   /* 4x512  */
-  --tex-bar:       url('../img/ui_bar.png');                /* 432x12 */
-  --tex-ornament:  url('../img/ui_ornament.png');           /* 16x64  */
-
-  /* Pictogrammes de jeu */
-  --tex-tick:    url('../img/ui_tick.png');       /* 64x64 */
-  --tex-box:     url('../img/ui_box.png'); /* 52x52 */
-  --tex-lock:    url('../img/ui_lock.png');       /* 32x32 */
-  --tex-arrow-r: url('../img/selection_arrow_right.png');    /* 64x64 */
+  /* ---- Profondeur sans texture -----------------------------------------
+     Trois niveaux d'aplat translucide. Le monde reste visible au travers :
+     un menu ouvert attenue la scene, il ne la remplace pas.                */
+  --fill-panel:  rgba(6, 6, 6, 0.90);
+  --fill-raised: rgba(18, 18, 18, 0.82);
+  --fill-sunken: rgba(0, 0, 0, 0.55);
+  --fill-hover:  rgba(34, 34, 34, 0.88);
 
   /* ---- Empilement ------------------------------------------------------- */
   --z-panel:   10;

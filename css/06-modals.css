@@ -74,7 +74,6 @@
 .grade-modal-content        { width: min(880px, 94vw); }
 .history-modal-content      { width: min(1180px, 95vw); height: min(820px, 90vh); }
 .storage-modal              { width: min(880px, 94vw); }
-.register-modal             { width: min(520px, 92vw); }
 .job-offer-popup            { width: min(520px, 92vw); }
 .confirm-popup-content      { width: min(460px, 90vw); }
 .bonus-popup                { width: min(460px, 90vw); }
