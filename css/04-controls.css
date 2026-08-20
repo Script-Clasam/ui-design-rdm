@@ -1,0 +1,653 @@
+/* ==========================================================================
+   04 — CONTROLES
+   Boutons, champs, listes deroulantes, cases a cocher, onglets, pastilles.
+   Base posee sur l'element <button> pour couvrir aussi le balisage genere
+   par le script, puis variantes par famille de classes.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Bouton : plaque de grain + 4 coins graves. Le survol fait glisser la
+   texture de selection du jeu, repetee a sa hauteur native (aucun etirement).
+   -------------------------------------------------------------------------- */
+button,
+.jc-btn,
+.jc-action-btn,
+.action-btn,
+.gc-place-btn,
+.gc-tp-btn,
+.ga-pt-btn,
+.comm-copy-btn,
+.job-shop-buy-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: 0.55rem 1.1rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  color: var(--text-dim);
+  white-space: nowrap;
+  background-color: rgba(20, 20, 20, 0.72);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+  transition: color 0.14s linear, background-color 0.14s linear;
+}
+
+button::after,
+.jc-btn::after,
+.jc-action-btn::after,
+.action-btn::after,
+.gc-place-btn::after,
+.gc-tp-btn::after,
+.ga-pt-btn::after,
+.comm-copy-btn::after,
+.job-shop-buy-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-color: var(--ink-soft);
+  -webkit-mask-image: var(--tex-fr-tl), var(--tex-fr-tr), var(--tex-fr-bl), var(--tex-fr-br);
+  -webkit-mask-position: left top, right top, left bottom, right bottom;
+  -webkit-mask-size: 14px 14px;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: var(--tex-fr-tl), var(--tex-fr-tr), var(--tex-fr-bl), var(--tex-fr-br);
+  mask-position: left top, right top, left bottom, right bottom;
+  mask-size: 14px 14px;
+  mask-repeat: no-repeat;
+  transition: background-color 0.14s linear;
+}
+
+button:hover,
+.jc-btn:hover,
+.jc-action-btn:hover,
+.action-btn:hover,
+.gc-place-btn:hover,
+.gc-tp-btn:hover,
+.ga-pt-btn:hover,
+.comm-copy-btn:hover,
+.job-shop-buy-btn:hover {
+  color: var(--text);
+  background-color: rgba(40, 40, 40, 0.82);
+  background-image: var(--tex-row), var(--tex-grain-lo);
+  background-size: auto 100%, 43px 43px;
+  background-repeat: repeat-x, repeat;
+  background-position: left center, left top;
+  background-blend-mode: soft-light, normal;
+}
+
+button:hover::after,
+.jc-btn:hover::after,
+.jc-action-btn:hover::after,
+.action-btn:hover::after,
+.job-shop-buy-btn:hover::after { background-color: var(--ink-strong); }
+
+button:active { transform: translateY(1px); }
+
+button:disabled,
+button.disabled,
+.jc-btn.disabled {
+  color: var(--text-faint);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* Boutons d'action forte : encre rouge officielle. ---------------------- */
+.member-btn-primary,
+.custom-btn-confirm,
+.confirm-yes,
+.grade-save-btn,
+.register-btn-primary,
+.jc-btn-primary,
+.jc-btn-save,
+.jc-cs-save-btn,
+.recruit-btn,
+.recruit-hire-btn,
+.hire-btn,
+.jc-new-job-btn,
+.gcboss-recruit-btn,
+.gcboss-deposit,
+.job-offer-accept,
+.code-input-confirm,
+.bonus-confirm,
+.comm-detail-import-btn,
+.comm-share-submit-btn,
+.comm-confirm-yes,
+.job-shop-buy-btn,
+.jc-wh-btn-save {
+  color: var(--text);
+  background-color: var(--red-soft);
+}
+.member-btn-primary::after,
+.custom-btn-confirm::after,
+.confirm-yes::after,
+.grade-save-btn::after,
+.register-btn-primary::after,
+.jc-btn-primary::after,
+.jc-btn-save::after,
+.jc-cs-save-btn::after,
+.recruit-btn::after,
+.recruit-hire-btn::after,
+.hire-btn::after,
+.jc-new-job-btn::after,
+.gcboss-recruit-btn::after,
+.gcboss-deposit::after,
+.job-offer-accept::after,
+.code-input-confirm::after,
+.bonus-confirm::after,
+.comm-detail-import-btn::after,
+.comm-share-submit-btn::after,
+.comm-confirm-yes::after,
+.job-shop-buy-btn::after,
+.jc-wh-btn-save::after { background-color: var(--ink-red); }
+
+.member-btn-primary:hover,
+.custom-btn-confirm:hover,
+.confirm-yes:hover,
+.grade-save-btn:hover,
+.register-btn-primary:hover,
+.jc-btn-primary:hover,
+.jc-btn-save:hover,
+.jc-cs-save-btn:hover,
+.recruit-btn:hover,
+.recruit-hire-btn:hover,
+.hire-btn:hover,
+.jc-new-job-btn:hover,
+.gcboss-recruit-btn:hover,
+.gcboss-deposit:hover,
+.job-offer-accept:hover,
+.code-input-confirm:hover,
+.bonus-confirm:hover,
+.comm-detail-import-btn:hover,
+.comm-share-submit-btn:hover,
+.comm-confirm-yes:hover,
+.job-shop-buy-btn:hover,
+.jc-wh-btn-save:hover {
+  color: var(--text);
+  background-color: var(--red-hover);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+
+/* Boutons destructeurs : meme encre rouge, plaque sombre. --------------- */
+.member-btn-danger,
+.fire-btn,
+.gcboss-fire-btn,
+.register-btn-danger,
+.jc-btn-danger,
+.jc-btn-delete,
+.comm-delete-btn,
+.comm-confirm-delete-confirm,
+.resign-btn,
+.member-btn-warning {
+  color: var(--red);
+  background-color: rgba(13, 13, 13, 0.82);
+}
+.member-btn-danger:hover,
+.fire-btn:hover,
+.gcboss-fire-btn:hover,
+.register-btn-danger:hover,
+.jc-btn-danger:hover,
+.jc-btn-delete:hover,
+.comm-delete-btn:hover,
+.comm-confirm-delete-confirm:hover,
+.resign-btn:hover,
+.member-btn-warning:hover {
+  color: var(--text);
+  background-color: var(--red);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+
+/* Boutons discrets : annuler / retour. ---------------------------------- */
+.custom-btn-cancel,
+.confirm-no,
+.register-btn-cancel,
+.jc-go-back-btn,
+.ga-back-to-list,
+.comm-confirm-no,
+.comm-confirm-delete-cancel,
+.comm-share-cancel-btn,
+.code-input-cancel,
+.bonus-cancel,
+.job-offer-refuse { color: var(--text-faint); }
+
+/* --------------------------------------------------------------------------
+   Boutons de fermeture : la croix du jeu, jamais un glyphe dessine.
+   -------------------------------------------------------------------------- */
+.close-btn,
+.member-modal-close-btn,
+.currency-modal-close,
+.grade-modal-close,
+.history-modal-close,
+.close-modal-btn,
+.register-close-btn,
+.gcboss-close,
+.job-shop-close,
+.comm-detail-close,
+.jc-close-list-btn {
+  padding: 0;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  background-color: transparent;
+  background-image: none;
+  color: var(--text-dim);
+}
+.close-btn::after,
+.member-modal-close-btn::after,
+.currency-modal-close::after,
+.grade-modal-close::after,
+.history-modal-close::after,
+.close-modal-btn::after,
+.register-close-btn::after,
+.gcboss-close::after,
+.job-shop-close::after,
+.comm-detail-close::after,
+.jc-close-list-btn::after { display: none; }
+
+.close-btn:hover,
+.member-modal-close-btn:hover,
+.currency-modal-close:hover,
+.grade-modal-close:hover,
+.history-modal-close:hover,
+.close-modal-btn:hover,
+.register-close-btn:hover,
+.gcboss-close:hover,
+.job-shop-close:hover,
+.comm-detail-close:hover,
+.jc-close-list-btn:hover {
+  color: var(--red);
+  background-color: transparent;
+  background-image: none;
+}
+
+.close-icon,
+.member-modal-close-icon,
+.gcboss-close-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  opacity: 0.7;
+  transition: opacity 0.14s linear;
+}
+.close-btn:hover .close-icon,
+.member-modal-close-btn:hover .member-modal-close-icon,
+.gcboss-close:hover .gcboss-close-icon,
+.grade-modal-close:hover .close-icon,
+.history-modal-close:hover .close-icon,
+.close-modal-btn:hover .close-icon,
+.register-close-btn:hover .close-icon { opacity: 1; }
+
+/* --------------------------------------------------------------------------
+   Onglets : soulignement au filet de menu, actif en rouge.
+   -------------------------------------------------------------------------- */
+.nav-btn,
+.history-tab,
+.gcboss-tab,
+.comm-fw-tab,
+.ga-tab,
+.jc-hp-type-btn {
+  position: relative;
+  padding: 0.7rem 1.4rem;
+  color: var(--text-faint);
+  background-color: transparent;
+  background-image: none;
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  letter-spacing: var(--track-w);
+}
+.nav-btn::after,
+.history-tab::after,
+.gcboss-tab::after,
+.comm-fw-tab::after,
+.ga-tab::after,
+.jc-hp-type-btn::after {
+  content: '';
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 0;
+  top: auto;
+  height: 4px;
+  background-color: transparent;
+  background-image: var(--tex-rule);
+  background-size: auto 4px;
+  background-repeat: repeat-x;
+  background-position: center;
+  -webkit-mask-image: none;
+  mask-image: none;
+  opacity: 0;
+  transition: opacity 0.16s linear;
+}
+.nav-btn:hover,
+.history-tab:hover,
+.gcboss-tab:hover,
+.comm-fw-tab:hover,
+.ga-tab:hover,
+.jc-hp-type-btn:hover {
+  color: var(--text-dim);
+  background-color: transparent;
+  background-image: none;
+}
+.nav-btn:hover::after,
+.history-tab:hover::after,
+.gcboss-tab:hover::after,
+.comm-fw-tab:hover::after,
+.ga-tab:hover::after,
+.jc-hp-type-btn:hover::after { opacity: 0.45; }
+
+.nav-btn.active,
+.history-tab.active,
+.gcboss-tab.active,
+.comm-fw-tab.active,
+.ga-tab.active,
+.jc-hp-type-btn.active {
+  color: var(--text);
+  background-color: transparent;
+  background-image: none;
+}
+.nav-btn.active::after,
+.history-tab.active::after,
+.gcboss-tab.active::after,
+.comm-fw-tab.active::after,
+.ga-tab.active::after,
+.jc-hp-type-btn.active::after {
+  opacity: 1;
+  background-color: var(--red);
+  background-image: none;
+}
+
+.nav-btn.disabled-tab {
+  color: var(--text-faint);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Pastilles de filtre et jetons de montant.
+   -------------------------------------------------------------------------- */
+.filter-btn,
+.chart-type-btn,
+.chart-period-btn,
+.gcboss-bank-chip,
+.comm-tag-btn,
+.jc-badge,
+.ga-type-chip,
+.ga-gang-chip,
+.jc-key-hint,
+.jc-hist-job-badge,
+.jc-wh-event-badge,
+.comm-card-tag,
+.comm-feature-pill,
+.ga-id-chip {
+  padding: 0.35rem 0.75rem;
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track);
+  color: var(--text-faint);
+}
+.filter-btn.active,
+.chart-type-btn.active,
+.chart-period-btn.active,
+.gcboss-bank-chip.active,
+.comm-tag-btn.active,
+.ga-type-chip.active {
+  color: var(--text);
+  background-color: var(--red-soft);
+}
+.filter-btn.active::after,
+.chart-type-btn.active::after,
+.chart-period-btn.active::after,
+.gcboss-bank-chip.active::after,
+.comm-tag-btn.active::after,
+.ga-type-chip.active::after { background-color: var(--ink-red); }
+
+.jc-badge,
+.jc-hist-job-badge,
+.jc-wh-event-badge,
+.comm-card-tag,
+.comm-feature-pill,
+.ga-id-chip,
+.jc-key-hint {
+  display: inline-flex;
+  pointer-events: none;
+  background-color: rgba(27, 27, 27, 0.8);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.jc-badge-disabled { color: var(--text-faint); opacity: 0.6; }
+.jc-badge-db,
+.jc-badge-employees { color: var(--text-dim); }
+.jc-badge-config { color: var(--red); }
+
+/* --------------------------------------------------------------------------
+   Champs de saisie : plaque discrete + filet de base, rouge au focus.
+   -------------------------------------------------------------------------- */
+input[type='text'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+textarea,
+select,
+.member-input,
+.jc-input,
+.jc-input-sm,
+.currency-input,
+.grade-salary-input,
+.register-amount-input,
+.gcboss-bank-input,
+.comm-search-input,
+.bonus-input,
+.code-input-field,
+.employees-search-input,
+.jc-search-input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.03em;
+  color: var(--text);
+  background-color: rgba(1, 1, 1, 0.6);
+  background-image: var(--tex-rule), var(--tex-grain-lo);
+  background-size: auto 4px, 43px 43px;
+  background-repeat: repeat-x, repeat;
+  background-position: left bottom, left top;
+  transition: background-color 0.14s linear;
+}
+
+input[type='text']:focus,
+input[type='number']:focus,
+input[type='password']:focus,
+input[type='search']:focus,
+textarea:focus,
+select:focus,
+.member-input:focus,
+.jc-input:focus,
+.currency-input:focus,
+.code-input-field:focus {
+  background-color: rgba(20, 20, 20, 0.85);
+  background-image: none, var(--tex-grain-lo);
+  background-size: auto, 43px 43px;
+  background-repeat: no-repeat, repeat;
+  box-shadow: inset 0 -3px 0 0 var(--red);
+}
+
+textarea { min-height: 5rem; resize: vertical; line-height: 1.5; }
+
+/* Liste deroulante : la fleche de selection du jeu, a son ratio natif. */
+select,
+.member-select,
+.gcboss-grade-select {
+  padding-right: 2rem;
+  background-image: var(--tex-arrow-r), var(--tex-rule), var(--tex-grain-lo);
+  background-size: 14px 14px, auto 4px, 43px 43px;
+  background-repeat: no-repeat, repeat-x, repeat;
+  background-position: right 0.6rem center, left bottom, left top;
+}
+select option {
+  background-color: var(--panel);
+  color: var(--text);
+}
+
+/* --------------------------------------------------------------------------
+   Cases a cocher : carre de selection du jeu + coche gravee.
+   -------------------------------------------------------------------------- */
+.permission-checkbox,
+.jc-checkbox,
+.gc-perm-check,
+.jc-craft-cat-check,
+.ga-gang-cb,
+input[type='checkbox'] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.permission-custom-checkbox,
+.jc-checkbox + .jc-checkbox-label::before,
+.rsm-check {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  background-color: var(--ink);
+  -webkit-mask-image: var(--tex-box);
+  -webkit-mask-size: 20px 20px;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-image: var(--tex-box);
+  mask-size: 20px 20px;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  transition: background-color 0.14s linear;
+}
+
+.permission-checkbox:checked ~ .permission-custom-checkbox,
+.jc-checkbox:checked + .jc-checkbox-label::before {
+  background-color: var(--red);
+  -webkit-mask-image: var(--tex-box), var(--tex-tick);
+  -webkit-mask-size: 20px 20px, 14px 14px;
+  -webkit-mask-position: center, center;
+  -webkit-mask-repeat: no-repeat, no-repeat;
+  mask-image: var(--tex-box), var(--tex-tick);
+  mask-size: 20px 20px, 14px 14px;
+  mask-position: center, center;
+  mask-repeat: no-repeat, no-repeat;
+}
+
+.permission-label,
+.jc-checkbox-label,
+.jc-checkbox-row,
+.gc-perm-input,
+.jc-perm-input {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  cursor: pointer;
+}
+.jc-checkbox-label::before { content: ''; }
+
+/* --------------------------------------------------------------------------
+   Interrupteur (mode detaille du graphique).
+   -------------------------------------------------------------------------- */
+.toggle-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  cursor: pointer;
+}
+.toggle-slider {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 18px;
+  background-color: rgba(1, 1, 1, 0.7);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+  transition: background-color 0.16s linear;
+}
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  background-color: var(--ink-strong);
+  -webkit-mask-image: var(--tex-box);
+  -webkit-mask-size: 14px 14px;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: var(--tex-box);
+  mask-size: 14px 14px;
+  mask-repeat: no-repeat;
+  transition: transform 0.16s ease;
+}
+#detailedModeToggle:checked + .toggle-slider { background-color: var(--red-soft); }
+#detailedModeToggle:checked + .toggle-slider::before {
+  transform: translateX(24px);
+  background-color: var(--red);
+}
+.toggle-label { font-size: var(--fs-xs); letter-spacing: var(--track); color: var(--text-dim); }
+
+/* --------------------------------------------------------------------------
+   Champ de recherche : plaque de recherche du jeu + loupe injectee.
+   -------------------------------------------------------------------------- */
+.employees-search-wrapper,
+.jc-search-wrapper,
+.comm-search-wrapper,
+.history-search-container,
+.jc-wh-search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.employees-search-wrapper .fa-search,
+.jc-search-wrapper .fa-search,
+.comm-search-wrapper .fa-search,
+.history-search-container .fa-search,
+.search-icon,
+.history-search-icon {
+  position: absolute;
+  left: 0.7rem;
+  color: var(--text-faint);
+  pointer-events: none;
+  z-index: 2;
+}
+.employees-search-input,
+.jc-search-input,
+.comm-search-input,
+.history-search-container input,
+.jc-wh-search { padding-left: 2.1rem; }
+
+.search-clear-btn,
+#historyClearSearch {
+  position: absolute;
+  right: 0.4rem;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background-color: transparent;
+  background-image: none;
+  color: var(--text-faint);
+  z-index: 2;
+}
+.search-clear-btn::after,
+#historyClearSearch::after { display: none; }
+.search-clear-btn:hover,
+#historyClearSearch:hover { color: var(--red); background-color: transparent; background-image: none; }
