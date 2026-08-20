@@ -1,0 +1,138 @@
+/* ==========================================================================
+   01 — TOKENS
+   Palette, typographie et catalogue de textures.
+   Tout le reste du CSS ne consomme que des variables definies ici.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Fontes (RDR officielles + Hapna Slab pour le corps de texte)
+   -------------------------------------------------------------------------- */
+@font-face { font-family: 'RDRLino';   src: url('../fonts/RDRLino-Regular.ttf') format('truetype');       font-weight: 400; font-display: block; }
+@font-face { font-family: 'RDRCat';    src: url('../fonts/RDRCatalogueBold-Bold.ttf') format('truetype'); font-weight: 700; font-display: block; }
+@font-face { font-family: 'RDRGothica';src: url('../fonts/RDRGothica-Regular.ttf') format('truetype');    font-weight: 400; font-display: block; }
+@font-face { font-family: 'Hapna';     src: url('../fonts/HapnaLight.ttf') format('truetype');            font-weight: 300; font-display: block; }
+@font-face { font-family: 'Hapna';     src: url('../fonts/Hapna.ttf') format('truetype');                 font-weight: 400; font-display: block; }
+@font-face { font-family: 'Hapna';     src: url('../fonts/HapnaMedium.ttf') format('truetype');           font-weight: 500; font-display: block; }
+@font-face { font-family: 'Hapna';     src: url('../fonts/HapnaDemiBold.ttf') format('truetype');         font-weight: 600; font-display: block; }
+@font-face { font-family: 'Hapna';     src: url('../fonts/HapnaBold.ttf') format('truetype');             font-weight: 700; font-display: block; }
+@font-face { font-family: 'Hapna';     src: url('../fonts/HapnaExtraBold.ttf') format('truetype');        font-weight: 800; font-display: block; }
+@font-face { font-family: 'Aston';     src: url('../fonts/AstonScript.ttf') format('truetype');           font-weight: 400; font-display: block; }
+
+:root {
+  /* ---- Palette officielle : noir & rouge ------------------------------- */
+  --bg:        #010101;
+  --panel:     #0d0d0d;
+  --panel-2:   #141414;
+  --panel-3:   #1b1b1b;
+  --line:      rgba(255, 255, 255, 0.08);
+  --line-soft: rgba(255, 255, 255, 0.05);
+
+  --red:       #CB0101;
+  --red-hover: #A50101;
+  --red-soft:  rgba(203, 1, 1, 0.16);
+  --red-glow:  rgba(203, 1, 1, 0.38);
+
+  --text:       #F5F3EE;
+  --text-dim:   #9A948A;
+  --text-faint: #6b665e;
+
+  /* Encres appliquees aux masques de texture ---------------------------- */
+  --ink:        rgba(245, 243, 238, 0.42);
+  --ink-soft:   rgba(245, 243, 238, 0.20);
+  --ink-strong: rgba(245, 243, 238, 0.78);
+  --ink-red:    var(--red);
+
+  /* Voiles : le monde reste visible derriere une interface ouverte ------- */
+  --scrim:      rgba(1, 1, 1, 0.38);
+  --scrim-deep: rgba(1, 1, 1, 0.55);
+
+  /* ---- Typographie ----------------------------------------------------- */
+  --font-display: 'RDRLino', 'Hapna', serif;
+  --font-title:   'RDRCat', 'Hapna', serif;
+  --font-body:    'Hapna', serif;
+  --font-script:  'Aston', 'RDRLino', serif;
+
+  --fs-xs:  0.68rem;
+  --fs-sm:  0.78rem;
+  --fs-md:  0.88rem;
+  --fs-lg:  1.05rem;
+  --fs-xl:  1.35rem;
+  --fs-2xl: 1.9rem;
+  --fs-3xl: 2.5rem;
+
+  --track: 0.08em;   /* interlettrage courant   */
+  --track-w: 0.16em; /* interlettrage des titres */
+
+  /* ---- Rythme ----------------------------------------------------------- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+
+  /* ---- Catalogue de textures RDR2 --------------------------------------
+     Chaque piece est utilisee a son ratio natif : jamais etiree sur un axe.
+     Les dimensions natives sont notees en commentaire pour dimensionner
+     correctement les boites qui les portent.                              */
+
+  /* Cadre 9-tranches (coins 24x24, bords 532x24 et 24x72) */
+  --tex-fr-tl: url('../img/ui/crafting_highlight_tl.png');
+  --tex-fr-tr: url('../img/ui/crafting_highlight_tr.png');
+  --tex-fr-bl: url('../img/ui/crafting_highlight_bl.png');
+  --tex-fr-br: url('../img/ui/crafting_highlight_br.png');
+  --tex-fr-t:  url('../img/ui/crafting_highlight_t.png');
+  --tex-fr-b:  url('../img/ui/crafting_highlight_b.png');
+  --tex-fr-l:  url('../img/ui/crafting_highlight_l.png');
+  --tex-fr-r:  url('../img/ui/crafting_highlight_r.png');
+
+  /* Fonds de menu */
+  --tex-menu-lg:  url('../img/ui/hud_menu_4a.png');       /* 576x384 */
+  --tex-menu-sm:  url('../img/ui/hud_menu_5a.png');       /* 576x192 */
+  --tex-menu-dim: url('../img/hud_menu_grey_dark.webp');
+  --tex-grain:    url('../img/box_bg_2.png');             /* 43x43, tuile */
+  --tex-grain-lo: url('../img/box_bg_1.png');             /* 43x43, tres discret */
+  --tex-wash:     url('../img/overlay.png');              /* 1686x448 */
+  --tex-backdrop: url('../img/background.png');           /* 1600x950 */
+
+  /* Plaques et rangees */
+  --tex-row:      url('../img/ui/selection_box_bg_1c.png'); /* 432x100 */
+  --tex-row-wide: url('../img/ui/selection_box_bg_1a.png'); /* 972x100 */
+  --tex-card:     url('../img/box_s_bg_1.png');            /* 197x197 */
+  --tex-card-alt: url('../img/box_s_bg_1_b.png');          /* 197x197 */
+  --tex-strip:    url('../img/box_a_bg_1.png');            /* 432x100 */
+  --tex-strip-2:  url('../img/box_a_bg_1_2.png');          /* 432x100 */
+  --tex-label:    url('../img/label_background.png');      /* 374x84  */
+  --tex-label-sq: url('../img/label_icon_bg.png');         /* 53x53   */
+  --tex-header:   url('../img/ui/menu_header_1a.png');     /* 432x108 */
+  --tex-btn:      url('../img/menu_button_2.png');         /* 224x44  */
+  --tex-btn-lo:   url('../img/menu_button_1.png');         /* 224x44  */
+  --tex-search:   url('../img/search_bg.png');             /* 223x38  */
+  --tex-amount:   url('../img/amount_bg.png');             /* 102x27  */
+  --tex-tile-sm:  url('../img/box_bg_1.png');              /* 43x43   */
+
+  /* Filets */
+  --tex-rule:      url('../img/ui/divider_line.png');            /* 432x4  */
+  --tex-rule-wide: url('../img/ui/list_item_h_line_wide.png');   /* 1024x4 */
+  --tex-rule-thin: url('../img/ui/list_item_h_line_narrow.png'); /* 432x4  */
+  --tex-vrule:     url('../img/ui/vertical_divider_line.png');   /* 4x512  */
+  --tex-bar:       url('../img/ui/menu_bar.png');                /* 432x12 */
+  --tex-ornament:  url('../img/ui/title_divider.png');           /* 16x64  */
+
+  /* Pictogrammes de jeu */
+  --tex-tick:    url('../img/ui/menu_icon_tick.png');       /* 64x64 */
+  --tex-box:     url('../img/ui/selection_box_square.png'); /* 52x52 */
+  --tex-lock:    url('../img/ui/menu_icon_lock.png');       /* 32x32 */
+  --tex-alert:   url('../img/ui/menu_icon_alert.png');      /* 64x64 */
+  --tex-warn:    url('../img/ui/menu_icon_info_warning.png');/* 20x20 */
+  --tex-arrow-l: url('../img/ui/selection_arrow_left.png');  /* 64x64 */
+  --tex-arrow-r: url('../img/selection_arrow_right.png');    /* 64x64 */
+
+  /* ---- Empilement ------------------------------------------------------- */
+  --z-panel:   10;
+  --z-frame:   12;
+  --z-overlay: 100;
+  --z-modal:   200;
+  --z-toast:   400;
+}
