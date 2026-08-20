@@ -1,0 +1,320 @@
+/*
+    Cactus Ultimate — Overlay DA Western
+    Aligne la direction artistique sur cactus_shop / cactus_menu :
+      • Palette or feutre (#c4a574) / creme (#ebe3d4) / brique (#a83a3a)
+      • Police Crock sur les elements prominents
+      • Scrollbars fines dorees
+      • Textures de boutons western (menu_button_1/2)
+    Charge en DERNIER dans index.html.
+*/
+
+:root {
+    --da-bg:        #100e0c;
+    --da-surface:   #1a1512;
+    --da-card:      #221c17;
+    --da-text:      #ebe3d4;
+    --da-muted:     rgba(200, 185, 165, 0.72);
+    --da-accent:    #c4a574;
+    --da-accent-2:  #8b6f47;
+    --da-danger:    #a83a3a;
+    --da-scroll:      rgba(196, 165, 116, 0.38);
+    --da-scroll-hover:rgba(196, 165, 116, 0.62);
+    --da-font:      'Crock', 'Hapna', "Segoe UI", sans-serif;
+    --da-ink:       #2a2218;   /* texte fonce sur textures claires */
+    --img-btn:       url("../img/menu_button_1.png");   /* sombre -> texte clair */
+    --img-btn-hover: url("../img/menu_button_2.png");   /* clair  -> texte fonce */
+    --img-card:      url("../img/box_a_bg_1.png");       /* sombre -> texte clair */
+    --img-hdr:       url("../img/label_background.png"); /* clair  -> texte fonce */
+}
+
+/* ── Texte de base : creme (jamais blanc pur) ───────────────────────── */
+body { color: var(--da-text); }
+
+/* ── Overlay de fond aligne shop (voile chaud sombre) ─────────────────────── */
+#container {
+    background: radial-gradient(ellipse at center,
+        rgba(16, 14, 12, 0.55) 0%,
+        rgba(16, 14, 12, 0.82) 100%) !important;
+}
+
+/* ── Scrollbars dorees fines (DA shop/menu) ──────────────────────────────── */
+* { scrollbar-width: thin; scrollbar-color: var(--da-scroll) transparent; }
+*::-webkit-scrollbar { width: 6px; height: 6px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: var(--da-scroll); border-radius: 999px; }
+*::-webkit-scrollbar-thumb:hover { background: var(--da-scroll-hover); }
+
+/* ── Titres & police western sur les elements prominents ─────────────────── */
+.content-title-centered,
+.dashboard-panel-title,
+.company-name-badge,
+.job-name-badge,
+.nav-btn,
+.duty-toggle-btn {
+    font-family: var(--da-font) !important;
+    letter-spacing: 0.06em;
+}
+.content-title-centered { color: var(--da-text) !important; }
+
+/* ── Badges (entreprise / joueur) : teinte creme feutree ─────────────────── */
+.company-name-badge { color: var(--da-accent) !important; }
+.job-name-badge,
+.player-badge { color: var(--da-text) !important; }
+
+/* ── Boutons de navigation : texture + etat actif dore ───────────────────── */
+.nav-btn {
+    color: rgba(235, 227, 212, 0.82) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+}
+.nav-btn:hover { color: var(--da-text) !important; }
+.nav-btn.active {
+    color: #1a1208 !important;
+    background-image: var(--img-btn-hover) !important;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    text-shadow: 0 1px 0 rgba(255, 252, 245, 0.35);
+    filter: none !important;
+}
+
+/* ── Bouton de service : verts/rouges feutres cohérents DA ────────────────── */
+.duty-toggle-btn::before {
+    background: linear-gradient(135deg,
+        rgba(196, 165, 116, 0.42) 0%,
+        rgba(139, 111, 71, 0.42) 100%) !important;
+}
+.duty-toggle-btn.on-duty::before {
+    background: linear-gradient(135deg,
+        rgba(168, 58, 58, 0.5) 0%,
+        rgba(146, 47, 47, 0.5) 100%) !important;
+}
+
+/* ── Champs de recherche / inputs : focus dore ───────────────────────────── */
+.news-search-input:focus {
+    border-color: var(--da-accent) !important;
+    box-shadow: 0 0 0 2px rgba(196, 165, 116, 0.22) !important;
+}
+.news-search-clear:hover { color: var(--da-accent) !important; }
+
+/* ── Selection de texte teintee or ───────────────────────────────────────── */
+::selection { background: rgba(196, 165, 116, 0.35); color: var(--da-text); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   JOB CREATOR — refonte DA western (parchemin / cuir / or feutre)
+   Passe le dashboard "plat moderne" a la DA cactus_shop / cactus_menu :
+     • Champs parchemin (search_bg) + boutons parchemin (menu_button) texte fonce
+     • Cards/sections texturees (box_a_bg_1), bords bruts (pas d'arrondi)
+     • Panneaux en parchemin dechire (background.png), police Crock sur les titres
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* — Cadre general : bords bruts — */
+#jobCreatorContainer { background: rgba(16, 14, 12, 0.78) !important; }
+.jc-wrapper {
+    border-radius: 0 !important;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(196, 165, 116, 0.14) !important;
+}
+
+/* — Sidebars : cuir sombre uni, filet dore — */
+.jc-main-nav,
+.jc-jobs-sidebar {
+    background: rgba(14, 11, 9, 0.97) !important;
+    border-right: 1px solid rgba(196, 165, 116, 0.16) !important;
+}
+.jc-main-nav-item {
+    border-radius: 0 !important;
+    font-family: 'Hapna', sans-serif !important;
+    border: none !important;
+    border-left: 2px solid transparent !important;
+    color: rgba(235, 227, 212, 0.55) !important;
+}
+.jc-main-nav-item:hover {
+    background: rgba(196, 165, 116, 0.08) !important;
+    color: var(--da-text) !important;
+}
+.jc-main-nav-item.active {
+    background: rgba(196, 165, 116, 0.14) !important;
+    border-left-color: var(--da-accent) !important;
+    color: var(--da-accent) !important;
+}
+.jc-main-nav-item.active i { color: var(--da-accent) !important; }
+.jc-logo-row span,
+.jc-dashboard-title { font-family: var(--da-font) !important; color: var(--da-accent) !important; }
+
+/* — Zones de contenu : parchemin sombre, non etire (cover) — */
+.jc-main-content,
+.jc-editor-content,
+.jc-page-generic {
+    background:
+        linear-gradient(rgba(18, 15, 12, 0.62), rgba(18, 15, 12, 0.7)),
+        url("../img/background.png") center / cover no-repeat !important;
+    color: var(--da-text) !important;
+}
+
+/* — Titres de section : police western, or — */
+.jc-section-icon-title h2,
+.jc-dynamic-card-title,
+.jc-cs-section-title,
+.jc-harvest-points-title {
+    font-family: var(--da-font) !important;
+    color: var(--da-accent) !important;
+    letter-spacing: 0.06em !important;
+}
+.jc-confirm-box h3 { font-family: var(--da-font) !important; color: var(--da-danger) !important; }
+.jc-section-icon-title i,
+.jc-logo-row i { color: var(--da-accent) !important; }
+
+/* — Cards / sections : fond sombre uni, SANS bordure marron ni etirement — */
+.jc-dynamic-card,
+.jc-dash-stat,
+.jc-cs-section,
+.jc-config-notice,
+.jc-craft-cat-row,
+.jc-craft-subsection {
+    background: rgba(28, 23, 18, 0.9) !important;
+    border: none !important;
+    border-radius: 5px !important;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.4) !important;
+    color: var(--da-text) !important;
+}
+.jc-dynamic-card:hover,
+.jc-dash-stat:hover { box-shadow: inset 0 0 0 1px rgba(196, 165, 116, 0.25) !important; }
+.jc-dash-stat-label { color: var(--da-muted) !important; }
+.jc-dash-stat-value { color: var(--da-text) !important; font-family: var(--da-font) !important; }
+.jc-config-notice,
+.jc-config-notice span { color: var(--da-text) !important; }
+.jc-config-notice i { color: var(--da-accent) !important; }
+.jc-confirm-box {
+    background: rgba(20, 16, 12, 0.98) !important;
+    border: none !important;
+    border-radius: 6px !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(196, 165, 116, 0.16) !important;
+}
+.jc-confirm-box p { color: var(--da-muted) !important; }
+
+/* — Champs : cuir sombre, bord neutre (pas marron), texte creme — */
+.jc-input,
+.jc-select,
+.jc-input-sm,
+.jc-search-input,
+.jc-perm-input,
+.jc-grades-table input {
+    background: rgba(12, 10, 8, 0.85) !important;
+    border: 1px solid rgba(0, 0, 0, 0.5) !important;
+    border-radius: 4px !important;
+    color: var(--da-text) !important;
+}
+.jc-input:focus,
+.jc-select:focus,
+.jc-input-sm:focus,
+.jc-search-input:focus,
+.jc-perm-input:focus,
+.jc-grades-table input:focus {
+    border-color: var(--da-accent) !important;
+    box-shadow: 0 0 0 1px rgba(196, 165, 116, 0.35) !important;
+}
+.jc-input::placeholder,
+.jc-search-input::placeholder,
+.jc-input-sm::placeholder { color: rgba(200, 185, 165, 0.4) !important; }
+
+/* — Liste des jobs : fond sombre uni, plus de bordure marron — */
+.jc-job-item {
+    background: rgba(28, 23, 18, 0.7) !important;
+    border: none !important;
+    border-left: 2px solid transparent !important;
+    border-radius: 5px !important;
+}
+.jc-job-item:hover {
+    background: rgba(196, 165, 116, 0.08) !important;
+    border-left-color: rgba(196, 165, 116, 0.4) !important;
+}
+.jc-job-item.active {
+    background: rgba(196, 165, 116, 0.12) !important;
+    border: none !important;
+    border-left: 2px solid var(--da-accent) !important;
+}
+
+/* — Activité récente : cartes sombres, sans bordure marron — */
+.dashboard-activity-item {
+    background: rgba(28, 23, 18, 0.85) !important;
+    border: none !important;
+    border-left: 2px solid transparent !important;
+    border-radius: 5px !important;
+}
+.dashboard-activity-item:hover {
+    background: rgba(196, 165, 116, 0.08) !important;
+}
+
+/* — Boutons parchemin (signature shop) : clair -> tan au survol, texte fonce — */
+.jc-btn,
+.jc-action-btn,
+.jc-add-grade-btn,
+.jc-add-dynamic-btn,
+.jc-add-harvest-point-btn,
+.jc-add-harvest-reward-btn,
+.jc-craft-add-ing-btn,
+.jc-cs-save-btn,
+.jc-btn-save,
+.jc-btn-edit,
+.jc-btn-toggle,
+.jc-action-btn-gold,
+.jc-action-btn-blue {
+    background: var(--img-btn) center / 100% 100% no-repeat !important;
+    border: none !important;
+    border-radius: 0 !important;
+    color: #f0e6d2 !important;
+    font-family: var(--da-font) !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55) !important;
+}
+.jc-btn:hover,
+.jc-action-btn:hover,
+.jc-add-grade-btn:hover,
+.jc-add-dynamic-btn:hover,
+.jc-add-harvest-point-btn:hover,
+.jc-add-harvest-reward-btn:hover,
+.jc-craft-add-ing-btn:hover,
+.jc-cs-save-btn:hover,
+.jc-btn-save:hover,
+.jc-btn-edit:hover,
+.jc-btn-toggle:hover,
+.jc-action-btn-gold:hover,
+.jc-action-btn-blue:hover {
+    background: var(--img-btn-hover) center / 100% 100% no-repeat !important;
+    color: var(--da-ink) !important;
+    text-shadow: 0 1px 0 rgba(255, 252, 245, 0.35) !important;
+}
+
+/* — Boutons destructifs : brique feutree conservee — */
+.jc-btn-delete,
+.jc-dynamic-card-remove,
+.jc-craft-cat-remove {
+    background: rgba(168, 58, 58, 0.16) !important;
+    border: 1px solid rgba(168, 58, 58, 0.4) !important;
+    border-radius: 0 !important;
+    color: #e6b3b3 !important;
+    font-family: 'Hapna', sans-serif !important;
+    text-transform: none !important;
+    text-shadow: none !important;
+}
+.jc-btn-delete:hover,
+.jc-dynamic-card-remove:hover,
+.jc-craft-cat-remove:hover {
+    background: rgba(168, 58, 58, 0.34) !important;
+    border-color: #a83a3a !important;
+    color: #fff !important;
+}
+
+/* — Barre de sauvegarde / retour : filet dore — */
+.jc-save-bar { border-top-color: rgba(196, 165, 116, 0.2) !important; }
+.jc-go-back-btn {
+    background: var(--img-btn) center / 100% 100% no-repeat !important;
+    border: none !important;
+    border-radius: 0 !important;
+    color: #f0e6d2 !important;
+    font-family: var(--da-font) !important;
+}
+.jc-go-back-btn:hover {
+    background: var(--img-btn-hover) center / 100% 100% no-repeat !important;
+    color: #1a1208 !important;
+}

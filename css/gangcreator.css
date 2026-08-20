@@ -1,0 +1,825 @@
+/* ================================================
+   GANG CREATOR - CSS
+   Alias des classes interactives du Job Creator en gc- pour éviter
+   que les handlers délégués (document) du jobcreator.js ne se
+   déclenchent sur les éléments du Gang Creator.
+   Les classes purement visuelles (jc-wrapper, jc-input, jc-btn, jc-page...)
+   sont réutilisées directement dans le HTML.
+   ================================================ */
+
+/* --- Conteneur plein écran centré (miroir de #jobCreatorContainer) --- */
+#gangCreatorContainer {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 50000;
+    animation: jcFadeIn 0.25s ease;
+}
+
+/* --- Bouton de navigation croisée (Job <-> Gang) --- */
+.jc-switch-creator-btn {
+    margin-bottom: 8px !important;
+    background: rgba(193,154,107,0.12) !important;
+    border: 1px solid rgba(193,154,107,0.35) !important;
+    color: #c4a574 !important;
+}
+.jc-switch-creator-btn:hover {
+    background: rgba(193,154,107,0.22) !important;
+    border-color: rgba(193,154,107,0.55) !important;
+}
+
+/* --- Main nav item (onglets Gangs / Historique) --- */
+.gc-main-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+    color: rgba(255,255,255,0.4);
+    font-family: 'Hapna', sans-serif;
+    font-size: 0.78rem;
+    border: 1px solid transparent;
+}
+.gc-main-nav-item i {
+    width: 1rem;
+    text-align: center;
+    font-size: 0.75rem;
+    transition: color 0.15s;
+}
+.gc-main-nav-item:hover {
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.6);
+}
+.gc-main-nav-item.active {
+    background: rgba(139, 115, 85, 0.14);
+    border-color: rgba(139, 115, 85, 0.2);
+    color: #ebe3d4;
+}
+.gc-main-nav-item.active i { color: #c4a574; }
+
+/* --- Editor nav item (sections de l'éditeur) --- */
+.gc-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.65rem 0.9rem;
+    margin-bottom: 2px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+    color: rgba(255,255,255,0.45);
+    font-family: 'Hapna', sans-serif;
+    font-size: 0.82rem;
+    border: 1px solid transparent;
+}
+.gc-nav-item i {
+    width: 1.1rem;
+    text-align: center;
+    font-size: 0.8rem;
+    transition: color 0.15s;
+}
+.gc-nav-item:hover {
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.65);
+}
+.gc-nav-item.active {
+    background: rgba(139, 115, 85, 0.12);
+    border-color: rgba(139, 115, 85, 0.18);
+    color: #ebe3d4;
+}
+.gc-nav-item.active i { color: #c4a574; }
+
+/* --- Gang list item --- */
+.gc-gang-item {
+    padding: 0.75rem 0.9rem;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.18s;
+    border: 1px solid transparent;
+    border-left: 3px solid transparent;
+    background: rgba(255,255,255,0.015);
+}
+.gc-gang-item:hover {
+    background: rgba(255,255,255,0.05);
+    border-left-color: rgba(139, 115, 85, 0.3);
+}
+.gc-gang-item.active {
+    background: rgba(139, 115, 85, 0.12);
+    border-color: rgba(139, 115, 85, 0.2);
+    border-left-color: #c4a574;
+}
+
+/* --- Grade remove button --- */
+.gc-grade-remove {
+    background: none; border: none; cursor: pointer;
+    color: rgba(168, 58, 58, 0.4);
+    font-size: 0.75rem;
+    transition: color 0.2s;
+    padding: 0.3rem;
+}
+.gc-grade-remove:hover { color: #a83a3a; }
+
+/* --- Minimize banner (coord picker) --- */
+.gc-minimize-banner {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: rgba(15, 13, 11, 0.96);
+    border: 1px solid rgba(139, 115, 85, 0.25);
+    border-radius: 8px;
+    padding: 0.7rem 1.1rem;
+    display: none;
+    align-items: center;
+    gap: 0.6rem;
+    z-index: 50001;
+    font-family: 'Hapna', sans-serif;
+    font-size: 0.78rem;
+    color: #ebe3d4;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+.gc-minimize-banner i { color: #c4a574; }
+.gc-minimize-banner:hover { border-color: rgba(139, 115, 85, 0.45); }
+
+/* --- Boss badge (grade chef) --- */
+.gc-badge-boss {
+    font-size: 0.6rem;
+    padding: 0.12rem 0.4rem;
+    border-radius: 4px;
+    background: rgba(193, 154, 107, 0.18);
+    color: #c4a574;
+    border: 1px solid rgba(193, 154, 107, 0.3);
+    letter-spacing: 0.4px;
+    font-family: 'Hapna', sans-serif;
+}
+
+/* --- isboss checkbox cell in grades table --- */
+.gc-grade-boss-cell {
+    text-align: center;
+}
+
+/* ================================================
+   Sections personnalisation : coffres / props / blips
+   ================================================ */
+.gc-entries {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.gc-entry {
+    background: rgba(30, 26, 20, 0.88);
+    border: 1px solid rgba(193, 154, 107, 0.18);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.gc-entry:hover {
+    border-color: rgba(193, 154, 107, 0.35);
+    background: rgba(40, 34, 25, 0.95);
+}
+
+/* Cards d'activités dans les onglets : fond encore plus visible */
+.ga-tab-body .gc-entry,
+.ga-tab-body .ga-reward-row,
+.ga-tab-body .ga-input-row,
+.ga-tab-body .ga-req-row,
+.ga-tab-body .ga-ni-row,
+.ga-tab-body .ga-hvp-row {
+    background: rgba(38, 32, 24, 0.94) !important;
+    border-color: rgba(193, 154, 107, 0.22) !important;
+}
+/* Les lignes d'items (reward / input / required) sont horizontales */
+.ga-reward-row,
+.ga-input-row,
+.ga-req-row {
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 8px !important;
+    gap: 6px !important;
+}
+.ga-tab-body .gc-entry:hover,
+.ga-tab-body .ga-reward-row:hover,
+.ga-tab-body .ga-input-row:hover,
+.ga-tab-body .ga-req-row:hover,
+.ga-tab-body .ga-ni-row:hover,
+.ga-tab-body .ga-hvp-row:hover {
+    background: rgba(50, 42, 30, 0.98) !important;
+    border-color: rgba(193, 154, 107, 0.45) !important;
+}
+
+.gc-entry-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.gc-entry-head .jc-input {
+    flex: 1;
+    font-weight: 600;
+}
+
+.gc-entry-remove {
+    background: rgba(168, 58, 58, 0.15);
+    border: 1px solid rgba(168, 58, 58, 0.35);
+    color: #a83a3a;
+    width: 34px;
+    height: 34px;
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.gc-entry-remove:hover {
+    background: rgba(168, 58, 58, 0.4);
+    border-color: #a83a3a;
+    color: #fff;
+}
+
+/* Points de récolte individuels (comme le jobcreator) */
+.gc-hv-points-header {
+    margin-top: 10px;
+}
+
+.gc-hv-points-title {
+    font-family: 'Hapna', sans-serif;
+    color: rgba(193, 154, 107, 0.6);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.gc-hv-point {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    padding: 0.5rem 0.6rem;
+    margin: 6px 0;
+    transition: border-color 0.2s;
+}
+
+.gc-hv-point:hover {
+    border-color: rgba(193, 154, 107, 0.2);
+}
+
+.gc-hv-point-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.gc-hv-point-num {
+    font-family: 'Hapna', sans-serif;
+    color: rgba(193, 154, 107, 0.6);
+    font-weight: 700;
+    font-size: 0.7rem;
+}
+
+.gc-hv-point .gc-hv-point-remove {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+}
+
+.gc-entry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.gc-entry-coords {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.gc-entry-coords input[type="number"] {
+    flex: 1;
+    min-width: 70px;
+}
+
+.gc-entry-coords .gc-place-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ================================================
+   Sélecteur d'icône de blip (grille + recherche)
+   ================================================ */
+.gc-blip-picker {
+    position: relative;
+    width: 100%;
+}
+
+.gc-blip-picker-current {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(193, 154, 107, 0.25);
+    border-radius: 8px;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    min-height: 2.1rem;
+    transition: border-color 0.15s ease;
+}
+
+.gc-blip-picker-current:hover {
+    border-color: rgba(193, 154, 107, 0.5);
+}
+
+.gc-blip-preview-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.gc-blip-picker-label {
+    flex: 1;
+    color: #ebe3d4;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.gc-blip-picker-arrow {
+    color: #c4a574;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.gc-blip-picker-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: #1a1410;
+    border: 1px solid rgba(193, 154, 107, 0.35);
+    border-radius: 8px;
+    min-width: 260px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+.gc-blip-picker-dropdown.open {
+    display: block;
+}
+
+.gc-blip-search {
+    width: 100%;
+    padding: 0.5rem 0.7rem;
+    background: rgba(0, 0, 0, 0.4);
+    border: none;
+    border-bottom: 1px solid rgba(193, 154, 107, 0.25);
+    color: #ebe3d4;
+    font-size: 0.85rem;
+    font-family: inherit;
+    outline: none;
+}
+
+.gc-blip-search::placeholder {
+    color: rgba(235, 227, 212, 0.4);
+}
+
+.gc-blip-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 3px;
+    padding: 0.4rem;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.gc-blip-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3rem;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    aspect-ratio: 1;
+    transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.gc-blip-option:hover {
+    background: rgba(193, 154, 107, 0.15);
+}
+
+.gc-blip-option.selected {
+    border-color: #c4a574;
+    background: rgba(193, 154, 107, 0.2);
+}
+
+.gc-blip-option img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+/* ================================================
+   ACTIVITÉS ILLÉGALES — Onglet tabbé (ga-*)
+   ================================================ */
+
+.ga-list-page {
+    padding: 6px 0;
+}
+
+.ga-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+/* ---- Nouvelle liste d'activités ---- */
+.ga-act-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.ga-act-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: rgba(28, 24, 18, 0.94);
+    border: 1px solid var(--act-border, rgba(193,154,107,.22));
+    border-radius: 9px;
+    overflow: hidden;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+.ga-act-row:hover {
+    background: rgba(38, 32, 24, 0.98);
+    border-color: var(--act-color, #c4a574);
+    transform: translateX(2px);
+}
+
+/* Bande couleur gauche */
+.ga-act-stripe {
+    width: 4px;
+    align-self: stretch;
+    background: var(--act-color, #c4a574);
+    flex-shrink: 0;
+}
+
+/* Icône de type */
+.ga-act-icon-wrap {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--act-bg, rgba(193,154,107,.1));
+    color: var(--act-color, #c4a574);
+    font-size: 1.05em;
+    flex-shrink: 0;
+    margin: 10px 12px 10px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--act-border, rgba(193,154,107,.2));
+}
+
+/* Corps infos */
+.ga-act-body {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 8px 10px 0;
+}
+
+.ga-act-name {
+    font-weight: 700;
+    font-size: 0.95em;
+    color: #ebe3d4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 5px;
+}
+
+.ga-act-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: center;
+}
+
+/* Badge type coloré */
+.ga-type-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 9px;
+    border-radius: 10px;
+    border: 1px solid;
+    font-size: 0.78em;
+    font-weight: 600;
+    font-family: 'Hapna', sans-serif;
+    letter-spacing: 0.3px;
+}
+
+/* Badge id de l'activité (slug) */
+.ga-id-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 7px;
+    border-radius: 8px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
+    color: rgba(255,255,255,.4);
+    font-size: 0.75em;
+    font-family: monospace;
+}
+
+/* Badge gang */
+.ga-gang-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 7px;
+    border-radius: 8px;
+    background: rgba(139,115,85,.12);
+    border: 1px solid rgba(139,115,85,.22);
+    color: rgba(235,227,212,.55);
+    font-size: 0.75em;
+    font-family: 'Hapna', sans-serif;
+}
+.ga-gang-chip.ga-gang-chip-public {
+    color: #c4a574;
+    background: rgba(196,165,116,.1);
+    border-color: rgba(196,165,116,.28);
+}
+
+/* Boutons d'action */
+.ga-act-btns {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-right: 12px;
+    flex-shrink: 0;
+}
+
+.ga-act-del-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
+    border: 1px solid rgba(248,113,113,.3);
+    background: rgba(248,113,113,.08);
+    color: #f87171;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    transition: background 0.15s, border-color 0.15s;
+}
+.ga-act-del-btn:hover {
+    background: rgba(248,113,113,.2);
+    border-color: rgba(248,113,113,.55);
+}
+
+/* ---- Éditeur ---- */
+.ga-editor {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.ga-breadcrumb {
+    display: flex;
+    align-items: center;
+    padding: 8px 0 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 0;
+    font-size: 1em;
+    color: #ebe3d4;
+}
+
+/* ---- Barre d'onglets ---- */
+.ga-tab-bar {
+    display: flex;
+    gap: 2px;
+    padding: 8px 0 0;
+    border-bottom: 2px solid rgba(193,154,107,0.18);
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex-shrink: 0;
+    margin-bottom: 0;
+    background: rgba(20,18,14,0.6);
+}
+
+.ga-tab-bar::-webkit-scrollbar { display: none; }
+
+.ga-tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 16px;
+    font-size: 0.85em;
+    font-weight: 500;
+    color: rgba(255,255,255,0.45);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    white-space: nowrap;
+    transition: color 0.12s, border-color 0.12s, background 0.12s;
+    user-select: none;
+    border-radius: 6px 6px 0 0;
+}
+
+.ga-tab:hover {
+    color: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.04);
+}
+
+.ga-tab.active {
+    color: #c4a574;
+    border-bottom-color: #c4a574;
+    background: rgba(193,154,107,0.07);
+}
+
+/* ---- Contenu des onglets ---- */
+.ga-tab-body {
+    padding: 18px 2px 8px;
+    overflow-y: auto;
+    flex: 1;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(193,154,107,0.25) transparent;
+}
+.ga-tab-body::-webkit-scrollbar { width: 4px; }
+.ga-tab-body::-webkit-scrollbar-thumb { background: rgba(193,154,107,0.25); border-radius: 4px; }
+
+/* ---- Section titre dans les onglets ---- */
+.ga-section-title {
+    font-family: 'Hapna', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(193,154,107,0.85);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 10px;
+    margin-top: 4px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(193,154,107,0.15);
+}
+
+/* ---- Lignes de récompenses / items ---- */
+.ga-reward-row,
+.ga-req-row,
+.ga-ni-row,
+.ga-hvp-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 1px solid rgba(193,154,107,0.2);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background: rgba(35, 30, 23, 0.88);
+    transition: border-color 0.12s, background 0.12s;
+}
+
+.ga-reward-row:hover,
+.ga-req-row:hover,
+.ga-ni-row:hover,
+.ga-hvp-row:hover {
+    border-color: rgba(193,154,107,0.45);
+    background: rgba(45, 38, 28, 0.95);
+}
+
+/* Bouton ajouter une ligne */
+.ga-add-row-btn {
+    width: 100%;
+    padding: 9px;
+    background: rgba(193,154,107,0.07);
+    border: 1px dashed rgba(193,154,107,0.3);
+    color: rgba(193,154,107,0.75);
+    font-family: 'Hapna', sans-serif;
+    font-size: 0.78rem;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 4px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.ga-add-row-btn:hover {
+    background: rgba(193,154,107,0.18);
+    border-color: #c4a574;
+    color: #c4a574;
+}
+
+/* Bouton supprimer une ligne */
+.ga-row-remove {
+    background: rgba(168,58,58,0.12);
+    border: 1px solid rgba(168,58,58,0.3);
+    color: #a83a3a;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    transition: all 0.15s;
+    flex-shrink: 0;
+}
+.ga-row-remove:hover {
+    background: rgba(168,58,58,0.35);
+    border-color: #a83a3a;
+}
+
+/* ---- Point de récolte ---- */
+.gc-entry-coords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.gc-entry-coords .jc-input {
+    flex: 1;
+    min-width: 70px;
+}
+
+/* ---- Gangs picker (checkboxes) ---- */
+.ga-gangs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.gc-act-gang-opt {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 10px;
+    background: rgba(30, 26, 20, 0.9);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.12s, background 0.12s;
+    font-family: 'Hapna', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.65);
+}
+.gc-act-gang-opt:hover {
+    border-color: rgba(193,154,107,0.3);
+    background: rgba(40, 35, 27, 0.95);
+    color: rgba(255,255,255,0.85);
+}
+.gc-act-gang-opt input[type="checkbox"] {
+    accent-color: #c4a574;
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+}
+
+/* ---- Champ basique dans onglet Basic ---- */
+.ga-basic-field {
+    margin-bottom: 14px;
+}
+.ga-basic-field .jc-field-label {
+    display: block;
+    font-family: 'Hapna', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.72);
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+.ga-basic-field .jc-field-hint {
+    display: block;
+    font-family: 'Hapna', sans-serif;
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.3);
+    margin-top: 5px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+    .ga-tab-bar { gap: 0; }
+    .ga-tab { padding: 8px 10px; font-size: 0.78em; }
+    .ga-act-card { flex-wrap: wrap; }
+}

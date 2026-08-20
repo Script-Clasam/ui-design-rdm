@@ -1,0 +1,306 @@
+.recruit-paper-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.recruit-nearby-section {
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.recruit-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.8rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+}
+
+.recruit-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.recruit-section-title {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.recruit-section-title i {
+    color: #c4a574;
+    font-size: 1.3rem;
+}
+
+.recruit-refresh-btn {
+    background-image: url('../img/box_a_bg_1_2.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: none;
+    padding: 0.7rem 1.8rem;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+    border-radius: 4px;
+}
+
+.recruit-refresh-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.recruit-refresh-btn:active {
+    transform: translateY(0);
+}
+
+.recruit-refresh-btn i {
+    font-size: 1rem;
+}
+
+.recruit-refresh-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.nearby-players-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    min-height: 300px;
+    padding: 0;
+}
+
+.nearby-players-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.nearby-players-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.nearby-players-list::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #c4a574 0%, #8b6f47 100%);
+    border-radius: 10px;
+}
+
+.nearby-players-list::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #c4a574 0%, #c4a574 100%);
+}
+
+.recruit-empty-state {
+    grid-column: 1 / -1;
+    background-image: url('../img/box_a_bg_1.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    text-align: center;
+    border-radius: 6px;
+    min-height: 300px;
+}
+
+.recruit-empty-icon {
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 1.5rem;
+}
+
+.recruit-empty-text {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.recruit-empty-hint {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.recruit-loading {
+    grid-column: 1 / -1;
+    background-image: url('../img/box_a_bg_1.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    text-align: center;
+    border-radius: 6px;
+    min-height: 300px;
+}
+
+.recruit-loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(255, 255, 255, 0.15);
+    border-top: 5px solid #c4a574;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 2rem;
+}
+
+.recruit-loading-text {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.recruit-card {
+    background-image: url(../img/hud_menu_grey_dark.webp);
+    padding: 1.4rem 1.4rem 1.2rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: none;
+}
+
+.recruit-avatar {
+    display: none;
+}
+
+.recruit-avatar-placeholder {
+    display: none;
+}
+
+.recruit-info {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0.85rem;
+}
+
+.recruit-name {
+    color: white;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.recruit-job {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background-image: url('../img/box_a_bg_1_2.png');
+    background-size: 100% 100%;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.7);
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.recruit-job i {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.6);
+}
+
+.recruit-identifier {
+    display: none;
+}
+
+.recruit-distance {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.recruit-distance i {
+    font-size: 0.7rem;
+}
+
+.recruit-hire-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-image: url('../img/box_a_bg_1_2.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    padding: 0.65rem 1.2rem;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+}
+
+.recruit-hire-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.2);
+}
+
+.recruit-hire-btn i {
+    font-size: 0.9rem;
+}
+
+#recruitModal .member-modal-close-btn {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: filter 220ms ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#recruitModal .member-modal-close-icon {
+    width: 4.5rem;
+    height: 4.5rem;
+    display: block;
+}
+
+#recruitModal .member-modal-close-btn:hover {
+    filter: brightness(1.3);
+}
