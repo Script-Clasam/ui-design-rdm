@@ -73,10 +73,6 @@
   flex: 0 0 auto;
   padding: var(--sp-3) var(--sp-5) 0;
   background-color: rgba(1, 1, 1, 0.72);
-  background-image: var(--tex-wash);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .header-grid {
@@ -100,9 +96,6 @@
   text-transform: uppercase;
   color: var(--text-dim);
   background-color: rgba(13, 13, 13, 0.7);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -127,8 +120,8 @@
   height: 12px;
   background-color: transparent;
   background-image: var(--tex-bar);
-  background-size: auto 12px;
-  background-repeat: repeat-x;
+  background-size: 100% 12px;
+  background-repeat: no-repeat;
   background-position: center;
   opacity: 0.5;
 }
@@ -190,9 +183,6 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(1, 1, 1, 0.82);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .lock-content {
   display: flex;
@@ -296,8 +286,8 @@
   padding: var(--sp-3) var(--sp-2);
   background-color: transparent;
   background-image: var(--tex-rule-thin);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left bottom;
 }
 .dashboard-activity-icon {
@@ -401,9 +391,6 @@
   overflow: hidden;
   object-fit: cover;
   background-color: rgba(1, 1, 1, 0.6);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .member-avatar img,
 .recruit-avatar img,
@@ -426,9 +413,6 @@
   font-size: var(--fs-lg);
   color: var(--text-dim);
   background-color: rgba(1, 1, 1, 0.6);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 
 .member-details,
@@ -634,8 +618,8 @@
   padding: var(--sp-3) var(--sp-2);
   background-color: transparent;
   background-image: var(--tex-rule-thin);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left bottom;
 }
 .history-simple-icon { display: flex; align-items: center; justify-content: center; color: var(--text-faint); }

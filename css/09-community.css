@@ -39,9 +39,6 @@
   text-transform: uppercase;
   color: var(--text-faint);
   background-color: rgba(13, 13, 13, 0.7);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .comm-stat-value { font-family: var(--font-title); color: var(--text); }
 
@@ -107,8 +104,8 @@
   padding-top: var(--sp-3);
   background-color: transparent;
   background-image: var(--tex-rule-thin);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left top;
 }
 .comm-card-view-btn { padding: 0.4rem 0.8rem; }
@@ -130,10 +127,6 @@
   overflow: hidden;
   z-index: 2;
   background-color: rgba(1, 1, 1, 0.94);
-  background-image: var(--tex-grain-lo), var(--tex-plate);
-  background-size: 43px 43px, 100% 100%;
-  background-position: left top, center;
-  background-repeat: repeat, no-repeat;
 }
 .comm-detail-title {
   position: relative;
@@ -148,10 +141,10 @@
   text-transform: uppercase;
   color: var(--text);
   background-color: rgba(1, 1, 1, 0.55);
-  background-image: var(--tex-bar), var(--tex-grain-lo);
-  background-size: auto 12px, 43px 43px;
-  background-repeat: repeat-x, repeat;
-  background-position: center bottom, left top;
+  background-image: var(--tex-bar);
+  background-size: 100% 12px;
+  background-repeat: no-repeat;
+  background-position: center bottom;
 }
 .comm-detail-close { position: absolute; top: var(--sp-3); right: var(--sp-3); }
 .comm-detail-jobname { font-family: var(--font-title); font-size: var(--fs-sm); color: var(--red); }
@@ -175,9 +168,6 @@
   text-transform: uppercase;
   color: var(--text-faint);
   background-color: rgba(27, 27, 27, 0.8);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .comm-detail-installed-badge { color: var(--red); }
 .comm-detail-author-row { display: flex; align-items: center; gap: var(--sp-3); }
@@ -222,8 +212,8 @@
   padding: var(--sp-2) var(--sp-1);
   background-color: transparent;
   background-image: var(--tex-rule-thin);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left bottom;
 }
 .comm-grade-level { font-family: var(--font-title); color: var(--text-faint); width: 2rem; }
@@ -245,9 +235,6 @@
   user-select: text;
   cursor: text;
   background-color: rgba(1, 1, 1, 0.65);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 
 /* --------------------------------------------------------------------------
@@ -267,8 +254,8 @@
   padding: 0 var(--sp-5);
   background-color: transparent;
   background-image: var(--tex-rule-wide);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left bottom;
 }
 

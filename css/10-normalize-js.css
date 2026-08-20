@@ -26,8 +26,8 @@ thead th {
   white-space: nowrap;
   background-color: rgba(1, 1, 1, 0.55);
   background-image: var(--tex-rule-wide);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left bottom;
 }
 tbody td {
@@ -37,8 +37,8 @@ tbody td {
   vertical-align: middle;
   background-color: transparent;
   background-image: var(--tex-rule-thin);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left bottom;
 }
 tbody tr:hover td { color: var(--text); }

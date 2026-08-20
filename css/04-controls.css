@@ -32,9 +32,6 @@ button,
   color: var(--text-dim);
   white-space: nowrap;
   background-color: rgba(1, 1, 1, 0.55);
-  background-image: var(--tex-button);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
   transition: color 0.14s linear, background-color 0.14s linear;
 }
 
@@ -74,9 +71,6 @@ button:hover,
 .job-shop-buy-btn:hover {
   color: var(--text);
   background-color: rgba(45, 45, 45, 0.85);
-  background-image: var(--tex-button);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 button:hover::after,
@@ -168,9 +162,6 @@ button.disabled,
 .jc-wh-btn-save:hover {
   color: var(--text);
   background-color: var(--red-hover);
-  background-image: var(--tex-button);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 /* Boutons destructeurs : meme encre rouge, plaque sombre. --------------- */
@@ -186,9 +177,6 @@ button.disabled,
 .member-btn-warning {
   color: var(--red);
   background-color: rgba(13, 13, 13, 0.82);
-  background-image: var(--tex-button);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 .member-btn-danger:hover,
 .fire-btn:hover,
@@ -202,9 +190,6 @@ button.disabled,
 .member-btn-warning:hover {
   color: var(--text);
   background-color: var(--red);
-  background-image: var(--tex-button);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
 }
 
 /* Boutons discrets : annuler / retour. ---------------------------------- */
@@ -320,8 +305,8 @@ button.disabled,
   height: 4px;
   background-color: transparent;
   background-image: var(--tex-rule);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: center;
   -webkit-mask-image: none;
   mask-image: none;
@@ -420,9 +405,6 @@ button.disabled,
   display: inline-flex;
   pointer-events: none;
   background-color: rgba(27, 27, 27, 0.8);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .jc-badge-disabled { color: var(--text-faint); opacity: 0.6; }
 .jc-badge-db,
@@ -575,9 +557,6 @@ input[type='checkbox'] {
   width: 42px;
   height: 18px;
   background-color: rgba(1, 1, 1, 0.7);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
   transition: background-color 0.16s linear;
 }
 .toggle-slider::before {
@@ -664,10 +643,6 @@ input[type='checkbox'] {
 .history-search-container input,
 .gc-blip-search,
 .jc-blip-search {
-  background-image: var(--tex-search);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .currency-input,
@@ -677,10 +652,6 @@ input[type='checkbox'] {
 .bonus-input,
 .job-shop-qty-input,
 .code-input-field {
-  background-image: var(--tex-amount);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 /* Socle d'icone du jeu sous les pictogrammes de statistique. */

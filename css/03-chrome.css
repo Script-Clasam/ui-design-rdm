@@ -189,10 +189,6 @@
 .jc-main-content,
 .job-shop-container {
   background-color: rgba(1, 1, 1, 0.90);
-  background-image: var(--tex-grain-lo), var(--tex-plate);
-  background-size: 43px 43px, 100% 100%;
-  background-position: left top, center;
-  background-repeat: repeat, no-repeat;
 }
 
 .rsm-plate-2,
@@ -211,10 +207,6 @@
 .comm-confirm-modal,
 .comm-confirm-delete-modal {
   background-color: rgba(1, 1, 1, 0.94);
-  background-image: var(--tex-grain-lo), var(--tex-plate-2);
-  background-size: 43px 43px, 100% 100%;
-  background-position: left top, center;
-  background-repeat: repeat, no-repeat;
 }
 
 /* Plaque de fiche : grain fin tuile a sa taille native (43x43). */
@@ -250,9 +242,6 @@
 .gcboss-stat,
 .gcboss-balance-box {
   background-color: rgba(13, 13, 13, 0.72);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
   transition: background-color 0.16s linear;
 }
 
@@ -267,9 +256,6 @@
 .comm-card:hover,
 .gcboss-member-card:hover {
   background-color: rgba(27, 27, 27, 0.86);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 
 /* --------------------------------------------------------------------------
@@ -279,8 +265,8 @@
   height: 4px;
   background-color: transparent;
   background-image: var(--tex-rule-wide);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left center;
   opacity: 0.5;
 }
@@ -290,8 +276,8 @@
   align-self: stretch;
   background-color: transparent;
   background-image: var(--tex-vrule);
-  background-size: 4px auto;
-  background-repeat: repeat-y;
+  background-size: 4px 100%;
+  background-repeat: no-repeat;
   background-position: center top;
   opacity: 0.4;
 }
@@ -347,8 +333,8 @@
   height: 12px;
   background-color: transparent;
   background-image: var(--tex-bar);
-  background-size: auto 12px;
-  background-repeat: repeat-x;
+  background-size: 100% 12px;
+  background-repeat: no-repeat;
   background-position: left center;
   opacity: 0.55;
 }

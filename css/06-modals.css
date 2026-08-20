@@ -114,10 +114,10 @@
   gap: var(--sp-3);
   padding: var(--sp-4) var(--sp-5);
   background-color: rgba(1, 1, 1, 0.55);
-  background-image: var(--tex-bar), var(--tex-grain-lo);
-  background-size: auto 12px, 43px 43px;
-  background-repeat: repeat-x, repeat;
-  background-position: center bottom, left top;
+  background-image: var(--tex-bar);
+  background-size: 100% 12px;
+  background-repeat: no-repeat;
+  background-position: center bottom;
 }
 .member-paper-header h2,
 .member-paper-header h3,
@@ -198,10 +198,10 @@
   gap: var(--sp-3);
   padding: var(--sp-4) var(--sp-5);
   background-color: rgba(1, 1, 1, 0.5);
-  background-image: var(--tex-rule-wide), var(--tex-grain-lo);
-  background-size: auto 4px, 43px 43px;
-  background-repeat: repeat-x, repeat;
-  background-position: left top, left top;
+  background-image: var(--tex-rule-wide);
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
+  background-position: left top;
 }
 .member-form-actions,
 .job-offer-buttons,
@@ -255,18 +255,12 @@
   font-size: var(--fs-sm);
   color: var(--text);
   background-color: rgba(1, 1, 1, 0.55);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .member-avatar-preview {
   width: 72px;
   height: 72px;
   overflow: hidden;
   background-color: rgba(1, 1, 1, 0.6);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .member-avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -278,9 +272,6 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(1, 1, 1, 0.78);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 
 /* --------------------------------------------------------------------------
@@ -347,8 +338,8 @@
   padding-bottom: var(--sp-2);
   background-color: transparent;
   background-image: var(--tex-rule-thin);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left bottom;
 }
 .job-offer-label {
@@ -424,16 +415,10 @@
 .permission-item {
   padding: 0.55rem 0.7rem;
   background-color: rgba(13, 13, 13, 0.62);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
   transition: background-color 0.14s linear;
 }
 .permission-item:hover {
   background-color: rgba(27, 27, 27, 0.8);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .permission-text {
   display: flex;
@@ -469,8 +454,8 @@
   padding: 0 var(--sp-5);
   background-color: rgba(1, 1, 1, 0.4);
   background-image: var(--tex-rule-wide);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left bottom;
 }
 .history-stats {
@@ -537,8 +522,8 @@
   color: var(--text-faint);
   background-color: rgba(1, 1, 1, 0.5);
   background-image: var(--tex-rule-wide);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left bottom;
 }
 .history-table-body {
@@ -549,16 +534,13 @@
 .history-row {
   background-color: transparent;
   background-image: var(--tex-rule-thin);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left bottom;
   transition: background-color 0.14s linear;
 }
 .history-row:hover {
   background-color: rgba(27, 27, 27, 0.7);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .history-col-type,
 .history-col-player,
@@ -585,9 +567,6 @@
   min-height: 0;
   padding: var(--sp-3);
   background-color: rgba(1, 1, 1, 0.45);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .chart-container canvas { max-height: 100%; }
 .chart-legend,
@@ -636,9 +615,6 @@
   gap: var(--sp-3);
   padding: var(--sp-3) var(--sp-4);
   background-color: rgba(1, 1, 1, 0.55);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .storage-info-icon { width: 26px; height: 26px; }
 .storage-info-text { display: flex; flex-direction: column; }
@@ -736,8 +712,8 @@
   flex: 0 0 4px;
   background-color: transparent;
   background-image: var(--tex-rule);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: center;
   opacity: 0.55;
   margin: var(--sp-3) 0 var(--sp-2);

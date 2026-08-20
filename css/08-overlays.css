@@ -62,10 +62,6 @@
   flex: 0 0 auto;
   padding: var(--sp-3) var(--sp-5) 0;
   background-color: rgba(1, 1, 1, 0.72);
-  background-image: var(--tex-wash);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 .gcboss-header-grid {
   display: grid;
@@ -87,9 +83,6 @@
   text-transform: uppercase;
   color: var(--text-dim);
   background-color: rgba(13, 13, 13, 0.7);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -100,8 +93,8 @@
   height: 12px;
   background-color: transparent;
   background-image: var(--tex-bar);
-  background-size: auto 12px;
-  background-repeat: repeat-x;
+  background-size: 100% 12px;
+  background-repeat: no-repeat;
   background-position: center;
   opacity: 0.5;
 }
@@ -190,8 +183,8 @@
   padding: var(--sp-3) var(--sp-2);
   background-color: transparent;
   background-image: var(--tex-rule-thin);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left bottom;
 }
 .gcboss-bank-tx-icon,
@@ -214,9 +207,6 @@
   gap: var(--sp-3);
   padding: var(--sp-6);
   background-color: rgba(13, 13, 13, 0.7);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .gcboss-noto-emblem { font-size: 2.6rem; color: var(--red); }
 .gcboss-noto-rank {
@@ -233,8 +223,8 @@
   height: 12px;
   background-color: rgba(1, 1, 1, 0.7);
   background-image: var(--tex-bar);
-  background-size: auto 12px;
-  background-repeat: repeat-x;
+  background-size: 100% 12px;
+  background-repeat: no-repeat;
   background-position: center;
 }
 .gcboss-noto-progress-bar {
@@ -319,10 +309,6 @@
   gap: var(--sp-3);
   padding: var(--sp-3) var(--sp-5);
   background-color: rgba(1, 1, 1, 0.72);
-  background-image: var(--tex-wash);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 .job-shop-title {
   font-family: var(--font-display);
@@ -336,8 +322,8 @@
   height: 12px;
   background-color: transparent;
   background-image: var(--tex-bar);
-  background-size: auto 12px;
-  background-repeat: repeat-x;
+  background-size: 100% 12px;
+  background-repeat: no-repeat;
   background-position: center;
   opacity: 0.5;
 }
@@ -356,9 +342,6 @@
   letter-spacing: var(--track);
   color: var(--text-dim);
   background-color: rgba(13, 13, 13, 0.7);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .payer-company { color: var(--red); text-transform: uppercase; }
 .job-shop-items {
@@ -444,18 +427,14 @@
   padding: var(--sp-3) var(--sp-5);
   text-align: center;
   background-color: rgba(1, 1, 1, 0.72);
-  background-image: var(--tex-wash);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 .code-title { font-family: var(--font-display); letter-spacing: var(--track-w); text-transform: uppercase; color: var(--text); }
 .code-input-spacer {
   height: 12px;
   background-color: transparent;
   background-image: var(--tex-bar);
-  background-size: auto 12px;
-  background-repeat: repeat-x;
+  background-size: 100% 12px;
+  background-repeat: no-repeat;
   background-position: center;
   opacity: 0.5;
 }
@@ -506,9 +485,6 @@
   font-size: var(--fs-sm);
   color: var(--text);
   background-color: rgba(1, 1, 1, 0.92);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
   animation: rsm-toast-in 0.22s ease-out;
 }
 .notification::after,

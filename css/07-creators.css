@@ -26,10 +26,6 @@
   min-height: 0;
   overflow: hidden;
   background-color: rgba(1, 1, 1, 0.92);
-  background-image: var(--tex-grain-lo), var(--tex-plate);
-  background-size: 43px 43px, 100% 100%;
-  background-position: left top, center;
-  background-repeat: repeat, no-repeat;
 }
 
 /* --------------------------------------------------------------------------
@@ -101,9 +97,6 @@
 .gc-nav-item.active {
   color: var(--text);
   background-color: var(--red-soft);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .jc-main-nav-item.active::before,
 .gc-main-nav-item.active::before,
@@ -126,8 +119,8 @@
   padding: var(--sp-4) var(--sp-3) 0;
   background-color: transparent;
   background-image: var(--tex-rule);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left top;
 }
 .jc-sidebar-profile {
@@ -194,8 +187,8 @@
   gap: var(--sp-3);
   background-color: rgba(1, 1, 1, 0.4);
   background-image: var(--tex-vrule);
-  background-size: 4px auto;
-  background-repeat: repeat-y;
+  background-size: 4px 100%;
+  background-repeat: no-repeat;
   background-position: right top;
 }
 .jc-jobs-sidebar-top { flex: 0 0 auto; display: flex; align-items: center; gap: var(--sp-2); }
@@ -216,22 +209,13 @@
   padding: var(--sp-3);
   cursor: pointer;
   background-color: rgba(13, 13, 13, 0.55);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
   transition: background-color 0.14s linear;
 }
 .jc-job-item:hover {
   background-color: rgba(31, 31, 31, 0.8);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .jc-job-item.active {
   background-color: var(--red-soft);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .jc-job-item-name {
   font-family: var(--font-display);
@@ -302,8 +286,8 @@
   gap: var(--sp-3);
   background-color: rgba(1, 1, 1, 0.4);
   background-image: var(--tex-vrule);
-  background-size: 4px auto;
-  background-repeat: repeat-y;
+  background-size: 4px 100%;
+  background-repeat: no-repeat;
   background-position: right top;
 }
 .jc-nav-items {
@@ -323,8 +307,8 @@
   padding: var(--sp-3) var(--sp-3) 0;
   background-color: transparent;
   background-image: var(--tex-rule);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left top;
 }
 .jc-editing-indicator {
@@ -380,8 +364,8 @@
   padding-bottom: var(--sp-2);
   background-color: transparent;
   background-image: var(--tex-rule-wide);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left bottom;
 }
 
@@ -550,9 +534,6 @@
   font-size: var(--fs-xs);
   color: var(--text-dim);
   background-color: rgba(13, 13, 13, 0.6);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 
 .jc-add-dynamic-btn,
@@ -586,10 +567,10 @@
   margin: var(--sp-4) calc(var(--sp-6) * -1) calc(var(--sp-7) * -1);
   padding: var(--sp-4) var(--sp-6);
   background-color: rgba(1, 1, 1, 0.92);
-  background-image: var(--tex-rule-wide), var(--tex-grain-lo);
-  background-size: auto 4px, 43px 43px;
-  background-repeat: repeat-x, repeat;
-  background-position: left top, left top;
+  background-image: var(--tex-rule-wide);
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
+  background-position: left top;
 }
 
 /* --------------------------------------------------------------------------
@@ -628,9 +609,6 @@
   max-height: 16rem;
   overflow-y: auto;
   background-color: rgba(1, 1, 1, 0.97);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .jc-csel-opt,
 .comm-custom-select-option {
@@ -652,9 +630,6 @@
   padding: 0.5rem 0.7rem;
   cursor: pointer;
   background-color: rgba(1, 1, 1, 0.6);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .jc-blip-preview-img,
 .gc-blip-preview-img { width: 28px; height: 28px; object-fit: contain; }
@@ -674,9 +649,6 @@
   overflow-y: auto;
   padding: var(--sp-3);
   background-color: rgba(1, 1, 1, 0.97);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .jc-blip-grid,
 .gc-blip-grid {
@@ -732,9 +704,6 @@
   padding: var(--sp-4) var(--sp-5);
   min-height: 18rem;
   background-color: rgba(13, 13, 13, 0.7);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .jc-dash-chart-title { font-family: var(--font-display); letter-spacing: var(--track-w); text-transform: uppercase; }
 .jc-dash-chart-subtitle { font-size: var(--fs-xs); color: var(--text-faint); }
@@ -783,9 +752,6 @@
   align-items: center;
   padding: var(--sp-3);
   background-color: rgba(13, 13, 13, 0.6);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .jc-wh-job-info { display: flex; flex-direction: column; min-width: 0; }
 .jc-wh-job-name { font-family: var(--font-display); letter-spacing: var(--track); color: var(--text); }
@@ -801,9 +767,6 @@
   gap: var(--sp-1);
   padding: var(--sp-4);
   background-color: rgba(13, 13, 13, 0.6);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .jc-update-title { font-family: var(--font-display); letter-spacing: var(--track-w); text-transform: uppercase; color: var(--text); }
 .jc-update-version { font-family: var(--font-title); color: var(--red); }
@@ -833,9 +796,6 @@
   letter-spacing: var(--track);
   color: var(--text-dim);
   background-color: rgba(13, 13, 13, 0.7);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .jc-cs-source-live { color: var(--text); }
 .jc-cs-source-defaults { color: var(--text-faint); }
@@ -851,8 +811,8 @@
   gap: var(--sp-2);
   background-color: transparent;
   background-image: var(--tex-rule-wide);
-  background-size: auto 4px;
-  background-repeat: repeat-x;
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
   background-position: left bottom;
 }
 .ga-tab-body { padding-top: var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-4); }
@@ -900,9 +860,6 @@
   text-transform: uppercase;
   color: var(--text-dim);
   background-color: rgba(1, 1, 1, 0.88);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .jc-minimize-banner i,
 .gc-minimize-banner i { color: var(--red); }
@@ -926,9 +883,6 @@
   gap: var(--sp-3);
   padding: var(--sp-4) var(--sp-6);
   background-color: rgba(1, 1, 1, 0.86);
-  background-image: var(--tex-grain-lo);
-  background-size: 43px 43px;
-  background-repeat: repeat;
 }
 .jc-placement-guide-badge {
   display: flex;
