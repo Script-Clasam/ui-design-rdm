@@ -191,7 +191,7 @@
   gap: var(--sp-3);
   padding: var(--sp-4) var(--sp-5);
   background-color: rgba(1, 1, 1, 0.5);
-  background-image: var(--tex-rule-wide), var(--tex-strip);
+  background-image: var(--tex-rule-wide), var(--tex-strip-b);
   background-size: auto 4px, auto 100%;
   background-repeat: repeat-x, repeat-x;
   background-position: left top, left center;

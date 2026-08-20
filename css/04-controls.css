@@ -652,3 +652,65 @@ input[type='checkbox'] {
 #historyClearSearch::after { display: none; }
 .search-clear-btn:hover,
 #historyClearSearch:hover { color: var(--red); background-color: transparent; background-image: none; }
+
+/* --------------------------------------------------------------------------
+   Plaques de champ dediees : le jeu a une planche pour la recherche et une
+   pour les montants. Toutes deux sont repetees a leur hauteur native.
+   -------------------------------------------------------------------------- */
+.employees-search-input,
+.jc-search-input,
+.comm-search-input,
+.jc-wh-search,
+.history-search-container input,
+.gc-blip-search,
+.jc-blip-search {
+  background-image: var(--tex-search);
+  background-size: auto 100%;
+  background-repeat: repeat-x;
+  background-position: left center;
+}
+
+.currency-input,
+.grade-salary-input,
+.register-amount-input,
+.gcboss-bank-input,
+.bonus-input,
+.job-shop-qty-input,
+.code-input-field {
+  background-image: var(--tex-amount);
+  background-size: auto 100%;
+  background-repeat: repeat-x;
+  background-position: left center;
+}
+
+/* Socle d'icone du jeu sous les pictogrammes de statistique. */
+.dashboard-stat-icon,
+.jc-dash-stat-icon,
+.gcboss-stat-icon,
+.gcboss-noto-card-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+}
+.dashboard-stat-icon::before,
+.jc-dash-stat-icon::before,
+.gcboss-stat-icon::before,
+.gcboss-noto-card-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--ink-soft);
+  -webkit-mask-image: var(--tex-label-sq);
+  -webkit-mask-size: 34px 34px;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-image: var(--tex-label-sq);
+  mask-size: 34px 34px;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}

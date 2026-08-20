@@ -205,7 +205,7 @@
 .comm-confirm-modal,
 .comm-confirm-delete-modal {
   background-color: rgba(1, 1, 1, 0.94);
-  background-image: var(--tex-plate);
+  background-image: var(--tex-plate-2);
   background-size: 197px 197px;
   background-position: center top;
   background-repeat: repeat;
