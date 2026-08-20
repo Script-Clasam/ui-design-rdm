@@ -157,7 +157,8 @@
   gap: var(--sp-3);
   align-content: start;
 }
-.gcboss-member-card { display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-4); min-width: 0; }
+.gcboss-member-card { display: flex; align-items: center; gap: var(--sp-4); padding: var(--sp-4); min-width: 0; }
+.gcboss-member-actions-modern { margin-left: auto; flex: 0 0 auto; }
 
 .gcboss-bank {
   display: grid;

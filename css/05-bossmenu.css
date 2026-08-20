@@ -373,8 +373,8 @@
 
 .member-card-modern {
   display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
+  align-items: center;
+  gap: var(--sp-4);
   padding: var(--sp-4);
   min-width: 0;
 }
@@ -468,14 +468,24 @@
 
 .member-status,
 .gcboss-member-status {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-  font-size: var(--fs-xs);
-  letter-spacing: var(--track);
-  text-transform: uppercase;
-  color: var(--text-faint);
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  z-index: 2;
+  width: 9px;
+  height: 9px;
+  background-color: var(--text-faint);
+  -webkit-mask-image: var(--tex-box);
+  -webkit-mask-size: 9px 9px;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: var(--tex-box);
+  mask-size: 9px 9px;
+  mask-repeat: no-repeat;
 }
+.member-status.online,
+.gcboss-member-status.online { background-color: var(--text); }
+.member-status.offline,
+.gcboss-member-status.offline { background-color: var(--text-faint); }
 .member-status-indicator,
 .status-dot,
 .pulse-dot {
@@ -500,7 +510,7 @@
 .gcboss-member-actions-modern,
 .player-actions,
 .recruit-card .recruit-hire-btn { display: flex; align-items: center; gap: var(--sp-2); }
-.member-actions-modern { margin-top: auto; }
+.member-actions-modern { margin-left: auto; flex: 0 0 auto; }
 
 .more-badge {
   font-size: var(--fs-xs);
