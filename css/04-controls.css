@@ -188,6 +188,9 @@ button.disabled,
 .member-btn-warning {
   color: var(--red);
   background-color: rgba(13, 13, 13, 0.82);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
 }
 .member-btn-danger:hover,
 .fire-btn:hover,

@@ -422,7 +422,12 @@
   background-repeat: repeat;
   transition: background-color 0.14s linear;
 }
-.permission-item:hover { background-color: rgba(27, 27, 27, 0.8); }
+.permission-item:hover {
+  background-color: rgba(27, 27, 27, 0.8);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
 .permission-text {
   display: flex;
   align-items: center;
@@ -542,7 +547,12 @@
   background-position: left bottom;
   transition: background-color 0.14s linear;
 }
-.history-row:hover { background-color: rgba(27, 27, 27, 0.7); }
+.history-row:hover {
+  background-color: rgba(27, 27, 27, 0.7);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
 .history-col-type,
 .history-col-player,
 .history-col-value,

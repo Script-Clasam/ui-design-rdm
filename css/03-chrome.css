@@ -259,7 +259,12 @@
 .job-shop-item:hover,
 .jc-preview-card:hover,
 .comm-card:hover,
-.gcboss-member-card:hover { background-color: rgba(27, 27, 27, 0.86); }
+.gcboss-member-card:hover {
+  background-color: rgba(27, 27, 27, 0.86);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
 
 /* --------------------------------------------------------------------------
    Filets horizontaux et verticaux (art 1D : repetition sans deformation).
