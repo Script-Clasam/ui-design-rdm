@@ -33,8 +33,8 @@ button,
   white-space: nowrap;
   background-color: rgba(1, 1, 1, 0.55);
   background-image: var(--tex-button);
-  background-size: auto 100%;
-  background-repeat: repeat-x;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   transition: color 0.14s linear, background-color 0.14s linear;
 }
 
@@ -75,8 +75,8 @@ button:hover,
   color: var(--text);
   background-color: rgba(45, 45, 45, 0.85);
   background-image: var(--tex-button);
-  background-size: auto 100%;
-  background-repeat: repeat-x;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 button:hover::after,
@@ -169,8 +169,8 @@ button.disabled,
   color: var(--text);
   background-color: var(--red-hover);
   background-image: var(--tex-button);
-  background-size: auto 100%;
-  background-repeat: repeat-x;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 /* Boutons destructeurs : meme encre rouge, plaque sombre. --------------- */
@@ -187,8 +187,8 @@ button.disabled,
   color: var(--red);
   background-color: rgba(13, 13, 13, 0.82);
   background-image: var(--tex-button);
-  background-size: auto 100%;
-  background-repeat: repeat-x;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 .member-btn-danger:hover,
 .fire-btn:hover,
@@ -203,8 +203,8 @@ button.disabled,
   color: var(--text);
   background-color: var(--red);
   background-image: var(--tex-button);
-  background-size: auto 100%;
-  background-repeat: repeat-x;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 /* Boutons discrets : annuler / retour. ---------------------------------- */
@@ -665,9 +665,9 @@ input[type='checkbox'] {
 .gc-blip-search,
 .jc-blip-search {
   background-image: var(--tex-search);
-  background-size: auto 100%;
-  background-repeat: repeat-x;
-  background-position: left center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .currency-input,
@@ -678,9 +678,9 @@ input[type='checkbox'] {
 .job-shop-qty-input,
 .code-input-field {
   background-image: var(--tex-amount);
-  background-size: auto 100%;
-  background-repeat: repeat-x;
-  background-position: left center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* Socle d'icone du jeu sous les pictogrammes de statistique. */

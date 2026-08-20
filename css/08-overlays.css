@@ -63,9 +63,9 @@
   padding: var(--sp-3) var(--sp-5) 0;
   background-color: rgba(1, 1, 1, 0.72);
   background-image: var(--tex-wash);
-  background-size: auto 100%;
-  background-repeat: repeat-x;
-  background-position: center top;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .gcboss-header-grid {
   display: grid;
@@ -320,8 +320,8 @@
   padding: var(--sp-3) var(--sp-5);
   background-color: rgba(1, 1, 1, 0.72);
   background-image: var(--tex-wash);
-  background-size: auto 100%;
-  background-repeat: repeat-x;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   background-position: center;
 }
 .job-shop-title {
@@ -445,8 +445,8 @@
   text-align: center;
   background-color: rgba(1, 1, 1, 0.72);
   background-image: var(--tex-wash);
-  background-size: auto 100%;
-  background-repeat: repeat-x;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   background-position: center;
 }
 .code-title { font-family: var(--font-display); letter-spacing: var(--track-w); text-transform: uppercase; color: var(--text); }

@@ -95,12 +95,10 @@
                (les poser brutes donne le gris laiteux qu'on veut eviter).   */
 
   /* sombres */
-  --tex-plate:    url('../img/box_s_bg_1.png');           /* 197x197 — grands panneaux */
-  --tex-plate-2:  url('../img/box_s_bg_1_b.png');         /* 197x197 — variante        */
-  --tex-strip:    url('../img/box_a_bg_1.png');           /* 432x100 — bandes larges   */
-  --tex-strip-b:  url('../img/box_a_bg_1_2.png');         /* 432x100 — variante        */
+  --tex-plate:    url('../img/box_a_bg_1.png');           /* 432x100 — planche uniforme, etiree */
+  --tex-plate-2:  url('../img/box_a_bg_1_2.png');         /* 432x100 — variante                 */
   --tex-button:   url('../img/menu_button_1.png');        /* 224x44  — plaque bouton   */
-  --tex-grain-lo: url('../img/box_bg_1.png');             /* 43x43   — grain de fiche  */
+  --tex-grain-lo: url('../img/box_bg_1.png');             /* 43x43   — SEULE texture repetable  */
   --tex-wash:     url('../img/overlay.png');              /* 1686x448 — lavis d'en-tete */
   --tex-backdrop: url('../img/background.png');           /* 1600x950 — decor d'apercu */
 

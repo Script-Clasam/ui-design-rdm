@@ -175,7 +175,13 @@
 
 /* --------------------------------------------------------------------------
    Plaques : le fond visible d'une surface est toujours une texture du jeu,
-   posee sur un aplat sombre. Les tuiles gardent leur taille native.
+   posee sur un aplat sombre.
+
+   Une seule texture est REPETEE : box_bg_1 (43x43), mesuree uniforme, dont
+   les raccords se lisent comme un tissage fin. Les grandes planches
+   (box_a_bg_1) sont ETIREES sur la boite : elles sont uniformes et sans
+   ornement, c'est ainsi que le jeu les emploie au DrawSprite. Repeter une
+   planche de 197 px dessinerait sa grille de raccords a l'ecran.
    -------------------------------------------------------------------------- */
 .rsm-plate,
 .boss-panel,
@@ -183,10 +189,10 @@
 .jc-main-content,
 .job-shop-container {
   background-color: rgba(1, 1, 1, 0.90);
-  background-image: var(--tex-plate);
-  background-size: 197px 197px;
-  background-position: center top;
-  background-repeat: repeat;
+  background-image: var(--tex-grain-lo), var(--tex-plate);
+  background-size: 43px 43px, 100% 100%;
+  background-position: left top, center;
+  background-repeat: repeat, no-repeat;
 }
 
 .rsm-plate-2,
@@ -205,10 +211,10 @@
 .comm-confirm-modal,
 .comm-confirm-delete-modal {
   background-color: rgba(1, 1, 1, 0.94);
-  background-image: var(--tex-plate-2);
-  background-size: 197px 197px;
-  background-position: center top;
-  background-repeat: repeat;
+  background-image: var(--tex-grain-lo), var(--tex-plate-2);
+  background-size: 43px 43px, 100% 100%;
+  background-position: left top, center;
+  background-repeat: repeat, no-repeat;
 }
 
 /* Plaque de fiche : grain fin tuile a sa taille native (43x43). */

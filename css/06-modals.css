@@ -115,10 +115,10 @@
   gap: var(--sp-3);
   padding: var(--sp-4) var(--sp-5);
   background-color: rgba(1, 1, 1, 0.55);
-  background-image: var(--tex-bar), var(--tex-strip);
-  background-size: auto 12px, auto 100%;
-  background-repeat: repeat-x, repeat-x;
-  background-position: center bottom, left center;
+  background-image: var(--tex-bar), var(--tex-grain-lo);
+  background-size: auto 12px, 43px 43px;
+  background-repeat: repeat-x, repeat;
+  background-position: center bottom, left top;
 }
 .member-paper-header h2,
 .member-paper-header h3,
@@ -199,10 +199,10 @@
   gap: var(--sp-3);
   padding: var(--sp-4) var(--sp-5);
   background-color: rgba(1, 1, 1, 0.5);
-  background-image: var(--tex-rule-wide), var(--tex-strip-b);
-  background-size: auto 4px, auto 100%;
-  background-repeat: repeat-x, repeat-x;
-  background-position: left top, left center;
+  background-image: var(--tex-rule-wide), var(--tex-grain-lo);
+  background-size: auto 4px, 43px 43px;
+  background-repeat: repeat-x, repeat;
+  background-position: left top, left top;
 }
 .member-form-actions,
 .job-offer-buttons,
@@ -676,31 +676,87 @@
 /* --------------------------------------------------------------------------
    Caisse enregistreuse
    -------------------------------------------------------------------------- */
+/* La facture est une petite ardoise : elle se lit d'un coup d'oeil, donc
+   elle reste etroite et le montant porte tout le poids visuel. */
+.register-modal { width: min(400px, 90vw); }
+
+.register-modal-header { padding: var(--sp-3) var(--sp-4); }
+.register-header-icon { width: 22px; height: 22px; opacity: 0.75; }
+.register-modal-header h3 { font-size: var(--fs-md); }
+
+.register-modal-body { padding: var(--sp-6) var(--sp-5); gap: var(--sp-4); }
+
 .register-hint { font-size: var(--fs-xs); color: var(--text-faint); }
-.register-pending { display: flex; flex-direction: column; align-items: center; gap: var(--sp-2); text-align: center; }
-.register-pending-label { font-size: var(--fs-xs); letter-spacing: var(--track-w); text-transform: uppercase; color: var(--text-faint); }
-.register-pending-status { display: inline-flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-xs); color: var(--red); text-transform: uppercase; letter-spacing: var(--track); }
+
+.register-pending,
+.register-invoice-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  text-align: center;
+}
+
+.register-invoice-icon { display: flex; margin-bottom: var(--sp-1); }
+/* Artwork d'objet : tel quel, ni teinte ni filtre. */
+.register-icon-img { width: 56px; height: 56px; object-fit: contain; }
+
+.register-pending-label {
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.register-pending-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  color: var(--red);
+}
+
 .register-pending-amount,
-.register-invoice-amount { font-family: var(--font-title); font-size: var(--fs-2xl); color: var(--text); }
+.register-invoice-amount {
+  font-family: var(--font-title);
+  font-size: var(--fs-3xl);
+  line-height: 1.05;
+  color: var(--text);
+}
 .register-pending-item,
-.register-invoice-item { font-size: var(--fs-sm); color: var(--text-dim); }
-.register-invoice-display { display: flex; flex-direction: column; align-items: center; gap: var(--sp-2); text-align: center; }
-.register-invoice-icon { display: flex; }
-.register-icon-img { width: 48px; height: 48px; }
+.register-invoice-item {
+  font-size: var(--fs-sm);
+  letter-spacing: var(--track);
+  color: var(--text-dim);
+}
+
 .register-invoice-separator {
-  width: 60%;
+  width: 70%;
   height: 4px;
+  flex: 0 0 4px;
   background-color: transparent;
   background-image: var(--tex-rule);
   background-size: auto 4px;
   background-repeat: repeat-x;
   background-position: center;
-  opacity: 0.5;
-  margin: var(--sp-2) 0;
+  opacity: 0.55;
+  margin: var(--sp-3) 0 var(--sp-2);
 }
+
 .register-invoice-from { font-size: var(--fs-sm); color: var(--text-dim); }
-.register-invoice-job { font-size: var(--fs-xs); letter-spacing: var(--track); text-transform: uppercase; color: var(--red); }
+.register-invoice-job {
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--red);
+}
+
 .register-amount-input { font-family: var(--font-title); font-size: var(--fs-lg); text-align: center; }
+
+/* Pied : deux actions de meme poids, jamais un bouton qui ecrase l'autre. */
+.register-modal-footer { padding: var(--sp-3) var(--sp-4); gap: var(--sp-2); }
+.register-modal-footer .register-btn { flex: 1 1 0; }
 
 /* --------------------------------------------------------------------------
    Prime (bonus)

@@ -26,10 +26,10 @@
   min-height: 0;
   overflow: hidden;
   background-color: rgba(1, 1, 1, 0.92);
-  background-image: var(--tex-plate);
-  background-size: 197px 197px;
-  background-position: center top;
-  background-repeat: repeat;
+  background-image: var(--tex-grain-lo), var(--tex-plate);
+  background-size: 43px 43px, 100% 100%;
+  background-position: left top, center;
+  background-repeat: repeat, no-repeat;
 }
 
 /* --------------------------------------------------------------------------
@@ -101,10 +101,9 @@
 .gc-nav-item.active {
   color: var(--text);
   background-color: var(--red-soft);
-  background-image: var(--tex-strip);
-  background-size: auto 100%;
-  background-repeat: repeat-x;
-  background-position: left center;
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
 }
 .jc-main-nav-item.active::before,
 .gc-main-nav-item.active::before,
@@ -587,10 +586,10 @@
   margin: var(--sp-4) calc(var(--sp-6) * -1) calc(var(--sp-7) * -1);
   padding: var(--sp-4) var(--sp-6);
   background-color: rgba(1, 1, 1, 0.92);
-  background-image: var(--tex-rule-wide), var(--tex-strip);
-  background-size: auto 4px, auto 100%;
-  background-repeat: repeat-x, repeat-x;
-  background-position: left top, left center;
+  background-image: var(--tex-rule-wide), var(--tex-grain-lo);
+  background-size: auto 4px, 43px 43px;
+  background-repeat: repeat-x, repeat;
+  background-position: left top, left top;
 }
 
 /* --------------------------------------------------------------------------
