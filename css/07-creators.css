@@ -4,11 +4,15 @@
    ajoute ses classes .gc-* et le module d'activites ses classes .ga-*.
    ========================================================================== */
 
+/* Ces racines sont masquees par style en ligne et revelees par le script :
+   la valeur d'affichage visible doit vivre ici, sinon .show() retombe sur
+   « block » et la mise en page se defait. */
 #jobCreatorContainer,
 #gangCreatorContainer {
   position: fixed;
   inset: 0;
   z-index: var(--z-overlay);
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--sp-4);

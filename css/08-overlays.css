@@ -10,6 +10,7 @@
   position: fixed;
   inset: 0;
   z-index: var(--z-overlay);
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--sp-5);
@@ -267,6 +268,7 @@
   position: fixed;
   inset: 0;
   z-index: var(--z-overlay);
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--sp-5);
@@ -402,6 +404,7 @@
   position: fixed;
   inset: 0;
   z-index: var(--z-modal);
+  display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--scrim-deep);
@@ -478,14 +481,14 @@
   pointer-events: none;
   max-width: 26rem;
 }
-.notification-container.top-center    { top: 0; left: 50%; transform: translateX(-50%); align-items: center; }
+.notification-container.top-center    { top: 0; left: 50%; translate: -50% 0; align-items: center; }
 .notification-container.top-left      { top: 0; left: 0; align-items: flex-start; }
 .notification-container.top-right     { top: 0; right: 0; align-items: flex-end; }
-.notification-container.bottom-center { bottom: 0; left: 50%; transform: translateX(-50%); align-items: center; }
+.notification-container.bottom-center { bottom: 0; left: 50%; translate: -50% 0; align-items: center; }
 .notification-container.bottom-left   { bottom: 0; left: 0; align-items: flex-start; }
 .notification-container.bottom-right  { bottom: 0; right: 0; align-items: flex-end; }
-.notification-container.center-left   { top: 50%; left: 0; transform: translateY(-50%); align-items: flex-start; }
-.notification-container.center-right  { top: 50%; right: 0; transform: translateY(-50%); align-items: flex-end; }
+.notification-container.center-left   { top: 50%; left: 0; translate: 0 -50%; align-items: flex-start; }
+.notification-container.center-right  { top: 50%; right: 0; translate: 0 -50%; align-items: flex-end; }
 
 .notification,
 .jc-toast,
@@ -573,7 +576,7 @@
   position: fixed;
   left: 50%;
   bottom: var(--sp-6);
-  transform: translateX(-50%);
+  translate: -50% 0;
   z-index: var(--z-toast);
 }
 
