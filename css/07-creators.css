@@ -25,7 +25,7 @@
   height: min(940px, 94vh);
   min-height: 0;
   overflow: hidden;
-  background-color: rgba(1, 1, 1, 0.92);
+  background-color: var(--fill-panel);
 }
 
 /* --------------------------------------------------------------------------
@@ -37,7 +37,7 @@
   flex-direction: column;
   min-height: 0;
   padding: var(--sp-4) 0;
-  background-color: rgba(1, 1, 1, 0.6);
+  background-color: var(--fill-sunken);
   background-image: var(--tex-vrule);
   background-size: 4px 100%;
   background-repeat: no-repeat;
@@ -89,7 +89,7 @@
 .jc-main-nav-item:hover,
 .gc-main-nav-item:hover,
 .jc-nav-item:hover,
-.gc-nav-item:hover { color: var(--text-dim); background-color: rgba(27, 27, 27, 0.6); }
+.gc-nav-item:hover { color: var(--text-dim); background-color: var(--fill-hover); }
 
 .jc-main-nav-item.active,
 .gc-main-nav-item.active,
@@ -185,7 +185,7 @@
   min-height: 0;
   padding: var(--sp-4);
   gap: var(--sp-3);
-  background-color: rgba(1, 1, 1, 0.4);
+  background-color: var(--fill-sunken);
   background-image: var(--tex-vrule);
   background-size: 4px 100%;
   background-repeat: no-repeat;
@@ -208,11 +208,11 @@
   gap: 0.15rem;
   padding: var(--sp-3);
   cursor: pointer;
-  background-color: rgba(13, 13, 13, 0.55);
+  background-color: var(--fill-raised);
   transition: background-color 0.14s linear;
 }
 .jc-job-item:hover {
-  background-color: rgba(31, 31, 31, 0.8);
+  background-color: var(--fill-hover);
 }
 .jc-job-item.active {
   background-color: var(--red-soft);
@@ -284,7 +284,7 @@
   min-height: 0;
   padding: var(--sp-4) 0;
   gap: var(--sp-3);
-  background-color: rgba(1, 1, 1, 0.4);
+  background-color: var(--fill-sunken);
   background-image: var(--tex-vrule);
   background-size: 4px 100%;
   background-repeat: no-repeat;
@@ -533,7 +533,7 @@
   padding: 0.5rem 0.65rem;
   font-size: var(--fs-xs);
   color: var(--text-dim);
-  background-color: rgba(13, 13, 13, 0.6);
+  background-color: var(--fill-raised);
 }
 
 .jc-add-dynamic-btn,
@@ -566,7 +566,7 @@
   gap: var(--sp-3);
   margin: var(--sp-4) calc(var(--sp-6) * -1) calc(var(--sp-7) * -1);
   padding: var(--sp-4) var(--sp-6);
-  background-color: rgba(1, 1, 1, 0.92);
+  background-color: var(--fill-panel);
   background-image: var(--tex-rule-wide);
   background-size: 100% 4px;
   background-repeat: no-repeat;
@@ -608,7 +608,7 @@
   z-index: 40;
   max-height: 16rem;
   overflow-y: auto;
-  background-color: rgba(1, 1, 1, 0.97);
+  background-color: var(--fill-panel);
 }
 .jc-csel-opt,
 .comm-custom-select-option {
@@ -629,7 +629,7 @@
   gap: var(--sp-3);
   padding: 0.5rem 0.7rem;
   cursor: pointer;
-  background-color: rgba(1, 1, 1, 0.6);
+  background-color: var(--fill-sunken);
 }
 .jc-blip-preview-img,
 .gc-blip-preview-img { width: 28px; height: 28px; object-fit: contain; }
@@ -648,7 +648,7 @@
   max-height: 20rem;
   overflow-y: auto;
   padding: var(--sp-3);
-  background-color: rgba(1, 1, 1, 0.97);
+  background-color: var(--fill-panel);
 }
 .jc-blip-grid,
 .gc-blip-grid {
@@ -703,7 +703,7 @@
   gap: var(--sp-2);
   padding: var(--sp-4) var(--sp-5);
   min-height: 18rem;
-  background-color: rgba(13, 13, 13, 0.7);
+  background-color: var(--fill-raised);
 }
 .jc-dash-chart-title { font-family: var(--font-display); letter-spacing: var(--track-w); text-transform: uppercase; }
 .jc-dash-chart-subtitle { font-size: var(--fs-xs); color: var(--text-faint); }
@@ -751,7 +751,7 @@
   gap: var(--sp-3);
   align-items: center;
   padding: var(--sp-3);
-  background-color: rgba(13, 13, 13, 0.6);
+  background-color: var(--fill-raised);
 }
 .jc-wh-job-info { display: flex; flex-direction: column; min-width: 0; }
 .jc-wh-job-name { font-family: var(--font-display); letter-spacing: var(--track); color: var(--text); }
@@ -766,7 +766,7 @@
   flex-direction: column;
   gap: var(--sp-1);
   padding: var(--sp-4);
-  background-color: rgba(13, 13, 13, 0.6);
+  background-color: var(--fill-raised);
 }
 .jc-update-title { font-family: var(--font-display); letter-spacing: var(--track-w); text-transform: uppercase; color: var(--text); }
 .jc-update-version { font-family: var(--font-title); color: var(--red); }
@@ -795,7 +795,7 @@
   font-size: var(--fs-xs);
   letter-spacing: var(--track);
   color: var(--text-dim);
-  background-color: rgba(13, 13, 13, 0.7);
+  background-color: var(--fill-raised);
 }
 .jc-cs-source-live { color: var(--text); }
 .jc-cs-source-defaults { color: var(--text-faint); }
@@ -859,7 +859,7 @@
   letter-spacing: var(--track-w);
   text-transform: uppercase;
   color: var(--text-dim);
-  background-color: rgba(1, 1, 1, 0.88);
+  background-color: var(--fill-panel);
 }
 .jc-minimize-banner i,
 .gc-minimize-banner i { color: var(--red); }
@@ -882,7 +882,7 @@
   align-items: center;
   gap: var(--sp-3);
   padding: var(--sp-4) var(--sp-6);
-  background-color: rgba(1, 1, 1, 0.86);
+  background-color: var(--fill-panel);
 }
 .jc-placement-guide-badge {
   display: flex;

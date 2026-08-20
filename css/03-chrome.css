@@ -174,21 +174,21 @@
 .gcboss-member-card:hover::after { background-color: var(--ink-red); }
 
 /* --------------------------------------------------------------------------
-   Plaques : le fond visible d'une surface est toujours une texture du jeu,
-   posee sur un aplat sombre.
+   Surfaces : un aplat sombre translucide, et rien d'autre.
 
-   Une seule texture est REPETEE : box_bg_1 (43x43), mesuree uniforme, dont
-   les raccords se lisent comme un tissage fin. Les grandes planches
-   (box_a_bg_1) sont ETIREES sur la boite : elles sont uniformes et sans
-   ornement, c'est ainsi que le jeu les emploie au DrawSprite. Repeter une
-   planche de 197 px dessinerait sa grille de raccords a l'ecran.
+   Aucune planche du catalogue n'est repetable — toutes sont des plateaux
+   encadres dont le bord est plus sombre que le centre (ecart mesure de 16 a
+   60 %), donc repetees elles dessinent leur grille de raccords a l'ecran.
+   La matiere vient du cadre, des filets et des fleurons poses par-dessus,
+   pas d'un papier peint. Le monde reste visible au travers : un panneau
+   attenue la scene, il ne la remplace jamais.
    -------------------------------------------------------------------------- */
 .rsm-plate,
 .boss-panel,
 .gcboss-panel,
 .jc-main-content,
 .job-shop-container {
-  background-color: rgba(1, 1, 1, 0.90);
+  background-color: var(--fill-panel);
 }
 
 .rsm-plate-2,
@@ -206,10 +206,10 @@
 .comm-share-modal,
 .comm-confirm-modal,
 .comm-confirm-delete-modal {
-  background-color: rgba(1, 1, 1, 0.94);
+  background-color: var(--fill-panel);
 }
 
-/* Plaque de fiche : grain fin tuile a sa taille native (43x43). */
+/* Fiches : un cran plus clair que le panneau, coins graves par ::after. */
 .rsm-card,
 .dashboard-stat-card,
 .dashboard-panel,
@@ -241,7 +241,7 @@
 .gcboss-noto-card,
 .gcboss-stat,
 .gcboss-balance-box {
-  background-color: rgba(13, 13, 13, 0.72);
+  background-color: var(--fill-raised);
   transition: background-color 0.16s linear;
 }
 
@@ -255,7 +255,7 @@
 .jc-preview-card:hover,
 .comm-card:hover,
 .gcboss-member-card:hover {
-  background-color: rgba(27, 27, 27, 0.86);
+  background-color: var(--fill-hover);
 }
 
 /* --------------------------------------------------------------------------

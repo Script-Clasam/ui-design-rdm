@@ -38,7 +38,7 @@
   letter-spacing: var(--track);
   text-transform: uppercase;
   color: var(--text-faint);
-  background-color: rgba(13, 13, 13, 0.7);
+  background-color: var(--fill-raised);
 }
 .comm-stat-value { font-family: var(--font-title); color: var(--text); }
 
@@ -126,7 +126,7 @@
   min-height: 0;
   overflow: hidden;
   z-index: 2;
-  background-color: rgba(1, 1, 1, 0.94);
+  background-color: var(--fill-panel);
 }
 .comm-detail-title {
   position: relative;
@@ -140,7 +140,7 @@
   letter-spacing: var(--track-w);
   text-transform: uppercase;
   color: var(--text);
-  background-color: rgba(1, 1, 1, 0.55);
+  background-color: var(--fill-sunken);
   background-image: var(--tex-bar);
   background-size: 100% 12px;
   background-repeat: no-repeat;
@@ -167,7 +167,7 @@
   letter-spacing: var(--track);
   text-transform: uppercase;
   color: var(--text-faint);
-  background-color: rgba(27, 27, 27, 0.8);
+  background-color: var(--fill-hover);
 }
 .comm-detail-installed-badge { color: var(--red); }
 .comm-detail-author-row { display: flex; align-items: center; gap: var(--sp-3); }
@@ -234,7 +234,7 @@
   overflow-y: auto;
   user-select: text;
   cursor: text;
-  background-color: rgba(1, 1, 1, 0.65);
+  background-color: var(--fill-sunken);
 }
 
 /* --------------------------------------------------------------------------

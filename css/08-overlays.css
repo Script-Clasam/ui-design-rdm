@@ -31,7 +31,7 @@
 .gcboss-header {
   flex: 0 0 auto;
   padding: var(--sp-3) var(--sp-5) 0;
-  background-color: rgba(1, 1, 1, 0.72);
+  background-color: var(--fill-sunken);
 }
 .gcboss-header-grid {
   display: grid;
@@ -52,7 +52,7 @@
   letter-spacing: var(--track);
   text-transform: uppercase;
   color: var(--text-dim);
-  background-color: rgba(13, 13, 13, 0.7);
+  background-color: var(--fill-raised);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -176,7 +176,7 @@
   align-items: center;
   gap: var(--sp-3);
   padding: var(--sp-6);
-  background-color: rgba(13, 13, 13, 0.7);
+  background-color: var(--fill-raised);
 }
 .gcboss-noto-emblem { font-size: 2.6rem; color: var(--red); }
 .gcboss-noto-rank {
@@ -191,7 +191,7 @@
 .gcboss-noto-progress {
   width: min(520px, 100%);
   height: 12px;
-  background-color: rgba(1, 1, 1, 0.7);
+  background-color: var(--fill-sunken);
   background-image: var(--tex-bar);
   background-size: 100% 12px;
   background-repeat: no-repeat;
@@ -249,7 +249,7 @@
   justify-content: space-between;
   gap: var(--sp-3);
   padding: var(--sp-3) var(--sp-5);
-  background-color: rgba(1, 1, 1, 0.72);
+  background-color: var(--fill-sunken);
 }
 .job-shop-title {
   font-family: var(--font-display);
@@ -282,7 +282,7 @@
   font-size: var(--fs-xs);
   letter-spacing: var(--track);
   color: var(--text-dim);
-  background-color: rgba(13, 13, 13, 0.7);
+  background-color: var(--fill-raised);
 }
 .payer-company { color: var(--red); text-transform: uppercase; }
 .job-shop-items {
@@ -338,7 +338,7 @@
 .code-input-header-bar {
   padding: var(--sp-3) var(--sp-5);
   text-align: center;
-  background-color: rgba(1, 1, 1, 0.72);
+  background-color: var(--fill-sunken);
 }
 .code-title { font-family: var(--font-display); letter-spacing: var(--track-w); text-transform: uppercase; color: var(--text); }
 .code-input-spacer {
@@ -396,7 +396,7 @@
   pointer-events: auto;
   font-size: var(--fs-sm);
   color: var(--text);
-  background-color: rgba(1, 1, 1, 0.92);
+  background-color: var(--fill-panel);
   animation: rsm-toast-in 0.22s ease-out;
 }
 .notification::after,

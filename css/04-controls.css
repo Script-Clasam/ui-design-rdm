@@ -31,7 +31,7 @@ button,
   text-transform: uppercase;
   color: var(--text-dim);
   white-space: nowrap;
-  background-color: rgba(1, 1, 1, 0.55);
+  background-color: var(--fill-sunken);
   transition: color 0.14s linear, background-color 0.14s linear;
 }
 
@@ -70,7 +70,7 @@ button:hover,
 .comm-copy-btn:hover,
 .job-shop-buy-btn:hover {
   color: var(--text);
-  background-color: rgba(45, 45, 45, 0.85);
+  background-color: var(--fill-hover);
 }
 
 button:hover::after,
@@ -176,7 +176,7 @@ button.disabled,
 .resign-btn,
 .member-btn-warning {
   color: var(--red);
-  background-color: rgba(13, 13, 13, 0.82);
+  background-color: var(--fill-raised);
 }
 .member-btn-danger:hover,
 .fire-btn:hover,
@@ -404,7 +404,7 @@ button.disabled,
 .jc-key-hint {
   display: inline-flex;
   pointer-events: none;
-  background-color: rgba(27, 27, 27, 0.8);
+  background-color: var(--fill-hover);
 }
 .jc-badge-disabled { color: var(--text-faint); opacity: 0.6; }
 .jc-badge-db,
@@ -554,7 +554,7 @@ input[type='checkbox'] {
   display: inline-block;
   width: 42px;
   height: 18px;
-  background-color: rgba(1, 1, 1, 0.7);
+  background-color: var(--fill-sunken);
   transition: background-color 0.16s linear;
 }
 .toggle-slider::before {
@@ -631,8 +631,8 @@ input[type='checkbox'] {
 #historyClearSearch:hover { color: var(--red); background-color: transparent; background-image: none; }
 
 /* --------------------------------------------------------------------------
-   Plaques de champ dediees : le jeu a une planche pour la recherche et une
-   pour les montants. Toutes deux sont repetees a leur hauteur native.
+   Champs particuliers : la recherche s'enfonce un peu plus que les autres,
+   les montants sont centres et composes dans la fonte de catalogue.
    -------------------------------------------------------------------------- */
 .employees-search-input,
 .jc-search-input,
@@ -641,6 +641,7 @@ input[type='checkbox'] {
 .history-search-container input,
 .gc-blip-search,
 .jc-blip-search {
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .currency-input,
@@ -650,6 +651,9 @@ input[type='checkbox'] {
 .bonus-input,
 .job-shop-qty-input,
 .code-input-field {
+  font-family: var(--font-title);
+  text-align: center;
+  letter-spacing: 0.06em;
 }
 
 /* Pictogrammes de statistique : pas de socle, la fiche porte deja son cadre. */

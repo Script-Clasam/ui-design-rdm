@@ -24,7 +24,7 @@ thead th {
   text-transform: uppercase;
   color: var(--text-faint);
   white-space: nowrap;
-  background-color: rgba(1, 1, 1, 0.55);
+  background-color: var(--fill-sunken);
   background-image: var(--tex-rule-wide);
   background-size: 100% 4px;
   background-repeat: no-repeat;

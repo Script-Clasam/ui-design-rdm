@@ -35,7 +35,7 @@
 .boss-header {
   flex: 0 0 auto;
   padding: var(--sp-3) var(--sp-5) 0;
-  background-color: rgba(1, 1, 1, 0.72);
+  background-color: var(--fill-sunken);
 }
 
 .header-grid {
@@ -58,7 +58,7 @@
   letter-spacing: var(--track);
   text-transform: uppercase;
   color: var(--text-dim);
-  background-color: rgba(13, 13, 13, 0.7);
+  background-color: var(--fill-raised);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -353,7 +353,7 @@
   justify-content: center;
   overflow: hidden;
   object-fit: cover;
-  background-color: rgba(1, 1, 1, 0.6);
+  background-color: var(--fill-sunken);
 }
 .member-avatar img,
 .recruit-avatar img,
@@ -375,7 +375,7 @@
   font-family: var(--font-display);
   font-size: var(--fs-lg);
   color: var(--text-dim);
-  background-color: rgba(1, 1, 1, 0.6);
+  background-color: var(--fill-sunken);
 }
 
 .member-details,
