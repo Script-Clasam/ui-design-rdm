@@ -1,0 +1,923 @@
+/* ==========================================================================
+   07 — CREATEURS (metiers et gangs)
+   Les deux createurs partagent le squelette .jc-* ; le createur de gang y
+   ajoute ses classes .gc-* et le module d'activites ses classes .ga-*.
+   ========================================================================== */
+
+#jobCreatorContainer,
+#gangCreatorContainer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-4);
+  background-color: var(--scrim);
+}
+
+.jc-wrapper {
+  display: flex;
+  width: min(1720px, 97vw);
+  height: min(940px, 94vh);
+  min-height: 0;
+  overflow: hidden;
+  background-color: rgba(1, 1, 1, 0.92);
+  background-image: linear-gradient(rgba(13, 13, 13, 0.88), rgba(1, 1, 1, 0.95)), var(--tex-menu-lg);
+  background-size: cover, 576px 384px;
+  background-position: center, center top;
+  background-repeat: no-repeat, repeat;
+}
+
+/* --------------------------------------------------------------------------
+   Barre laterale principale
+   -------------------------------------------------------------------------- */
+.jc-main-nav {
+  flex: 0 0 246px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: var(--sp-4) 0;
+  background-color: rgba(1, 1, 1, 0.6);
+  background-image: var(--tex-vrule), var(--tex-grain-lo);
+  background-size: 4px auto, 43px 43px;
+  background-repeat: repeat-y, repeat;
+  background-position: right top, left top;
+}
+.jc-main-nav-top { flex: 0 0 auto; padding: 0 var(--sp-4) var(--sp-4); }
+.jc-logo-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text);
+}
+.jc-logo-row i { color: var(--red); }
+
+.jc-main-nav-items {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 var(--sp-3);
+}
+.jc-main-nav-item,
+.gc-main-nav-item,
+.jc-nav-item,
+.gc-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 0.65rem var(--sp-3);
+  font-size: var(--fs-sm);
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  cursor: pointer;
+  transition: color 0.14s linear, background-color 0.14s linear;
+}
+.jc-main-nav-item i,
+.gc-main-nav-item i,
+.jc-nav-item i,
+.gc-nav-item i { width: 18px; text-align: center; flex: 0 0 18px; }
+
+.jc-main-nav-item:hover,
+.gc-main-nav-item:hover,
+.jc-nav-item:hover,
+.gc-nav-item:hover { color: var(--text-dim); background-color: rgba(27, 27, 27, 0.6); }
+
+.jc-main-nav-item.active,
+.gc-main-nav-item.active,
+.jc-nav-item.active,
+.gc-nav-item.active {
+  color: var(--text);
+  background-color: var(--red-soft);
+  background-image: var(--tex-row);
+  background-size: auto 100%;
+  background-repeat: repeat-x;
+  background-position: left center;
+  background-blend-mode: soft-light;
+}
+.jc-main-nav-item.active::before,
+.gc-main-nav-item.active::before,
+.jc-nav-item.active::before,
+.gc-nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--red);
+}
+
+.jc-main-nav-bottom {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-4) var(--sp-3) 0;
+  background-color: transparent;
+  background-image: var(--tex-rule);
+  background-size: auto 4px;
+  background-repeat: repeat-x;
+  background-position: left top;
+}
+.jc-sidebar-profile {
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2);
+  min-width: 0;
+}
+.jc-sidebar-profile-avatar { width: 34px; height: 34px; flex: 0 0 34px; object-fit: cover; }
+.jc-sidebar-profile-name {
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track);
+  color: var(--text-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.jc-close-list-btn { width: 100%; height: auto; flex: 0 0 auto; padding: 0.6rem; }
+.jc-switch-creator-btn { color: var(--text-faint); }
+
+/* --------------------------------------------------------------------------
+   Zone de contenu et pages
+   -------------------------------------------------------------------------- */
+.jc-main-content {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.jc-page {
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+}
+#jcPageDashboard { display: flex; }
+
+.jc-page-jobs,
+.jc-page-editor { flex-direction: row; }
+
+.jc-page-generic {
+  padding: var(--sp-5) var(--sp-6);
+  gap: var(--sp-4);
+  overflow-y: auto;
+}
+.jc-generic-page-header { font-size: var(--fs-xl); }
+.jc-generic-page-sub { font-size: var(--fs-sm); color: var(--text-faint); margin-top: calc(var(--sp-2) * -1); }
+
+/* --------------------------------------------------------------------------
+   Page « liste » : colonne de recherche + apercu
+   -------------------------------------------------------------------------- */
+.jc-jobs-sidebar {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: var(--sp-4);
+  gap: var(--sp-3);
+  background-color: rgba(1, 1, 1, 0.4);
+  background-image: var(--tex-vrule);
+  background-size: 4px auto;
+  background-repeat: repeat-y;
+  background-position: right top;
+}
+.jc-jobs-sidebar-top { flex: 0 0 auto; display: flex; align-items: center; gap: var(--sp-2); }
+.jc-new-job-btn { flex: 0 0 auto; padding: 0.5rem 0.75rem; }
+
+.jc-job-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.jc-job-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: var(--sp-3);
+  cursor: pointer;
+  background-color: rgba(13, 13, 13, 0.55);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+  transition: background-color 0.14s linear;
+}
+.jc-job-item:hover { background-color: rgba(31, 31, 31, 0.8); }
+.jc-job-item.active { background-color: var(--red-soft); }
+.jc-job-item-name {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  letter-spacing: var(--track);
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.jc-job-item-label,
+.jc-job-item-meta { font-size: var(--fs-xs); color: var(--text-faint); }
+
+.jc-jobs-preview {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--sp-5) var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.jc-preview-card { padding: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-4); }
+.jc-preview-header { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); }
+.jc-preview-name,
+.jc-preview-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text);
+}
+.jc-preview-actions { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
+.jc-preview-info-grid,
+.jc-preview-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--sp-3);
+}
+.jc-stat-card,
+.jc-info-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  padding: var(--sp-3) var(--sp-4);
+  min-width: 0;
+}
+.jc-stat-card-label,
+.jc-info-box-title {
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.jc-stat-card-value,
+.jc-info-box-value { font-family: var(--font-title); font-size: var(--fs-lg); color: var(--text); }
+
+/* --------------------------------------------------------------------------
+   Page « editeur » : sommaire + formulaire
+   -------------------------------------------------------------------------- */
+.jc-editor-nav {
+  flex: 0 0 262px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: var(--sp-4) 0;
+  gap: var(--sp-3);
+  background-color: rgba(1, 1, 1, 0.4);
+  background-image: var(--tex-vrule);
+  background-size: 4px auto;
+  background-repeat: repeat-y;
+  background-position: right top;
+}
+.jc-nav-items {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 var(--sp-3);
+}
+.jc-nav-footer {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-3) 0;
+  background-color: transparent;
+  background-image: var(--tex-rule);
+  background-size: auto 4px;
+  background-repeat: repeat-x;
+  background-position: left top;
+}
+.jc-editing-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2);
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+  min-width: 0;
+}
+.jc-editing-label { text-transform: uppercase; letter-spacing: var(--track); }
+.jc-editing-name {
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.jc-go-back-btn { width: 100%; }
+
+.jc-editor-content {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--sp-5) var(--sp-6) var(--sp-7);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+/* --------------------------------------------------------------------------
+   Formulaire de l'editeur
+   -------------------------------------------------------------------------- */
+.jc-section-icon-title,
+.jc-cs-section-title,
+.jc-craft-st-heading,
+.jc-duty-heading,
+.jc-sell-heading,
+.jc-shop-heading,
+.jc-stash-heading,
+.jc-reg-heading,
+.jc-harvest-points-title,
+.gc-hv-points-title {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text);
+  padding-bottom: var(--sp-2);
+  background-color: transparent;
+  background-image: var(--tex-rule-wide);
+  background-size: auto 4px;
+  background-repeat: repeat-x;
+  background-position: left bottom;
+}
+
+.jc-field,
+.gc-entry-grid > div,
+.ga-input-row > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  min-width: 0;
+}
+.jc-field-label,
+.jc-label,
+.jc-craft-ing-label,
+.jc-craft-rcp-label,
+.jc-craft-cat-label,
+.jc-shi-label,
+.jc-si-label,
+.jc-stash-label,
+.jc-shop-label,
+.jc-sell-label,
+.jc-duty-label,
+.jc-reg-label,
+.gc-stash-label,
+.jc-toggle-label,
+.jc-sublabel {
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.jc-field-hint,
+.jc-perm-hint,
+.jc-hp-detail-hint,
+.jc-stash-shared-hint,
+.jc-wh-events-hint,
+.ga-pt-model-hint,
+.jc-config-notice { font-size: var(--fs-xs); color: var(--text-faint); line-height: 1.5; }
+
+.jc-form-row,
+.jc-field-row,
+.gc-entry-grid,
+.ga-input-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--sp-3);
+  align-items: end;
+}
+.jc-coords-grid,
+.jc-hp-coords-row,
+.gc-entry-coords {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: var(--sp-2);
+  align-items: end;
+}
+.jc-input-sm { padding: 0.4rem 0.55rem; font-size: var(--fs-xs); }
+
+.jc-dynamic-card,
+.jc-craft-subsection,
+.jc-harvest-point,
+.gc-hv-point,
+.gc-entry,
+.ga-act-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  min-width: 0;
+}
+.jc-dynamic-card-header,
+.jc-harvest-points-header,
+.gc-hv-point-head,
+.gc-entry-head,
+.ga-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+.jc-dynamic-card-title,
+.gc-hv-point-num,
+.jc-harvest-point-num,
+.ga-act-name {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  color: var(--text);
+}
+.jc-dynamic-card-remove,
+.jc-grade-remove,
+.jc-shop-item-remove,
+.jc-sell-item-remove,
+.jc-craft-ing-remove,
+.jc-craft-cat-remove,
+.jc-harvest-reward-remove,
+.jc-harvest-point-remove,
+.gc-grade-remove,
+.gc-entry-remove,
+.gc-hv-point-remove,
+.ga-row-remove,
+.ga-req-remove,
+.ga-rw-remove,
+.ga-in-remove,
+.ga-ni-remove,
+.ga-hvp-remove {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  color: var(--text-faint);
+}
+.jc-dynamic-card-remove:hover,
+.jc-grade-remove:hover,
+.gc-entry-remove:hover,
+.ga-row-remove:hover { color: var(--red); }
+
+.jc-shop-item-row,
+.jc-sell-item-row,
+.jc-craft-ingredient-row,
+.jc-craft-cat-row,
+.jc-harvest-reward-row,
+.jc-custom-anim-row,
+.jc-sell-custom-anim-row,
+.gc-anim-custom-row,
+.ga-req-row,
+.ga-reward-row,
+.ga-in-row,
+.ga-ni-row,
+.ga-hvp-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) auto;
+  gap: var(--sp-2);
+  align-items: end;
+}
+
+.jc-grades-table,
+.jc-items-table,
+.jc-hist-table,
+.gc-hist-tbody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.jc-grade-level,
+.jc-grade-name,
+.jc-grade-salary,
+.gc-grade-name { min-width: 0; }
+
+.jc-perms-grid,
+.jc-wh-events-grid,
+.jc-craft-cat-checks,
+.ga-act-chips {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--sp-2);
+}
+.jc-perm-item,
+.jc-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0.5rem 0.65rem;
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+  background-color: rgba(13, 13, 13, 0.6);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+
+.jc-add-dynamic-btn,
+.jc-add-grade-btn,
+.jc-add-harvest-point-btn,
+.jc-add-harvest-reward-btn,
+.jc-add-sell-item-btn,
+.jc-add-shop-item-btn,
+.jc-craft-add-ing-btn,
+.gc-hv-addpt,
+.ga-add-row-btn,
+.ga-add-point,
+.ga-add-req,
+.ga-add-reward,
+.ga-add-input,
+.ga-add-npc-item {
+  align-self: flex-start;
+  padding: 0.45rem 0.9rem;
+  font-size: var(--fs-xs);
+}
+
+/* Barre d'enregistrement collee au bas de l'editeur. */
+.jc-save-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--sp-3);
+  margin: var(--sp-4) calc(var(--sp-6) * -1) calc(var(--sp-7) * -1);
+  padding: var(--sp-4) var(--sp-6);
+  background-color: rgba(1, 1, 1, 0.92);
+  background-image: var(--tex-rule-wide), var(--tex-grain-lo);
+  background-size: auto 4px, 43px 43px;
+  background-repeat: repeat-x, repeat;
+  background-position: left top, left top;
+}
+
+/* --------------------------------------------------------------------------
+   Selecteur personnalise et selecteur de blip
+   -------------------------------------------------------------------------- */
+.jc-csel,
+.comm-custom-select { position: relative; min-width: 0; }
+.jc-csel-display,
+.comm-custom-select-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  padding: 0.5rem 0.7rem;
+  font-size: var(--fs-sm);
+  color: var(--text);
+  cursor: pointer;
+  background-color: rgba(1, 1, 1, 0.6);
+  background-image: var(--tex-arrow-r), var(--tex-rule), var(--tex-grain-lo);
+  background-size: 12px 12px, auto 4px, 43px 43px;
+  background-repeat: no-repeat, repeat-x, repeat;
+  background-position: right 0.6rem center, left bottom, left top;
+}
+.jc-csel-opts,
+.comm-custom-select-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  max-height: 16rem;
+  overflow-y: auto;
+  background-color: rgba(1, 1, 1, 0.97);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.jc-csel-opt,
+.comm-custom-select-option {
+  padding: 0.45rem 0.7rem;
+  font-size: var(--fs-sm);
+  color: var(--text-dim);
+  cursor: pointer;
+}
+.jc-csel-opt:hover,
+.comm-custom-select-option:hover { color: var(--text); background-color: var(--red-soft); }
+
+.jc-blip-picker,
+.gc-blip-picker { position: relative; display: flex; flex-direction: column; gap: var(--sp-2); }
+.jc-blip-picker-current,
+.gc-blip-picker-current {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 0.5rem 0.7rem;
+  cursor: pointer;
+  background-color: rgba(1, 1, 1, 0.6);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.jc-blip-preview-img,
+.gc-blip-preview-img { width: 28px; height: 28px; object-fit: contain; }
+.jc-blip-picker-dropdown,
+.gc-blip-picker-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  max-height: 20rem;
+  overflow-y: auto;
+  padding: var(--sp-3);
+  background-color: rgba(1, 1, 1, 0.97);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.jc-blip-grid,
+.gc-blip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: var(--sp-2);
+}
+.jc-blip-option,
+.gc-blip-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: var(--sp-2);
+  cursor: pointer;
+  font-size: 0.6rem;
+  color: var(--text-faint);
+  text-align: center;
+}
+.jc-blip-option:hover,
+.gc-blip-option:hover { background-color: var(--red-soft); color: var(--text); }
+.jc-blip-option img,
+.gc-blip-option img { width: 26px; height: 26px; object-fit: contain; }
+
+/* --------------------------------------------------------------------------
+   Tableau de bord du createur
+   -------------------------------------------------------------------------- */
+.jc-dashboard {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--sp-5) var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.jc-dashboard-title { font-size: var(--fs-xl); }
+.jc-dash-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--sp-3);
+}
+.jc-dash-stat { display: flex; flex-direction: column; gap: var(--sp-1); padding: var(--sp-4); }
+.jc-dash-stat-top { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); }
+.jc-dash-stat-icon { color: var(--text-faint); }
+.jc-dash-stat-label { font-size: var(--fs-xs); letter-spacing: var(--track-w); text-transform: uppercase; color: var(--text-faint); }
+.jc-dash-stat-value { font-family: var(--font-title); font-size: var(--fs-2xl); color: var(--text); }
+.jc-dash-stat-sub { font-size: var(--fs-xs); color: var(--text-faint); }
+.jc-dash-chart-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-4) var(--sp-5);
+  min-height: 18rem;
+  background-color: rgba(13, 13, 13, 0.7);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.jc-dash-chart-title { font-family: var(--font-display); letter-spacing: var(--track-w); text-transform: uppercase; }
+.jc-dash-chart-subtitle { font-size: var(--fs-xs); color: var(--text-faint); }
+.jc-dash-chart-wrapper { position: relative; flex: 1 1 auto; min-height: 14rem; }
+.jc-wealthiest-name { color: var(--text); }
+
+/* --------------------------------------------------------------------------
+   Historique, webhooks, mises a jour
+   -------------------------------------------------------------------------- */
+.jc-hist-filters,
+.gc-hist-filter-gang,
+.jc-wh-search-bar { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
+.jc-hist-table-wrap { overflow-x: auto; min-width: 0; }
+.jc-hist-tbody,
+.gc-hist-tbody { display: flex; flex-direction: column; }
+.jc-hist-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+}
+.jc-hist-action-badge { font-size: var(--fs-xs); letter-spacing: var(--track); text-transform: uppercase; color: var(--red); }
+.jc-hist-td-details { font-size: var(--fs-xs); color: var(--text-dim); min-width: 0; }
+.jc-hist-td-date { font-size: var(--fs-xs); color: var(--text-faint); }
+.jc-hist-pagination,
+.jc-hist-page-controls,
+.gc-hist-page-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  padding-top: var(--sp-3);
+}
+.jc-hist-page-info,
+.jc-hist-total,
+.gc-hist-total { font-size: var(--fs-xs); color: var(--text-faint); }
+
+.jc-webhook-card { display: flex; flex-direction: column; gap: var(--sp-3); padding: var(--sp-4); }
+.jc-webhook-card-title { font-family: var(--font-display); letter-spacing: var(--track-w); text-transform: uppercase; }
+.jc-wh-job-list { display: flex; flex-direction: column; gap: var(--sp-2); }
+.jc-wh-job-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--sp-3);
+  align-items: center;
+  padding: var(--sp-3);
+  background-color: rgba(13, 13, 13, 0.6);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.jc-wh-job-info { display: flex; flex-direction: column; min-width: 0; }
+.jc-wh-job-name { font-family: var(--font-display); letter-spacing: var(--track); color: var(--text); }
+.jc-wh-job-label,
+.jc-wh-job-status { font-size: var(--fs-xs); color: var(--text-faint); }
+.jc-wh-job-actions { display: flex; gap: var(--sp-2); }
+.jc-wh-job-url-wrap { display: flex; gap: var(--sp-2); align-items: center; min-width: 0; }
+.jc-wh-url-input { font-size: var(--fs-xs); }
+
+.jc-update-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  padding: var(--sp-4);
+  background-color: rgba(13, 13, 13, 0.6);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.jc-update-title { font-family: var(--font-display); letter-spacing: var(--track-w); text-transform: uppercase; color: var(--text); }
+.jc-update-version { font-family: var(--font-title); color: var(--red); }
+.jc-update-date { font-size: var(--fs-xs); color: var(--text-faint); }
+.jc-update-desc { font-size: var(--fs-sm); color: var(--text-dim); line-height: 1.6; }
+
+.jc-coming-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  padding: var(--sp-7);
+  color: var(--text-faint);
+}
+.jc-coming-soon-title { font-family: var(--font-display); font-size: var(--fs-xl); letter-spacing: var(--track-w); text-transform: uppercase; }
+
+.jc-cs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--sp-3);
+}
+.jc-cs-section { display: flex; flex-direction: column; gap: var(--sp-3); }
+.jc-cs-source-banner {
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track);
+  color: var(--text-dim);
+  background-color: rgba(13, 13, 13, 0.7);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.jc-cs-source-live { color: var(--text); }
+.jc-cs-source-defaults { color: var(--text-faint); }
+.jc-cs-actions { display: flex; justify-content: flex-end; gap: var(--sp-3); }
+
+/* --------------------------------------------------------------------------
+   Activites de gang
+   -------------------------------------------------------------------------- */
+.ga-editor { display: flex; flex-direction: column; gap: var(--sp-4); min-width: 0; }
+.ga-breadcrumb { font-size: var(--fs-xs); letter-spacing: var(--track); text-transform: uppercase; color: var(--text-faint); }
+.ga-tab-bar {
+  display: flex;
+  gap: var(--sp-2);
+  background-color: transparent;
+  background-image: var(--tex-rule-wide);
+  background-size: auto 4px;
+  background-repeat: repeat-x;
+  background-position: left bottom;
+}
+.ga-tab-body { padding-top: var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-4); }
+.ga-act-list { display: flex; flex-direction: column; gap: var(--sp-2); }
+.ga-act-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--sp-3); }
+.ga-act-icon-wrap { color: var(--red); font-size: var(--fs-lg); width: 34px; text-align: center; }
+.ga-act-body { display: flex; flex-direction: column; gap: var(--sp-1); min-width: 0; }
+.ga-act-btns { display: flex; gap: var(--sp-2); }
+.ga-act-stripe { width: 3px; align-self: stretch; background-color: var(--red); }
+.ga-gangs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--sp-2);
+}
+.ga-gang-chip,
+.ga-gang-chip-public { display: flex; align-items: center; gap: var(--sp-2); }
+.ga-pt-model-section,
+.ga-pt-zone-section { display: flex; flex-direction: column; gap: var(--sp-3); }
+.ga-pt-model-label { font-size: var(--fs-xs); letter-spacing: var(--track-w); text-transform: uppercase; color: var(--text-faint); }
+
+.gc-entries { display: flex; flex-direction: column; gap: var(--sp-3); }
+.gc-grade-boss-cell { display: flex; align-items: center; gap: var(--sp-2); }
+.gc-hv-points-list,
+.jc-harvest-points-list,
+.jc-harvest-rewards-list,
+.jc-craft-ingredients-list { display: flex; flex-direction: column; gap: var(--sp-3); }
+
+/* --------------------------------------------------------------------------
+   Bandeau reduit et guide de placement
+   -------------------------------------------------------------------------- */
+.jc-minimize-banner,
+.gc-minimize-banner {
+  position: fixed;
+  left: 50%;
+  bottom: var(--sp-5);
+  transform: translateX(-50%);
+  z-index: var(--z-toast);
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-5);
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background-color: rgba(1, 1, 1, 0.88);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.jc-minimize-banner i,
+.gc-minimize-banner i { color: var(--red); }
+
+.jc-placement-guide {
+  position: fixed;
+  left: 50%;
+  bottom: var(--sp-6);
+  transform: translateX(-50%);
+  z-index: var(--z-toast);
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  pointer-events: none;
+}
+.jc-placement-guide-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-6);
+  background-color: rgba(1, 1, 1, 0.86);
+  background-image: var(--tex-grain-lo);
+  background-size: 43px 43px;
+  background-repeat: repeat;
+}
+.jc-placement-guide-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  letter-spacing: var(--track-w);
+  text-transform: uppercase;
+  color: var(--red);
+}
+.jc-placement-guide-strip { display: flex; flex-direction: column; align-items: center; gap: var(--sp-2); }
+.jc-placement-guide-text { font-size: var(--fs-xs); color: var(--text-dim); }
+.jc-placement-guide-keys { display: flex; gap: var(--sp-2); flex-wrap: wrap; justify-content: center; }
+.jc-placement-guide-heading { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-xs); }
+.jc-heading-label { color: var(--text-faint); text-transform: uppercase; letter-spacing: var(--track); }
+.jc-heading-value { font-family: var(--font-title); color: var(--text); }
